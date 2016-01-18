@@ -12,6 +12,7 @@ namespace Ideal
     {
         protected void Application_Start()
         {
+            DependencyResolution.DependencyBuilder.BuildDependencies();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
