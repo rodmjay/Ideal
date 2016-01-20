@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#region
+
 using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ideal;
 using Ideal.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace Ideal.Tests.Controllers
 {

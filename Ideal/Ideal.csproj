@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Infrastructure\Metadata\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
+      <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
+      <Name>Ideal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.DependencyResolution\Ideal.DependencyResolution.csproj">
+      <Project>{f8e6a86f-c9d8-47b4-89e0-dab9b967f9fb}</Project>
+      <Name>Ideal.DependencyResolution</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,12 +1,11 @@
-﻿using Autofac;
-using Autofac.Integration.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿#region
+
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
+using Autofac;
+using Autofac.Integration.Mvc;
+
+#endregion
 
 namespace Ideal.DependencyResolution
 {
