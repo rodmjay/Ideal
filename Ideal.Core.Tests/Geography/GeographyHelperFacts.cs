@@ -1,9 +1,8 @@
-﻿using System;
-using System.Data.Entity.Spatial;
+﻿using System.Data.Entity.Spatial;
 using Ideal.Core.Common.Geography;
 using NUnit.Framework;
 
-namespace Ideal.Core.Tests
+namespace Ideal.Core.Tests.Geography
 {
     [TestFixture]
     public class GeographyHelperFacts

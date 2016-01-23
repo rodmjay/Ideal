@@ -2,7 +2,7 @@ using Ideal.Core.Common.Membership.Events;
 using Ideal.Core.Model;
 using NUnit.Framework;
 
-namespace Ideal.Core.Tests
+namespace Ideal.Core.Tests.Membership
 {
     [TestFixture]
     public class UserActivityFacts

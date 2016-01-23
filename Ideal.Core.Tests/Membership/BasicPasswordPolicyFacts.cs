@@ -1,8 +1,7 @@
-using System.Runtime.Remoting.Messaging;
 using Ideal.Core.Common.Membership.PasswordPolicies;
 using NUnit.Framework;
 
-namespace Ideal.Core.Tests
+namespace Ideal.Core.Tests.Membership
 {
     [TestFixture]
     public class BasicPasswordPolicyFacts
@@ -60,6 +59,18 @@ namespace Ideal.Core.Tests
                 var policy = new BasicPasswordPolicy
                 {
                     Numerics = minNumerics
+                };
+                return policy.ValidatePassword(password);
+            }
+
+            [TestCase((uint)6, "!@#$%^&", ExpectedResult = true)]
+            [TestCase((uint)6, "!@#$%^", ExpectedResult = true)]
+            [TestCase((uint)6, "!@#$%", ExpectedResult = false)]
+            public bool ValidatesNonAlphaNumerics(uint minNonAlphas, string password)
+            {
+                var policy = new BasicPasswordPolicy
+                {
+                    NonAlphaNumerics = minNonAlphas
                 };
                 return policy.ValidatePassword(password);
             }
