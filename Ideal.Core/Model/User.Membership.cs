@@ -480,12 +480,8 @@ namespace Ideal.Core.Model
         static readonly string[] UglyBase64 = { "+", "/", "=" };
         static string StripUglyBase64(string s)
         {
-            if (s == null) return s;
-            foreach (var ugly in UglyBase64)
-            {
-                s = s.Replace(ugly, "");
-            }
-            return s;
+            if (s == null) return null;
+            return UglyBase64.Aggregate(s, (current, ugly) => current.Replace(ugly, ""));
         }
 
         protected internal virtual string Hash(string value)
@@ -508,12 +504,6 @@ namespace Ideal.Core.Model
             return CryptoHelper.VerifyHashedPassword(HashedPassword, password);
         }
 
-        protected internal virtual DateTime UtcNow
-        {
-            get
-            {
-                return DateTime.UtcNow;
-            }
-        }
+        protected internal virtual DateTime UtcNow => DateTime.UtcNow;
     }
 }

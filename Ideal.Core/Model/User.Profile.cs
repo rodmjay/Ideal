@@ -38,10 +38,6 @@ namespace Ideal.Core.Model
         public virtual string Comment { get; set; }
 
 
-        public string FullName
-        {
-            get { return FirstName + " " + LastName; }
-        }
-
+        public string FullName => FirstName + " " + LastName;
     }
 }

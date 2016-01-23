@@ -10,6 +10,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Ideal.Core.Common.Validation;
 using Ideal.Core.Interfaces.Validation;

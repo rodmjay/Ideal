@@ -113,7 +113,6 @@
     <Compile Include="Extensions\ConfigExtensions.cs" />
     <Compile Include="Extensions\DisposableExtensions.cs" />
     <Compile Include="Extensions\DomainObjectExtensions.Validation.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Interfaces\Data\IDatabaseFactory.cs" />
     <Compile Include="Interfaces\Data\IDataContext.cs" />
     <Compile Include="Interfaces\Data\IRepository.cs" />
@@ -158,13 +157,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\Logging\" />
-    <Folder Include="Models\" />
     <Folder Include="SqlServerTypes\x64\" />
     <Folder Include="SqlServerTypes\x86\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">
+      <Project>{2f88f0ae-3278-4d1c-adf3-01ec8ef881ba}</Project>
+      <Name>Ideal.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
