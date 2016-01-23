@@ -139,7 +139,7 @@ namespace Ideal.Core.Services
         {
             if (String.IsNullOrWhiteSpace(key)) return null;
 
-            var account = _userRepository.GetAll().Where(x => x.VerificationKey == key).SingleOrDefault();
+            var account = _userRepository.GetAll().SingleOrDefault(x => x.VerificationKey == key);
             if (account == null)
             {
                 //Tracing.Verbose(String.Format("[UserAccountService.GetByVerificationKey] failed to locate account: {0}", key));
@@ -158,7 +158,7 @@ namespace Ideal.Core.Services
 
             if (_settings.UsernamesUniqueAcrossTenants)
             {
-                return this._userRepository.GetAll().Where(x => x.Username == username).Any();
+                return this._userRepository.GetAll().Any(x => x.Username == username);
             }
             else
             {
@@ -169,7 +169,7 @@ namespace Ideal.Core.Services
 
                 if (String.IsNullOrWhiteSpace(tenant)) return false;
 
-                return this._userRepository.GetAll().Where(x => x.Tenant == tenant && x.Username == username).Any();
+                return this._userRepository.GetAll().Any(x => x.Tenant == tenant && x.Username == username);
             }
         }
 

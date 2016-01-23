@@ -46,7 +46,7 @@ namespace Ideal.Core.Tests.Membership
 
                 var users = service.GetAll().ToList();
 
-                Assert.AreEqual(0,users.Count);
+                Assert.AreEqual(0, users.Count);
 
             }
         }
@@ -94,7 +94,7 @@ namespace Ideal.Core.Tests.Membership
             public void ShouldThrowExceptionIfNoPassword()
             {
                 Assert.Throws<ArgumentException>(() => _accountService.CreateAccount(
-                    "tenant", 
+                    "tenant",
                     "rodmjay",
                     "", // password
                     "rodmjay@gmail.com",
@@ -212,7 +212,6 @@ namespace Ideal.Core.Tests.Membership
             public void SetupAccountService()
             {
                 MembershipSettings.SetupGet(x => x.MultiTenant).Returns(true);
-
                 UserRepository.Setup(repo => repo.GetAll()).Returns(() => new List<User>()
                 {
                     new User()
@@ -238,12 +237,13 @@ namespace Ideal.Core.Tests.Membership
                 _userAccountService = BuildAccountService();
             }
 
-            [TestCase("tenant1","user1")]
+            [TestCase("tenant1", "user1")]
             public void ShouldGetUserByUsername(string tenant, string username)
             {
                 User user = _userAccountService.GetByUsername(tenant, username);
                 Assert.IsNotNull(user);
                 Assert.AreEqual(user.Username, username);
+                UserRepository.Verify(x => x.GetAll(), Times.Once);
             }
 
             [Test]
@@ -265,7 +265,7 @@ namespace Ideal.Core.Tests.Membership
         public class TheGetByIdMethod : UserAccountServiceTest
         {
             private UserAccountService _userAccountService;
-          
+
             [SetUp]
             public void SetupAccountService()
             {
@@ -279,8 +279,109 @@ namespace Ideal.Core.Tests.Membership
             public void ShouldReturnUserWithMatchingId(int id)
             {
                 _userAccountService.GetByID(id);
-                UserRepository.Verify(m=>m.GetById(id), Times.Once);
+                UserRepository.Verify(m => m.GetById(id), Times.Once);
             }
+        }
+
+        [TestFixture]
+        public class TheGetByVerificationKeyMethod : UserAccountServiceTest
+        {
+            private UserAccountService _userAccountService;
+
+            [SetUp]
+            public void SetupAccountService()
+            {
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>()
+                {
+                    new User
+                    {
+                        VerificationKey = "123ABC"
+                    }
+                }.AsQueryable());
+                _userAccountService = BuildAccountService();
+            }
+
+            [TestCase("123ABC")]
+            public void ShouldReturnUserWithMatchingVerificationKey(string key)
+            {
+                var actual = _userAccountService.GetByVerificationKey(key);
+                Assert.IsNotNull(actual);
+                UserRepository.Verify(x => x.GetAll(), Times.Once);
+            }
+        }
+
+        [TestFixture]
+        public class TheUsernameExistsMethod : UserAccountServiceTest
+        {
+            private UserAccountService _userAccountService;
+
+            [SetUp]
+            public void SetupAccountService()
+            {
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>()
+                {
+                    new User()
+                    {
+                        Tenant = "tenant",
+                        Username = "user1"
+                    }
+                }.AsQueryable());
+                _userAccountService = BuildAccountService();
+            }
+
+            [TestCase("user1", true)]
+            [TestCase("nouser", false)]
+            [TestCase("", false)]
+            public void ShouldReturnTrueIfMatchingUsernameFound(string username, bool isMatch)
+            {
+                var actual = _userAccountService.UsernameExists(username);
+                Assert.AreEqual(isMatch,actual);
+            }
+        }
+
+        [TestFixture]
+        public class TheEmailExistsMethod : UserAccountServiceTest
+        {
+            private UserAccountService _userAccountService;
+
+            [SetUp]
+            public void SetupAccountService()
+            {
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>()
+                {
+                    new User
+                    {
+                        Tenant = "tenant",
+                        Email = "test@test.com"
+                    }
+                }.AsQueryable());
+                _userAccountService = BuildAccountService();
+            }
+
+            [TestCase("test@test.com", true)]
+            [TestCase("nomatch@test.com", false)]
+            public void ReturnsTrueIfMatchingEmailFound(string email, bool expected)
+            {
+                var actual = _userAccountService.EmailExists(email);
+                Assert.AreEqual(expected,actual);
+            }
+        }
+
+        public class TheVerifyAccountMethod
+        {
+            
+        }
+
+        public class TheCancelNewAccountMethod
+        {
+            
+        }
+
+        public class TheDeleteAccountMethod
+        {
+            
         }
     }
 }
