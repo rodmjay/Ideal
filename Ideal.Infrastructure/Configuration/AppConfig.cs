@@ -9,5 +9,8 @@ namespace Ideal.Infrastructure.Configuration
 
         [ConfigurationProperty("site", IsRequired = true)]
         public ConfigSiteSettings Site => (ConfigSiteSettings)base["site"];
+
+        [ConfigurationProperty("membership", IsRequired = true)]
+        public ConfigMembershipSettings Membership => (ConfigMembershipSettings)base["membership"];
     }
 }

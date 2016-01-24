@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Ideal.Security.Tests
+namespace Ideal.Security.Tests.Authorization
 {
     [TestFixture]
-    public class AuthenticationManagerTest
+    class ClaimsAuthorizeAttributeTest
     {
 
     }

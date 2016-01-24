@@ -43,13 +43,7 @@ namespace Ideal.Security.Authorization
         /// <summary>
         /// Gets the registered authorization manager.
         /// </summary>
-        public static ClaimsAuthorizationManager AuthorizationManager
-        {
-            get
-            {
-                return FederatedAuthentication.FederationConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
-            }
-        }
+        public static ClaimsAuthorizationManager AuthorizationManager => FederatedAuthentication.FederationConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
 
         static ClaimsAuthorization()
         {

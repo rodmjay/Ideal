@@ -132,7 +132,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\accounts.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\common.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -952,8 +954,6 @@
     <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\account\" />
-    <Folder Include="app\common\" />
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\Metadata\" />
     <Folder Include="Models\" />

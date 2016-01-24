@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Configuration\ConfigMembershipSettings.cs" />
     <Compile Include="Configuration\ConfigSiteSettings.cs" />
+    <Compile Include="Eventing\EventBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,1 @@
+﻿angular.module('ideal.accounts', ['ideal.common']);

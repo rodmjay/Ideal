@@ -14,12 +14,6 @@ using System.Web.Security;
 
 namespace Ideal.Security.Encryption
 {
-    #region
-
-    
-
-    #endregion
-
     public class MachineKeyCookieTransform : CookieTransform
     {
         public override byte[] Decode(byte[] encoded)
