@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>a0f160b2-5795-4609-a64c-3155c9741150</ProjectGuid>
+    <ProjectGuid>{A0F160B2-5795-4609-A64C-3155C9741150}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ideal.Security</RootNamespace>
@@ -30,24 +30,48 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Authentication\AuthenticationManager.cs" />
+    <Compile Include="Authentication\ClaimsAuthenticationModule.cs" />
+    <Compile Include="Authentication\ClaimsAuthenticationService.cs" />
+    <Compile Include="Authorization\AuthorizationManager.cs" />
+    <Compile Include="Authorization\ClaimsAuthorization.cs" />
+    <Compile Include="Authorization\ClaimsAuthorizeAttribute.cs" />
+    <Compile Include="Authorization\OnlyAnonymousAttribute.cs" />
+    <Compile Include="Encryption\MachineKeyCookieTransform.cs" />
+    <Compile Include="Encryption\MachineKeySessionSecurityTokenHandler.cs" />
+    <Compile Include="Extensions\ActionDescriptorExtensions.cs" />
+    <Compile Include="Extensions\ClaimsExtensions.cs" />
+    <Compile Include="Extensions\ClaimsPrincipalExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">
+      <Project>{2f88f0ae-3278-4d1c-adf3-01ec8ef881ba}</Project>
+      <Name>Ideal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
+      <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
+      <Name>Ideal.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -57,5 +81,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>

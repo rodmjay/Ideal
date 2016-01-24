@@ -408,7 +408,7 @@ namespace Ideal.Core.Services
             string tenant, string username, string password,
             int failedLoginCount, TimeSpan lockoutDuration)
         {
-            Tracing.Information(String.Format("[UserAccountService.Authenticate] called: {0}, {1}", tenant, username));
+            Tracing.Information($"[UserAccountService.Authenticate] called: {tenant}, {username}");
 
             if (!_settings.MultiTenant)
             {

@@ -1,6 +1,6 @@
 ﻿#region credits
 // ***********************************************************************
-// Assembly	: DemoApplication.Common
+// Assembly	: Ideal.Common
 // Author	: Rod Johnson
 // Created	: 03-23-2013
 // 

@@ -16,7 +16,7 @@ namespace Ideal.Core.Model
 
     #endregion
 
-    public partial class User
+    public sealed partial class User
     {	
 		public string PhotoId { get; set; }
 

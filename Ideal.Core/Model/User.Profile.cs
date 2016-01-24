@@ -19,7 +19,7 @@ namespace Ideal.Core.Model
 
     #endregion
 
-    public partial class User
+    public sealed partial class User
     {
         [Required]
         public string Address { get; set; }
@@ -28,14 +28,14 @@ namespace Ideal.Core.Model
         public string PhoneNumber { get; set; }
 
         [Required]
-        public virtual string FirstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public virtual string LastName { get; set; }
+        public string LastName { get; set; }
 
         public Gender Gender { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public virtual string Comment { get; set; }
+        public string Comment { get; set; }
 
 
         public string FullName => FirstName + " " + LastName;

@@ -19,24 +19,24 @@ using Ideal.Core.Interfaces.Membership;
 namespace Ideal.Core.Model
 {
     [DisplayColumn("Username")]
-    public partial class User : DomainObject
+    public sealed partial class User : DomainObject
     {
         static User()
         {
-            settings = DependencyResolver.Current.GetService<IMembershipSettings>();
+            Settings = DependencyResolver.Current.GetService<IMembershipSettings>();
         }
 
         internal const string ChangeEmailVerificationPrefix = "changeEmail";
         internal const int VerificationKeyStaleDurationDays = 1;
 
-        private static readonly IMembershipSettings settings;
+        private static readonly IMembershipSettings Settings;
 
         public User()
         {
             Claims = new List<UserClaim>();
         }
 
-        internal protected User(string tenant, string username, string password, string email)
+        internal User(string tenant, string username, string password, string email)
         {
             if (String.IsNullOrWhiteSpace(tenant)) throw new ArgumentException("tenant");
             if (String.IsNullOrWhiteSpace(username)) throw new ArgumentException("username");
@@ -48,11 +48,11 @@ namespace Ideal.Core.Model
             this.Email = email;
             this.Created = this.UtcNow;
             this.SetPassword(password);
-            this.IsAccountVerified = !settings.RequireAccountVerification;
-            this.IsLoginAllowed = settings.AllowLoginAfterAccountCreation;
+            this.IsAccountVerified = !Settings.RequireAccountVerification;
+            this.IsLoginAllowed = Settings.AllowLoginAfterAccountCreation;
             this.Claims = new List<UserClaim>();
 
-            if (settings.RequireAccountVerification)
+            if (Settings.RequireAccountVerification)
             {
                 this.VerificationKey = StripUglyBase64(this.GenerateSalt());
                 this.VerificationKeySent = this.UtcNow;
@@ -61,37 +61,39 @@ namespace Ideal.Core.Model
 
         [StringLength(50)]
         [Required]
-        public virtual string Tenant { get; set; }
+        public string Tenant { get; set; }
+
         [StringLength(100)]
         [Required]
-        public virtual string Username { get; set; }
+        public string Username { get; set; }
+
         [EmailAddress]
         [StringLength(100)]
         [Required]
-        public virtual string Email { get; set; }
+        public string Email { get; set; }
 
-        public virtual DateTime PasswordChanged { get; set; }
+        public DateTime PasswordChanged { get; set; }
 
-        public virtual bool IsAccountVerified { get; set; }
-        public virtual bool IsLoginAllowed { get; set; }
-        public virtual bool IsAccountClosed { get; set; }
-        public virtual DateTime? AccountClosed { get; set; }
+        public bool IsAccountVerified { get; set; }
+        public bool IsLoginAllowed { get; set; }
+        public bool IsAccountClosed { get; set; }
+        public DateTime? AccountClosed { get; set; }
 
-        public virtual DateTime? LastLogin { get; set; }
-        public virtual DateTime? LastFailedLogin { get; set; }
-        public virtual int FailedLoginCount { get; set; }
+        public DateTime? LastLogin { get; set; }
+        public DateTime? LastFailedLogin { get; set; }
+        public int FailedLoginCount { get; set; }
 
         [StringLength(100)]
-        public virtual string VerificationKey { get; set; }
-        public virtual DateTime? VerificationKeySent { get; set; }
+        public string VerificationKey { get; set; }
+        public DateTime? VerificationKeySent { get; set; }
 
         [Required]
         [StringLength(200)]
-        public virtual string HashedPassword { get; set; }
+        public string HashedPassword { get; set; }
 
-        public virtual ICollection<UserClaim> Claims { get; set; }
+        public ICollection<UserClaim> Claims { get; set; }
 
-        protected internal virtual bool VerifyAccount(string key)
+        internal bool VerifyAccount(string key)
         {
             if (String.IsNullOrWhiteSpace(key))
             {
@@ -116,7 +118,7 @@ namespace Ideal.Core.Model
             return true;
         }
 
-        protected internal virtual bool ChangePassword(string oldPassword, string newPassword, int failedLoginCount, TimeSpan lockoutDuration)
+        internal bool ChangePassword(string oldPassword, string newPassword, int failedLoginCount, TimeSpan lockoutDuration)
         {
             if (Authenticate(oldPassword, failedLoginCount, lockoutDuration))
             {
@@ -136,7 +138,7 @@ namespace Ideal.Core.Model
             return false;
         }
 
-        protected internal virtual void SetPassword(string password)
+        internal void SetPassword(string password)
         {
             if (String.IsNullOrWhiteSpace(password))
             {
@@ -151,7 +153,7 @@ namespace Ideal.Core.Model
             PasswordChanged = UtcNow;
         }
 
-        protected internal virtual bool IsVerificationKeyStale
+        internal bool IsVerificationKeyStale
         {
             get
             {
@@ -169,7 +171,7 @@ namespace Ideal.Core.Model
             }
         }
 
-        protected internal virtual bool ResetPassword()
+        internal bool ResetPassword()
         {
             // if they've not yet verified then don't allow changes
             if (!this.IsAccountVerified)
@@ -196,7 +198,7 @@ namespace Ideal.Core.Model
             return true;
         }
 
-        protected internal virtual bool ChangePasswordFromResetKey(string key, string newPassword)
+        internal bool ChangePasswordFromResetKey(string key, string newPassword)
         {
             if (String.IsNullOrWhiteSpace(key))
             {
@@ -231,7 +233,7 @@ namespace Ideal.Core.Model
             return true;
         }
 
-        protected internal virtual bool Authenticate(string password, int failedLoginCount, TimeSpan lockoutDuration)
+        internal bool Authenticate(string password, int failedLoginCount, TimeSpan lockoutDuration)
         {
             if (failedLoginCount <= 0) throw new ArgumentException("failedLoginCount");
 
@@ -280,7 +282,7 @@ namespace Ideal.Core.Model
             return valid;
         }
 
-        protected internal virtual bool HasTooManyRecentPasswordFailures(int failedLoginCount, TimeSpan lockoutDuration)
+        internal bool HasTooManyRecentPasswordFailures(int failedLoginCount, TimeSpan lockoutDuration)
         {
             if (failedLoginCount <= 0) throw new ArgumentException("failedLoginCount");
 
@@ -292,7 +294,7 @@ namespace Ideal.Core.Model
             return false;
         }
 
-        protected internal virtual bool ChangeEmailRequest(string newEmail)
+        internal bool ChangeEmailRequest(string newEmail)
         {
             if (String.IsNullOrWhiteSpace(newEmail)) throw new ValidationException("Invalid email.");
 
@@ -327,7 +329,7 @@ namespace Ideal.Core.Model
             return true;
         }
 
-        protected internal virtual bool ChangeEmailFromKey(string key, string newEmail)
+        internal bool ChangeEmailFromKey(string key, string newEmail)
         {
             if (String.IsNullOrWhiteSpace(key))
             {
@@ -369,7 +371,7 @@ namespace Ideal.Core.Model
             return false;
         }
 
-        protected internal virtual void CloseAccount()
+        internal void CloseAccount()
         {
             Tracing.Verbose(String.Format("[UserAccount.CloseAccount] called on: {0}, {0}", Tenant, Username));
 
@@ -378,11 +380,11 @@ namespace Ideal.Core.Model
             AccountClosed = UtcNow;
         }
 
-        protected internal virtual bool IsPasswordExpired
+        internal bool IsPasswordExpired
         {
             get
             {
-                var frequency = settings.PasswordResetFrequency;
+                var frequency = Settings.PasswordResetFrequency;
                 if (frequency <= 0) return false;
 
                 var now = this.UtcNow;
@@ -391,14 +393,14 @@ namespace Ideal.Core.Model
             }
         }
 
-        public virtual bool HasClaim(string type)
+        public bool HasClaim(string type)
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
             return this.Claims.Any(x => x.Type == type);
         }
 
-        public virtual bool HasClaim(string type, string value)
+        public bool HasClaim(string type, string value)
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
             if (String.IsNullOrWhiteSpace(value)) throw new ArgumentException("value");
@@ -406,7 +408,7 @@ namespace Ideal.Core.Model
             return this.Claims.Any(x => x.Type == type && x.Value == value);
         }
 
-        public virtual IEnumerable<string> GetClaimValues(string type)
+        public IEnumerable<string> GetClaimValues(string type)
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
@@ -417,7 +419,7 @@ namespace Ideal.Core.Model
             return query.ToArray();
         }
 
-        public virtual string GetClaimValue(string type)
+        public string GetClaimValue(string type)
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
@@ -428,7 +430,7 @@ namespace Ideal.Core.Model
             return query.SingleOrDefault();
         }
 
-        public virtual void AddClaim(string type, string value)
+        public void AddClaim(string type, string value)
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
             if (String.IsNullOrWhiteSpace(value)) throw new ArgumentException("value");
@@ -446,7 +448,7 @@ namespace Ideal.Core.Model
             }
         }
 
-        public virtual void RemoveClaim(string type)
+        public void RemoveClaim(string type)
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
@@ -461,7 +463,7 @@ namespace Ideal.Core.Model
             }
         }
 
-        public virtual void RemoveClaim(string type, string value)
+        public void RemoveClaim(string type, string value)
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
             if (String.IsNullOrWhiteSpace(value)) throw new ArgumentException("value");
@@ -484,26 +486,26 @@ namespace Ideal.Core.Model
             return UglyBase64.Aggregate(s, (current, ugly) => current.Replace(ugly, ""));
         }
 
-        protected internal virtual string Hash(string value)
+        internal string Hash(string value)
         {
             return CryptoHelper.Hash(value);
         }
 
-        protected internal virtual string GenerateSalt()
+        internal string GenerateSalt()
         {
             return CryptoHelper.GenerateSalt();
         }
 
-        protected internal virtual string HashPassword(string password)
+        internal string HashPassword(string password)
         {
-            return CryptoHelper.HashPassword(password, settings.PasswordHashingIterationCount);
+            return CryptoHelper.HashPassword(password, Settings.PasswordHashingIterationCount);
         }
 
-        protected internal virtual bool VerifyHashedPassword(string password)
+        internal bool VerifyHashedPassword(string password)
         {
             return CryptoHelper.VerifyHashedPassword(HashedPassword, password);
         }
 
-        protected internal virtual DateTime UtcNow => DateTime.UtcNow;
+        internal DateTime UtcNow => DateTime.UtcNow;
     }
 }

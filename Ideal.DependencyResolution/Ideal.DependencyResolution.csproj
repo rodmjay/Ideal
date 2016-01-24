@@ -43,6 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -83,6 +84,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">
+      <Project>{2f88f0ae-3278-4d1c-adf3-01ec8ef881ba}</Project>
+      <Name>Ideal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
+      <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
+      <Name>Ideal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Infrastructure\Ideal.Infrastructure.csproj">
+      <Project>{f22e2e5e-c5b0-4ec9-a201-4d9d6f7a7b1e}</Project>
+      <Name>Ideal.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{a0f160b2-5795-4609-a64c-3155c9741150}</Project>
       <Name>Ideal.Security</Name>

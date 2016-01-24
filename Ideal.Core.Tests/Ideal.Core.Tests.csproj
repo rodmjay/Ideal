@@ -58,16 +58,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Membership\BasicPasswordPolicyFacts.cs" />
+    <Compile Include="Membership\BasicPasswordPolicyTest.cs" />
     <Compile Include="Geography\GeographyHelperFacts.cs" />
-    <Compile Include="Membership\MembershipEventFacts.cs" />
-    <Compile Include="Paging\PageFacts.cs" />
+    <Compile Include="Membership\MembershipEventsTest.cs" />
+    <Compile Include="Membership\UserAccountTest.cs" />
+    <Compile Include="Paging\PageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\StorageFacts.cs" />
+    <Compile Include="Storage\StorageTest.cs" />
     <Compile Include="Membership\UserAccountServiceTest.cs" />
-    <Compile Include="Membership\UserActivityFacts.cs" />
-    <Compile Include="Membership\UserFacts.cs" />
-    <Compile Include="Validation\ValidationFacts.cs" />
+    <Compile Include="Membership\UserActivityTest.cs" />
+    <Compile Include="Validation\ValidationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">

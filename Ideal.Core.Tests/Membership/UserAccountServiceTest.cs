@@ -20,6 +20,16 @@ namespace Ideal.Core.Tests.Membership
         protected Mock<IMembershipSettings> MembershipSettings = new Mock<IMembershipSettings>();
         protected Mock<IUnitOfWork> UnitOfWork = new Mock<IUnitOfWork>();
 
+        [SetUp]
+        public void ResetMocks()
+        {
+            NotificationService = new Mock<INotificationService>();
+            UserRepository = new Mock<IUserRepository>();
+            PasswordPolicy = new Mock<IPasswordPolicy>();
+            MembershipSettings = new Mock<IMembershipSettings>();
+            UnitOfWork = new Mock<IUnitOfWork>();
+        }
+
         protected UserAccountService BuildAccountService()
         {
             return new UserAccountService(UserRepository.Object,
@@ -211,24 +221,25 @@ namespace Ideal.Core.Tests.Membership
             [SetUp]
             public void SetupAccountService()
             {
-                MembershipSettings.SetupGet(x => x.MultiTenant).Returns(true);
+                MembershipSettings.SetupGet(x => x.MultiTenant).Returns(false);
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
                 UserRepository.Setup(repo => repo.GetAll()).Returns(() => new List<User>()
                 {
                     new User()
                     {
-                        Tenant = "tenant1",
+                        Tenant = "tenant",
                         Username = "user1",
                         Email = "user1@test.com"
                     },
                     new User()
                     {
-                        Tenant = "tenant1",
+                        Tenant = "tenant",
                         Username = "user2",
                         Email = "user2@test.com"
                     },
                     new User()
                     {
-                        Tenant = "tenant2",
+                        Tenant = "tenant",
                         Username = "user3",
                         Email = "user3@test.com"
                     }
@@ -237,13 +248,20 @@ namespace Ideal.Core.Tests.Membership
                 _userAccountService = BuildAccountService();
             }
 
-            [TestCase("tenant1", "user1")]
-            public void ShouldGetUserByUsername(string tenant, string username)
+            [TestCase("notfound")]
+            public void ShouldThrowUserNotFoundException(string username)
             {
-                User user = _userAccountService.GetByUsername(tenant, username);
+                UserAccountService service = BuildAccountService();
+                var actual = service.GetByUsername(username);
+                Assert.IsNull(actual);
+            }
+
+            [TestCase("user1")]
+            public void ShouldGetUserByUsername(string username)
+            {
+                User user = _userAccountService.GetByUsername(username);
                 Assert.IsNotNull(user);
                 Assert.AreEqual(user.Username, username);
-                UserRepository.Verify(x => x.GetAll(), Times.Once);
             }
 
             [Test]
@@ -256,7 +274,7 @@ namespace Ideal.Core.Tests.Membership
             [Test]
             public void ShouldThrowExceptionIfNoUsername()
             {
-                var actual = _userAccountService.GetByUsername("tenant", "");
+                var actual = _userAccountService.GetByUsername("");
                 Assert.IsNull(actual);
             }
         }
@@ -369,19 +387,134 @@ namespace Ideal.Core.Tests.Membership
             }
         }
 
-        public class TheVerifyAccountMethod
+        [TestFixture]
+        public class TheVerifyAccountMethod : UserAccountServiceTest
         {
-            
+            private UserAccountService _userAccountService;
+
+            [SetUp]
+            public void SetupAccountService()
+            {
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>()
+                {
+                    new User
+                    {
+                        Tenant = "tenant",
+                        Email = "test@test.com"
+                    }
+                }.AsQueryable());
+                _userAccountService = BuildAccountService();
+            }
         }
 
-        public class TheCancelNewAccountMethod
+        [TestFixture]
+        public class TheCancelNewAccountMethod : UserAccountServiceTest
         {
-            
+            private UserAccountService _userAccountService;
+
+            [SetUp]
+            public void SetupAccountService()
+            {
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>()
+                {
+                    new User
+                    {
+                        Tenant = "tenant",
+                        Email = "test@test.com"
+                    }
+                }.AsQueryable());
+                _userAccountService = BuildAccountService();
+            }
         }
 
-        public class TheDeleteAccountMethod
+        [TestFixture]
+        public class TheDeleteAccountMethod : UserAccountServiceTest
         {
-            
+            private UserAccountService _userAccountService;
+
+            [SetUp]
+            public void SetupAccountService()
+            {
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>()
+                {
+                    new User
+                    {
+                        Tenant = "tenant",
+                        Email = "test@test.com",
+                        Username = "todelete"
+                    }
+                }.AsQueryable());
+                _userAccountService = BuildAccountService();
+            }
+
+            [TestCase("todelete",true)]
+            [TestCase("noexist",false)]
+            public void ShouldDeleteAccount(string username, bool expected)
+            {
+                MembershipSettings.SetupGet(x => x.AllowAccountDeletion).Returns(true);
+                var actual = _userAccountService.DeleteAccount(username);
+                Assert.AreEqual(expected, actual);
+            }
+
+            [Test]
+            public void CloseAccountInsteadOfDeleteIfSpecified()
+            {
+                MembershipSettings.SetupGet(x => x.AllowAccountDeletion).Returns(false);
+                var deleted = _userAccountService.DeleteAccount("todelete");
+
+                Assert.IsTrue(deleted);
+            }
+        }
+
+        [TestFixture]
+        public class TheAuthenticateMethod : UserAccountServiceTest
+        {
+            [SetUp]
+            public void SetupMocks()
+            {
+                MembershipSettings.SetupGet(x => x.PasswordHashingIterationCount).Returns(5);
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>
+                {
+                    new User()
+                    {
+                        Username = "validuser",
+                    }
+                }.AsQueryable());
+            }
+
+            [TestCase("notfound","password")]
+            public void ShouldThrowExceptionIfUserNotFound(string username, string password)
+            {
+                MembershipSettings.SetupGet(x => x.DefaultTenant).Returns("tenant");
+                var service = BuildAccountService();
+                Assert.Throws<UserNotFoundException>(()=>service.Authenticate(username, password));
+
+                UserRepository.Verify(x=>x.GetAll(), Times.Once);
+            }
+
+            [TestCase("validuser","securePassword",true)]
+            public void ShouldReturnTrueIfValidUser(string username, string password, bool valid)
+            {
+                var hashedPassword = CryptoHelper.HashPassword(password,5);
+
+                UserRepository.Setup(x => x.GetAll()).Returns(new List<User>
+                {
+                    new User()
+                    {
+                        Username = "validuser",
+                        HashedPassword = hashedPassword
+                    }
+                }.AsQueryable());
+
+                var service = BuildAccountService();
+                var actual = service.Authenticate(username, password);
+
+                Assert.AreEqual(actual.IsValid,valid);
+            }
         }
     }
 }

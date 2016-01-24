@@ -44,9 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CryptoHelperFacts.cs" />
+    <Compile Include="CryptoHelperTest.cs" />
+    <Compile Include="NameValueCollectionExTest.cs" />
     <Compile Include="TestEnum.cs" />
-    <Compile Include="EnumExtensionFacts.cs" />
+    <Compile Include="EnumExtensionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

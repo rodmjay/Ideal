@@ -1,9 +1,10 @@
 ﻿using System.Web.Mvc;
+using Ideal.Core.Interfaces.Site;
 
 namespace Ideal.Infrastructure.ViewPages
 {
-    public class CustomViewPage : ViewPage
+    public abstract class CustomViewPage<T> : WebViewPage
     {
-        public string CurrentUser { get; set; }
+        public ISiteSettings SiteSettings => DependencyResolver.Current.GetService<ISiteSettings>();
     }
 }

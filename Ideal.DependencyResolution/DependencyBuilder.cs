@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Ideal.Core.Interfaces.Site;
+using Ideal.Infrastructure.Configuration;
 
 #endregion
 
@@ -30,6 +32,8 @@ namespace Ideal.DependencyResolution
 
             // OPTIONAL: Enable property injection into action filters.
             builder.RegisterFilterProvider();
+
+            builder.Register(s => AppConfig.Instance.Site).As<ISiteSettings>().SingleInstance();
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
