@@ -36,7 +36,8 @@ namespace Ideal
                 "~/Scripts/respond.js"));
 
             var lessBundle = new StyleBundle("~/Content/css");
-            lessBundle.Include("~/less/bootstrap.less");
+            lessBundle.Include("~/less/bootstrap/bootstrap.less");
+            lessBundle.Include("~/less/font-awesome/font-awesome.less");
             lessBundle.Include("~/content/site.less");
 
             bundles.Add(lessBundle);

@@ -10,6 +10,7 @@ namespace Ideal.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.PageTitle = "ASP.NET MVC + AngularJS";
             return View();
         }
 
