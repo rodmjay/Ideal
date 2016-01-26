@@ -4,7 +4,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@SiteSettings.WebsiteName - @ViewBag.Subtitle</title>
-    @Styles.Render("~/Content/css")
+
+    <link rel="stylesheet/less" type="text/css" href="~/less/bootstrap.less" />
+    <link rel="stylesheet/less" type="text/css" href="~/Content/site.less" />
+
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/less-js")
 </head>

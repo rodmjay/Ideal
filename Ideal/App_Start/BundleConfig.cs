@@ -35,9 +35,11 @@ namespace Ideal
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.css",
-                "~/Content/site.css"));
+            var lessBundle = new StyleBundle("~/Content/css");
+            lessBundle.Include("~/less/bootstrap.less");
+            lessBundle.Include("~/content/site.less");
+
+            bundles.Add(lessBundle);
         }
     }
 }
