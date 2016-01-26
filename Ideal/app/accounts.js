@@ -2,9 +2,9 @@
     .module('ideal.accounts', ['ideal.common'])
     .directive('iLoginForm',[function() {
         return {
-            templateUrl: '/accounts/login',
+            templateUrl: '/account/login',
             restrict: 'E',
-            link:function(scope, elem, attrs, ctrl) {
+            link:function(scope, elem, attrs) {
                 
             },
             controller:[function() {

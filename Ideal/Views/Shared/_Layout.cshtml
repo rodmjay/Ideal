@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html ng-app="ideal">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@SiteSettings.WebsiteName - @ViewBag.Subtitle</title>
+    <title>@SiteSettings.WebsiteName - @ViewBag.PageTitle</title>
 
     <link rel="stylesheet/less" type="text/css" href="~/less/bootstrap.less" />
     <link rel="stylesheet/less" type="text/css" href="~/Content/site.less" />
@@ -11,38 +11,59 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/less-js")
 </head>
-<body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink(SiteSettings.WebsiteName, "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+<body ng-controller="iMainLayout as layout">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(SiteSettings.WebsiteName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </form>
+            </div><!--/.navbar-collapse -->
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-            </ul>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>The Ideal Solution</h1>
+            <p class="lead">
+                Ideal is a free web framework for building great Web sites and Web applications using ASP.NET MVC, Entity Frameowrk, AngularJS and Bootstrap.
+            </p>
+            <p>
+                <a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a>
+            </p>
         </div>
     </div>
-</div>
-<div ng-controller="iMainLayout as layout" class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - @SiteSettings.CompanyName</p>
-    </footer>
-</div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/angular-core")
-@Scripts.Render("~/bundles/angular-app")
-@RenderSection("scripts", false)
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - @SiteSettings.CompanyName</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular-core")
+    @Scripts.Render("~/bundles/angular-app")
+    @RenderSection("scripts", false)
 </body>
 </html>
