@@ -1,6 +1,6 @@
 ﻿#region credits
 // ***********************************************************************
-// Assembly	: DemoApplication.Infrastructure
+// Assembly	: Ideal.Infrastructure
 // Author	: Rod Johnson
 // Created	: 02-24-2013
 // 
@@ -29,10 +29,7 @@ namespace Ideal.Infrastructure.Eventing
 
         private MessageBus() { }
 
-        public static MessageBus Instance
-        {
-            get { return _instance ?? (_instance = new MessageBus()); }
-        }
+        public static MessageBus Instance => _instance ?? (_instance = new MessageBus());
 
         private readonly Dictionary<Type, List<WeakReference>> _eventSubscriberLists =
             new Dictionary<Type, List<WeakReference>>();

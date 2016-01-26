@@ -306,9 +306,9 @@ namespace Ideal.Core.Services
 
             this._userRepository.SaveOrUpdate(account);
 
-            if (result && this._notificationService != null)
+            if (result && _notificationService != null)
             {
-                this._notificationService.SendAccountVerified(account);
+                _notificationService.SendAccountVerified(account);
             }
             _unitOfWork.Commit();
             return container;

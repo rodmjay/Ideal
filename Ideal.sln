@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{512EDA82
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ideal.Core", "Ideal.Core\Ideal.Core.csproj", "{FBF079DA-4D55-460C-AC31-5C676D2BD597}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ideal.DependencyResolution", "Ideal.DependencyResolution\Ideal.DependencyResolution.csproj", "{F8E6A86F-C9D8-47B4-89E0-DAB9B967F9FB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ideal.Security", "Ideal.Security\Ideal.Security.csproj", "{A0F160B2-5795-4609-A64C-3155C9741150}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ideal.Common", "Ideal.Common\Ideal.Common.csproj", "{2F88F0AE-3278-4D1C-ADF3-01EC8EF881BA}"
@@ -43,10 +41,6 @@ Global
 		{FBF079DA-4D55-460C-AC31-5C676D2BD597}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF079DA-4D55-460C-AC31-5C676D2BD597}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF079DA-4D55-460C-AC31-5C676D2BD597}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8E6A86F-C9D8-47B4-89E0-DAB9B967F9FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8E6A86F-C9D8-47B4-89E0-DAB9B967F9FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8E6A86F-C9D8-47B4-89E0-DAB9B967F9FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8E6A86F-C9D8-47B4-89E0-DAB9B967F9FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0F160B2-5795-4609-A64C-3155C9741150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0F160B2-5795-4609-A64C-3155C9741150}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0F160B2-5795-4609-A64C-3155C9741150}.Release|Any CPU.ActiveCfg = Release|Any CPU

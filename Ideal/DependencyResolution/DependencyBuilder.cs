@@ -7,9 +7,11 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Ideal.Core.Interfaces.Eventing;
 using Ideal.Core.Interfaces.Membership;
+using Ideal.Core.Interfaces.Service;
 using Ideal.Core.Interfaces.Site;
 using Ideal.Infrastructure.Configuration;
 using Ideal.Infrastructure.Eventing;
+using Ideal.Security.Authentication;
 
 #endregion
 
@@ -44,7 +46,7 @@ namespace Ideal.DependencyResolution
                 .ExternallyOwned();
 
             builder
-                .Register(s => (ConfigMembershipSettings) ConfigurationManager.GetSection("Ideal/membership"))
+                .Register(s => (ConfigMembershipSettings)ConfigurationManager.GetSection("Ideal/membership"))
                 .As<IMembershipSettings>()
                 .SingleInstance();
 
@@ -52,6 +54,11 @@ namespace Ideal.DependencyResolution
                 .Register(s => MessageBus.Instance)
                 .As<IMessageBus>()
                 .ExternallyOwned();
+
+            builder
+                .RegisterType<ClaimsAuthenticationService>()
+                .As<IAuthenticationService>()
+                .InstancePerRequest();
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
