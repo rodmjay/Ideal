@@ -101,7 +101,7 @@
     <Compile Include="Common\Membership\MembershipEvent.cs" />
     <Compile Include="Common\Membership\MembershipEventCode.cs" />
     <Compile Include="Common\Membership\PasswordPolicies\BasicPasswordPolicy.cs" />
-    <Compile Include="Common\Membership\PasswordPolicies\NopPasswordPolicy.cs" />
+    <Compile Include="Common\Membership\PasswordPolicies\NoopPasswordPolicy.cs" />
     <Compile Include="Common\Paging\Page.cs" />
     <Compile Include="Common\Photos\Photo.cs" />
     <Compile Include="Common\Photos\PhotoList.cs" />
@@ -147,7 +147,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\LoggingService.cs" />
-    <Compile Include="Services\NopNotificationService.cs" />
+    <Compile Include="Services\NoopNotificationService.cs" />
     <Compile Include="Services\UserAccountService.cs" />
     <Compile Include="Services\UserNotFoundException.cs" />
     <Compile Include="Tracing\Tracing.cs" />

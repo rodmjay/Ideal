@@ -19,7 +19,7 @@ namespace Ideal.Core.Common.Membership.PasswordPolicies
 
     #endregion
 
-    public class NopPasswordPolicy : IPasswordPolicy
+    public class NoopPasswordPolicy : IPasswordPolicy
     {
         public string PolicyMessage
         {

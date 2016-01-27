@@ -128,9 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AccountController.Login.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccountController\AccountController.cs" />
+    <Compile Include="Controllers\AccountController\AccountController.Login.cs" />
+    <Compile Include="Controllers\HomeController\HomeController.cs" />
+    <Compile Include="Controllers\HomeController\HomeController.Index.cs" />
     <Compile Include="DependencyResolution\DependencyBuilder.cs" />
     <Compile Include="Extensions\ModelStateExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -1058,6 +1059,7 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

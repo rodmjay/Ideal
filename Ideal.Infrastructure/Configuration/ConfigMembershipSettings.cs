@@ -56,7 +56,10 @@ namespace Ideal.Infrastructure.Configuration
         }
 
         [ConfigurationProperty("accountLockoutDuration")]
-        public TimeSpan AccountLockoutDuration { get; set; }
+        public TimeSpan AccountLockoutDuration {
+            get { return (TimeSpan)base["accountLockoutDuration"]; } 
+            set { base["accountLockoutDuration"] = value; }
+        }
 
         [ConfigurationProperty("accountLockoutMinutes")]
         public int AccountLockoutMinutes

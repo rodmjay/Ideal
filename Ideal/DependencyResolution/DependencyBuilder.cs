@@ -5,14 +5,18 @@ using System.Reflection;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Ideal.Core.Common.Membership.PasswordPolicies;
 using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Interfaces.Eventing;
 using Ideal.Core.Interfaces.Membership;
+using Ideal.Core.Interfaces.Notifications;
 using Ideal.Core.Interfaces.Service;
 using Ideal.Core.Interfaces.Site;
+using Ideal.Core.Services;
 using Ideal.Infrastructure.Configuration;
 using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Eventing;
+using Ideal.Infrastructure.Repositories;
 using Ideal.Security.Authentication;
 
 #endregion
@@ -28,27 +32,27 @@ namespace Ideal.DependencyResolution
             // Register your MVC controllers.
             builder.RegisterControllers(Assembly.GetCallingAssembly());
 
-            // OPTIONAL: Register model binders that require DI.
+            // Register model binders that require DI.
             builder.RegisterModelBinders(Assembly.GetCallingAssembly());
             builder.RegisterModelBinderProvider();
 
-            // OPTIONAL: Register web abstractions like HttpContextBase.
+            // Register web abstractions like HttpContextBase.
             builder.RegisterModule<AutofacWebTypesModule>();
 
-            // OPTIONAL: Enable property injection in view pages.
+            // Enable property injection in view pages.
             builder.RegisterSource(new ViewRegistrationSource());
 
-            // OPTIONAL: Enable property injection into action filters.
+            // Enable property injection into action filters.
             builder.RegisterFilterProvider();
 
             // config-based settings
             builder
-                .Register(s => (ConfigSiteSettings)ConfigurationManager.GetSection("Ideal/site"))
+                .Register(c => ((ConfigApplicationSettings)ConfigurationManager.GetSection("Ideal")).Site)
                 .As<ISiteSettings>()
-                .ExternallyOwned();
+                .SingleInstance();
 
             builder
-                .Register(s => (ConfigMembershipSettings)ConfigurationManager.GetSection("Ideal/membership"))
+                .Register(c => ((ConfigApplicationSettings)ConfigurationManager.GetSection("Ideal")).Membership)
                 .As<IMembershipSettings>()
                 .SingleInstance();
 
@@ -72,7 +76,26 @@ namespace Ideal.DependencyResolution
                 .As<IDatabaseFactory>()
                 .InstancePerRequest();
 
-            // Set the dependency resolver to be Autofac.
+            builder
+                .RegisterType<UserAccountService>()
+                .As<IUserAccountService>()
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<UserRepository>()
+                .As<IUserRepository>()
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<NoopPasswordPolicy>()
+                .As<IPasswordPolicy>()
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<NoopNotificationService>()
+                .As<INotificationService>()
+                .InstancePerRequest();
+
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

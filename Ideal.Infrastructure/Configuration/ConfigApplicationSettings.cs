@@ -2,7 +2,7 @@
 
 namespace Ideal.Infrastructure.Configuration
 {
-    public class AppConfig : ConfigurationSection
+    public class ConfigApplicationSettings : ConfigurationSection
     {
         [ConfigurationProperty("site", IsRequired = true)]
         public ConfigSiteSettings Site => (ConfigSiteSettings)base["site"];

@@ -19,7 +19,7 @@ namespace Ideal.Core.Services
 
     #endregion
 
-    public class NopNotificationService : INotificationService
+    public class NoopNotificationService : INotificationService
     {
         public void SendAccountCreate(Model.User user)
         {
