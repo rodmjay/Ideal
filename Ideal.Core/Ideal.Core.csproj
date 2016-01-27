@@ -81,7 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Common\EventCodes.cs" />
     <Compile Include="Common\Geography\GeographyHelpers.cs" />
     <Compile Include="Common\Lists\Lists.Countries.cs" />
@@ -136,6 +135,9 @@
     <Compile Include="Interfaces\Storage\IStorageProvider.cs" />
     <Compile Include="Interfaces\Validation\IValidationContainer.cs" />
     <Compile Include="Model\DomainObject.cs" />
+    <Compile Include="Model\Field.cs" />
+    <Compile Include="Model\Form.cs" />
+    <Compile Include="Model\FormLayout.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Log.cs" />
     <Compile Include="Model\User.Membership.cs" />

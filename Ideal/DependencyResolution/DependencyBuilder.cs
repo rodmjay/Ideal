@@ -5,11 +5,13 @@ using System.Reflection;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Interfaces.Eventing;
 using Ideal.Core.Interfaces.Membership;
 using Ideal.Core.Interfaces.Service;
 using Ideal.Core.Interfaces.Site;
 using Ideal.Infrastructure.Configuration;
+using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Eventing;
 using Ideal.Security.Authentication;
 
@@ -41,7 +43,7 @@ namespace Ideal.DependencyResolution
 
             // config-based settings
             builder
-                .Register(s => AppConfig.Instance.Site)
+                .Register(s => (ConfigSiteSettings)ConfigurationManager.GetSection("Ideal/site"))
                 .As<ISiteSettings>()
                 .ExternallyOwned();
 
@@ -58,6 +60,16 @@ namespace Ideal.DependencyResolution
             builder
                 .RegisterType<ClaimsAuthenticationService>()
                 .As<IAuthenticationService>()
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<UnitOfWork>()
+                .As<IUnitOfWork>()
+                .InstancePerRequest();
+
+            builder
+                .RegisterType<DatabaseFactory>()
+                .As<IDatabaseFactory>()
                 .InstancePerRequest();
 
             // Set the dependency resolver to be Autofac.
