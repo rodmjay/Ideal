@@ -128,17 +128,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\Class1.cs" />
     <Compile Include="Controllers\AccountController\AccountController.cs" />
     <Compile Include="Controllers\AccountController\AccountController.Login.cs" />
     <Compile Include="Controllers\HomeController\HomeController.cs" />
     <Compile Include="Controllers\HomeController\HomeController.Index.cs" />
     <Compile Include="DependencyResolution\DependencyBuilder.cs" />
+    <Compile Include="Extensions\Html\AngularHelper.cs" />
+    <Compile Include="Extensions\Html\AngularHelpers.cs" />
+    <Compile Include="Extensions\Html\BootstrapHelpers.cs" />
     <Compile Include="Extensions\ModelStateExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ViewPages\BaseViewPage.cs" />
+    <Compile Include="Metadata\Resources\ClientValidationResources.Designer.cs" />
+    <Compile Include="Metadata\Resources\ValidatorResources.Designer.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +291,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Compile Include="Controllers\AccountController\AccountController.Register.cs" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1060,6 +1068,26 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\RegisterSuccess.cshtml" />
+    <Content Include="Views\Account\RegisterConfirm.cshtml" />
+    <Content Include="Views\Account\RegisterCancel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Color.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime-Local.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Digits.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Month.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PhoneNumber.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Search.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Week.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Year.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1083,6 +1111,10 @@
       <Project>{a0f160b2-5795-4609-a64c-3155c9741150}</Project>
       <Name>Ideal.Security</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Metadata\Resources\ClientValidationResources.resx" />
+    <EmbeddedResource Include="Metadata\Resources\ValidatorResources.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

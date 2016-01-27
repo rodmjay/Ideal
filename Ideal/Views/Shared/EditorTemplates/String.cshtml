@@ -1,0 +1,7 @@
+@{
+    ViewData.ModelMetadata.AdditionalValues["class"] = "form-control";
+}
+
+@Html.TextBox("", 
+    ViewData.TemplateInfo.FormattedModelValue, 
+    ViewData.ModelMetadata.AdditionalValues)

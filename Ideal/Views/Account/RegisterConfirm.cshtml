@@ -1,0 +1,26 @@
+﻿@model bool
+
+@{
+    ViewBag.Title = Model ? "Registration Confirmed" : "Error confirming registration";
+}
+
+
+@if (Model)
+{
+    <p>
+        Your account is confirmed. You can now login
+        @Html.ActionLink("here", "Login", "Account").
+    </p>
+}
+else
+{
+    <p>
+        There was an error confirming the registration. If you have already confirmed your account
+        then you should recieve a confirmation email and should be able to login
+        @Html.ActionLink("here", "Login", "Account").
+    </p>
+    <p>
+        If you would like to re-register click
+        @Html.ActionLink("here", "Register", "Account").
+    </p>
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@SiteSettings.WebsiteName - @ViewBag.PageTitle</title>
+    <title>@SiteSettings.WebsiteName - @ViewBag.Title</title>
 
     <link rel="stylesheet/less" type="text/css" href="~/less/bootstrap/bootstrap.less" />
     <link rel="stylesheet/less" type="text/css" href="~/less/font-awesome/font-awesome.less" />
@@ -33,33 +33,13 @@
                         <input type="password" placeholder="Password" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-success">Sign in</button>
+                    <a class="btn btn-success" href="@Url.Action("Register","Account",new {area=""})">Register</a>
                 </form>
             </div><!--/.navbar-collapse -->
         </div>
     </nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1>The Ideal Solution</h1>
-            <p class="lead">
-                Ideal is a free web framework for building great Web sites and Web applications using ASP.NET MVC, Entity Frameowrk, AngularJS and Bootstrap.
-            </p>
-            <p>
-                <a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
-
-
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - @SiteSettings.CompanyName</p>
-        </footer>
-    </div>
+    @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
