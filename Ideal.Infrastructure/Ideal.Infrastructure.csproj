@@ -59,6 +59,12 @@
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\UnitOfWork.cs" />
     <Compile Include="Eventing\EventBus.cs" />
+    <Compile Include="Membership\DataSeeder.cs" />
+    <Compile Include="Migrations\201601270626513_InitialMigration.cs" />
+    <Compile Include="Migrations\201601270626513_InitialMigration.Designer.cs">
+      <DependentUpon>201601270626513_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +76,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601270626513_InitialMigration.resx">
+      <DependentUpon>201601270626513_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
