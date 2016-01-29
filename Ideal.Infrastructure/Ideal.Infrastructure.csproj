@@ -50,9 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigApplicationSettings.cs" />
-    <Compile Include="Configuration\ConfigMembershipSettings.cs" />
-    <Compile Include="Configuration\ConfigSiteSettings.cs" />
     <Compile Include="Data\BaseContext.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\DatabaseFactory.cs" />
@@ -73,6 +70,10 @@
       <Project>{FBF079DA-4D55-460C-AC31-5C676D2BD597}</Project>
       <Name>Ideal.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
+      <Project>{A0F160B2-5795-4609-A64C-3155C9741150}</Project>
+      <Name>Ideal.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -82,6 +83,9 @@
     <EmbeddedResource Include="Migrations\201601270626513_InitialMigration.resx">
       <DependentUpon>201601270626513_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Security\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

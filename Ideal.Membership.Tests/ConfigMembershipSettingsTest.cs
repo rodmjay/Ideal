@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Configuration;
-using Ideal.Infrastructure.Configuration;
+using Ideal.Membership.Configuration;
 using NUnit.Framework;
 
-namespace Ideal.Infrastructure.Tests.Configuration
+namespace Ideal.Membership.Tests
 {
     [TestFixture]
     public class ConfigMembershipSettingsTest
@@ -12,7 +12,7 @@ namespace Ideal.Infrastructure.Tests.Configuration
         public void ShouldLoadFromConfig()
         {
             ConfigMembershipSettings actual =
-                ((ConfigApplicationSettings) ConfigurationManager.GetSection("Ideal")).Membership;
+                (ConfigMembershipSettings) ConfigurationManager.GetSection("Ideal/Membership");
             Assert.IsNotNull(actual);
         }
 

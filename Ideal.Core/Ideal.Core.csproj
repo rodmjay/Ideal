@@ -148,7 +148,6 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\LoggingService.cs" />
     <Compile Include="Services\NoopNotificationService.cs" />
-    <Compile Include="Services\UserAccountService.cs" />
     <Compile Include="Services\UserNotFoundException.cs" />
     <Compile Include="Tracing\Tracing.cs" />
   </ItemGroup>

@@ -2,9 +2,9 @@
 using System.Configuration;
 using Ideal.Core.Interfaces.Membership;
 
-namespace Ideal.Infrastructure.Configuration
+namespace Ideal.Membership.Configuration
 {
-    public class ConfigMembershipSettings : ConfigurationElement, IMembershipSettings
+    public class ConfigMembershipSettings : ConfigurationSection, IMembershipSettings
     {
         [ConfigurationProperty("multiTenant")]
         public bool MultiTenant

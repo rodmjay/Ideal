@@ -1,10 +1,10 @@
 ﻿#region
 
 using System.Configuration;
-using System.Reflection;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Ideal.Configuration;
 using Ideal.Core.Common.Membership.PasswordPolicies;
 using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Interfaces.Eventing;
@@ -13,15 +13,16 @@ using Ideal.Core.Interfaces.Notifications;
 using Ideal.Core.Interfaces.Service;
 using Ideal.Core.Interfaces.Site;
 using Ideal.Core.Services;
-using Ideal.Infrastructure.Configuration;
 using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Eventing;
 using Ideal.Infrastructure.Repositories;
+using Ideal.Membership;
+using Ideal.Membership.Configuration;
 using Ideal.Security.Authentication;
 
 #endregion
 
-namespace Ideal.DependencyResolution
+namespace Ideal.Autofac
 {
     public static class DependencyBuilder
     {
@@ -30,10 +31,10 @@ namespace Ideal.DependencyResolution
             var builder = new ContainerBuilder();
 
             // Register your MVC controllers.
-            builder.RegisterControllers(Assembly.GetCallingAssembly());
+            builder.RegisterControllers();
 
             // Register model binders that require DI.
-            builder.RegisterModelBinders(Assembly.GetCallingAssembly());
+            builder.RegisterModelBinders();
             builder.RegisterModelBinderProvider();
 
             // Register web abstractions like HttpContextBase.
@@ -47,12 +48,12 @@ namespace Ideal.DependencyResolution
 
             // config-based settings
             builder
-                .Register(c => ((ConfigApplicationSettings)ConfigurationManager.GetSection("Ideal")).Site)
+                .Register(c => (ConfigSiteSettings)ConfigurationManager.GetSection("Ideal/Site"))
                 .As<ISiteSettings>()
                 .SingleInstance();
 
             builder
-                .Register(c => ((ConfigApplicationSettings)ConfigurationManager.GetSection("Ideal")).Membership)
+                .Register(c => (ConfigMembershipSettings)ConfigurationManager.GetSection("Ideal"))
                 .As<IMembershipSettings>()
                 .SingleInstance();
 

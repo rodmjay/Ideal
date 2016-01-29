@@ -124,7 +124,8 @@ namespace Ideal.Core.Model
             {
                 if (oldPassword == newPassword)
                 {
-                    Tracing.Verbose(String.Format("[UserAccount.ChangePassword] failed for tenant:user {0}:{1} -- new password same as old password", this.Tenant, this.Username));
+                    Tracing.Verbose(
+                        $"[UserAccount.ChangePassword] failed for tenant:user {this.Tenant}:{this.Username} -- new password same as old password");
 
                     throw new ValidationException("The new password must be different than the old password.");
                 }
@@ -133,7 +134,8 @@ namespace Ideal.Core.Model
                 return true;
             }
 
-            Tracing.Verbose(String.Format("[UserAccount.ChangePassword] failed for tentant:username {0}:{1} -- auth failed", this.Tenant, this.Username));
+            Tracing.Verbose(
+                $"[UserAccount.ChangePassword] failed for tentant:username {this.Tenant}:{this.Username} -- auth failed");
 
             return false;
         }
@@ -437,7 +439,7 @@ namespace Ideal.Core.Model
 
             if (!this.HasClaim(type, value))
             {
-                Tracing.Verbose(String.Format("[UserAccount.AddClaim] {0}, {1}, {2}, {3}", Tenant, Username, type, value));
+                Tracing.Verbose($"[UserAccount.AddClaim] {Tenant}, {Username}, {type}, {value}");
 
                 this.Claims.Add(
                     new UserClaim
@@ -458,7 +460,7 @@ namespace Ideal.Core.Model
                 select claim;
             foreach (var claim in claimsToRemove.ToArray())
             {
-                Tracing.Verbose(String.Format("[UserAccount.RemoveClaim] {0}, {1}, {2}, {3}", Tenant, Username, type, claim.Value));
+                Tracing.Verbose($"[UserAccount.RemoveClaim] {Tenant}, {Username}, {type}, {claim.Value}");
                 this.Claims.Remove(claim);
             }
         }
@@ -474,7 +476,7 @@ namespace Ideal.Core.Model
                 select claim;
             foreach (var claim in claimsToRemove.ToArray())
             {
-                Tracing.Verbose(String.Format("[UserAccount.RemoveClaim] {0}, {1}, {2}, {3}", Tenant, Username, type, value));
+                Tracing.Verbose($"[UserAccount.RemoveClaim] {Tenant}, {Username}, {type}, {value}");
                 this.Claims.Remove(claim);
             }
         }

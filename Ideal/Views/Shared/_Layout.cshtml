@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Ideal.ViewPages
+<!DOCTYPE html>
 <html ng-app="ideal">
 <head>
     <meta charset="utf-8" />
@@ -11,6 +12,7 @@
 
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/less-js")
+
 </head>
 <body ng-controller="iMainLayout as layout">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -35,7 +37,7 @@
                     <button type="submit" class="btn btn-success">Sign in</button>
                     <a class="btn btn-success" href="@Url.Action("Register","Account",new {area=""})">Register</a>
                 </form>
-            </div><!--/.navbar-collapse -->
+            </div>
         </div>
     </nav>
 
@@ -45,6 +47,8 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular-core")
     @Scripts.Render("~/bundles/angular-app")
+
     @RenderSection("scripts", false)
+
 </body>
 </html>

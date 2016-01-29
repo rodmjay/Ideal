@@ -1,8 +1,7 @@
 ﻿using System.Configuration;
-using Ideal.Infrastructure.Configuration;
 using NUnit.Framework;
 
-namespace Ideal.Infrastructure.Tests.Configuration
+namespace Ideal.Configuration.Tests
 {
     [TestFixture]
     public class ConfigApplicationSettingsTest

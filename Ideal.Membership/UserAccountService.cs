@@ -5,7 +5,7 @@
 // Created	: 03-23-2013
 // 
 // Last Modified By : Rod Johnson
-// Last Modified On : 03-28-2013
+// Last Modified On : 01-29-2016
 // ***********************************************************************
 #endregion
 
@@ -14,14 +14,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Transactions;
+using Ideal.Core;
 using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Interfaces.Membership;
 using Ideal.Core.Interfaces.Notifications;
 using Ideal.Core.Interfaces.Service;
 using Ideal.Core.Interfaces.Validation;
 using Ideal.Core.Model;
+using Ideal.Core.Services;
+using static System.String;
 
-namespace Ideal.Core.Services
+namespace Ideal.Membership
 {
 
     public class UserAccountService : IDisposable, IUserAccountService
@@ -43,9 +46,9 @@ namespace Ideal.Core.Services
             _unitOfWork = unitOfWork;
             if (userAccountRepository == null) throw new ArgumentNullException("userAccountRepository");
 
-            this._userRepository = userAccountRepository;
-            this._notificationService = notificationService;
-            this._passwordPolicy = passwordPolicy;
+            _userRepository = userAccountRepository;
+            _notificationService = notificationService;
+            _passwordPolicy = passwordPolicy;
         }
 
         public void Dispose()
@@ -74,9 +77,9 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return Enumerable.Empty<User>().AsQueryable();
+            if (IsNullOrWhiteSpace(tenant)) return Enumerable.Empty<User>().AsQueryable();
 
-            return this._userRepository.GetAll().Where(x => x.Tenant == tenant && x.IsAccountClosed == false);
+            return _userRepository.GetAll().Where(x => x.Tenant == tenant && x.IsAccountClosed == false);
         }
 
         public virtual User GetByUsername(string username)
@@ -91,8 +94,8 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return null;
-            if (String.IsNullOrWhiteSpace(username)) return null;
+            if (IsNullOrWhiteSpace(tenant)) return null;
+            if (IsNullOrWhiteSpace(username)) return null;
 
             var account = _userRepository.GetAll().SingleOrDefault(x => x.Tenant == tenant && x.Username == username);
             if (account == null)
@@ -114,8 +117,8 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return null;
-            if (String.IsNullOrWhiteSpace(email)) return null;
+            if (IsNullOrWhiteSpace(tenant)) return null;
+            if (IsNullOrWhiteSpace(email)) return null;
 
             var account = _userRepository.GetAll().SingleOrDefault(x => x.Tenant == tenant && x.Email == email);
             if (account == null)
@@ -127,7 +130,7 @@ namespace Ideal.Core.Services
 
         public virtual User GetByID(int id)
         {
-            var account = this._userRepository.GetById(id);
+            var account = _userRepository.GetById(id);
             if (account == null)
             {
                 //Tracing.Verbose(String.Format("[UserAccountService.GetByID] failed to locate account: {0}", id));
@@ -137,7 +140,7 @@ namespace Ideal.Core.Services
 
         public virtual User GetByVerificationKey(string key)
         {
-            if (String.IsNullOrWhiteSpace(key)) return null;
+            if (IsNullOrWhiteSpace(key)) return null;
 
             var account = _userRepository.GetAll().SingleOrDefault(x => x.VerificationKey == key);
             if (account == null)
@@ -154,11 +157,11 @@ namespace Ideal.Core.Services
 
         public virtual bool UsernameExists(string tenant, string username)
         {
-            if (String.IsNullOrWhiteSpace(username)) return false;
+            if (IsNullOrWhiteSpace(username)) return false;
 
             if (_settings.UsernamesUniqueAcrossTenants)
             {
-                return this._userRepository.GetAll().Any(x => x.Username == username);
+                return _userRepository.GetAll().Any(x => x.Username == username);
             }
             else
             {
@@ -167,9 +170,9 @@ namespace Ideal.Core.Services
                     tenant = _settings.DefaultTenant;
                 }
 
-                if (String.IsNullOrWhiteSpace(tenant)) return false;
+                if (IsNullOrWhiteSpace(tenant)) return false;
 
-                return this._userRepository.GetAll().Any(x => x.Tenant == tenant && x.Username == username);
+                return _userRepository.GetAll().Any(x => x.Tenant == tenant && x.Username == username);
             }
         }
 
@@ -185,10 +188,10 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return false;
-            if (String.IsNullOrWhiteSpace(email)) return false;
+            if (IsNullOrWhiteSpace(tenant)) return false;
+            if (IsNullOrWhiteSpace(email)) return false;
 
-            return this._userRepository.GetAll().Any(x => x.Tenant == tenant && x.Email == email);
+            return _userRepository.GetAll().Any(x => x.Tenant == tenant && x.Email == email);
         }
 
         public virtual IValidationContainer<User> CreateAccount(string username, string password, string email, string firstName, string lastName, string phone, string address)
@@ -210,13 +213,13 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) throw new ArgumentException("tenant");
-            if (String.IsNullOrWhiteSpace(username)) throw new ArgumentException("username");
-            if (String.IsNullOrWhiteSpace(password)) throw new ArgumentException("password");
-            if (String.IsNullOrWhiteSpace(email)) throw new ArgumentException("email");
-            if (String.IsNullOrWhiteSpace(firstName)) throw new ArgumentException("firstName");
-            if (String.IsNullOrWhiteSpace(lastName)) throw new ArgumentException("lastName");
-            if (String.IsNullOrWhiteSpace(phone)) throw new ArgumentException("phone");
+            if (IsNullOrWhiteSpace(tenant)) throw new ArgumentException("tenant");
+            if (IsNullOrWhiteSpace(username)) throw new ArgumentException("username");
+            if (IsNullOrWhiteSpace(password)) throw new ArgumentException("password");
+            if (IsNullOrWhiteSpace(email)) throw new ArgumentException("email");
+            if (IsNullOrWhiteSpace(firstName)) throw new ArgumentException("firstName");
+            if (IsNullOrWhiteSpace(lastName)) throw new ArgumentException("lastName");
+            if (IsNullOrWhiteSpace(phone)) throw new ArgumentException("phone");
             //if (String.IsNullOrWhiteSpace(address)) throw new ArgumentException("address");
 
             ValidatePassword(tenant, username, password);
@@ -224,14 +227,15 @@ namespace Ideal.Core.Services
             var validator = new EmailAddressAttribute();
             if (!validator.IsValid(email))
             {
-                //Tracing.Verbose(String.Format("[UserAccountService.CreateAccount] Email validation failed: {0}, {1}, {2}", tenant, username, email));
+                Tracing.Verbose(
+                    $"[UserAccountService.CreateAccount] Email validation failed: {tenant}, {username}, {email}");
 
                 throw new ValidationException("Email is invalid.");
             }
 
             if (UsernameExists(tenant, username))
             {
-                //Tracing.Verbose(String.Format("[UserAccountService.CreateAccount] Username already exists: {0}, {1}", tenant, username));
+                Tracing.Verbose($"[UserAccountService.CreateAccount] Username already exists: {tenant}, {username}");
 
                 var msg = _settings.EmailIsUsername ? "Email" : "Username";
                 throw new ValidationException(msg + " already in use.");
@@ -239,7 +243,8 @@ namespace Ideal.Core.Services
 
             if (EmailExists(tenant, email))
             {
-                //Tracing.Verbose(String.Format("[UserAccountService.CreateAccount] Email already exists: {0}, {1}, {2}", tenant, username, email));
+                Tracing.Verbose(
+                    $"[UserAccountService.CreateAccount] Email already exists: {tenant}, {username}, {email}");
 
                 throw new ValidationException("Email already in use.");
             }
@@ -256,17 +261,17 @@ namespace Ideal.Core.Services
             if (!validation.IsValid)
                 return validation;
 
-            this._userRepository.SaveOrUpdate(account);
+            _userRepository.SaveOrUpdate(account);
 
-            if (this._notificationService != null)
+            if (_notificationService != null)
             {
                 if (_settings.RequireAccountVerification)
                 {
-                    this._notificationService.SendAccountCreate(account);
+                    _notificationService.SendAccountCreate(account);
                 }
                 else
                 {
-                    this._notificationService.SendAccountVerified(account);
+                    _notificationService.SendAccountVerified(account);
                 }
             }
 
@@ -293,7 +298,7 @@ namespace Ideal.Core.Services
         {
             //Tracing.Information(String.Format("[UserAccountService.VerifyAccount] called: {0}", key));
 
-            var account = this.GetByVerificationKey(key);
+            var account = GetByVerificationKey(key);
             if (account == null) throw new UserNotFoundException();
 
             var container = account.GetValidationContainer();
@@ -304,7 +309,7 @@ namespace Ideal.Core.Services
             if (result == false)
                 container.ValidationErrors.Add("", new List<string>() { "Unable to verify account" });
 
-            this._userRepository.SaveOrUpdate(account);
+            _userRepository.SaveOrUpdate(account);
 
             if (result && _notificationService != null)
             {
@@ -318,7 +323,7 @@ namespace Ideal.Core.Services
         {
             //Tracing.Information(String.Format("[UserAccountService.CancelNewAccount] called: {0}", key));
 
-            var account = this.GetByVerificationKey(key);
+            var account = GetByVerificationKey(key);
             if (account == null) return false;
 
             //Tracing.Verbose(String.Format("[UserAccountService.CancelNewAccount] account located: {0}, {1}", account.Tenant, account.Username));
@@ -347,10 +352,10 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return false;
-            if (String.IsNullOrWhiteSpace(username)) return false;
+            if (IsNullOrWhiteSpace(tenant)) return false;
+            if (IsNullOrWhiteSpace(username)) return false;
 
-            var account = this.GetByUsername(tenant, username);
+            var account = GetByUsername(tenant, username);
             if (account == null) return false;
 
             DeleteAccount(account);
@@ -363,7 +368,7 @@ namespace Ideal.Core.Services
             if (_settings.AllowAccountDeletion || !account.IsAccountVerified)
             {
                 //Tracing.Verbose(String.Format("[UserAccountService.DeleteAccount] removing account record: {0}, {1}", account.Tenant, account.Username));
-                this._userRepository.Delete(account);
+                _userRepository.Delete(account);
             }
             else
             {
@@ -373,11 +378,11 @@ namespace Ideal.Core.Services
 
             using (var tx = new TransactionScope())
             {
-                this._userRepository.SaveOrUpdate(account);
+                _userRepository.SaveOrUpdate(account);
 
-                if (this._notificationService != null)
+                if (_notificationService != null)
                 {
-                    this._notificationService.SendAccountDelete(account);
+                    _notificationService.SendAccountDelete(account);
                 }
 
                 tx.Complete();
@@ -415,11 +420,11 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) throw new ArgumentException("tenant");
-            if (String.IsNullOrWhiteSpace(username)) throw new ArgumentException("username");
-            if (String.IsNullOrWhiteSpace(password)) throw new ArgumentException("password");
+            if (IsNullOrWhiteSpace(tenant)) throw new ArgumentException("tenant");
+            if (IsNullOrWhiteSpace(username)) throw new ArgumentException("username");
+            if (IsNullOrWhiteSpace(password)) throw new ArgumentException("password");
 
-            var account = this.GetByUsername(tenant, username);
+            var account = GetByUsername(tenant, username);
             if (account == null)
                 throw new UserNotFoundException();
 
@@ -437,10 +442,11 @@ namespace Ideal.Core.Services
             if (!result)
                 container.ValidationErrors.Add("", new List<string>() { "Unable to authenticate user" });
 
-            this._userRepository.SaveOrUpdate(account);
+            _userRepository.SaveOrUpdate(account);
             _unitOfWork.Commit();
 
-            Tracing.Verbose(String.Format("[UserAccountService.Authenticate] authentication outcome: {0}, {1}, {2}", account.Tenant, account.Username, result ? "Successful Login" : "Failed Login"));
+            Tracing.Verbose(
+                $"[UserAccountService.Authenticate] authentication outcome: {account.Tenant}, {account.Username}, {(result ? "Successful Login" : "Failed Login")}");
 
             return container;
         }
@@ -452,30 +458,30 @@ namespace Ideal.Core.Services
 
         public virtual void SetPassword(string tenant, string username, string newPassword)
         {
-            Tracing.Information(String.Format("[UserAccountService.SetPassword] called: {0}, {1}", tenant, username));
+            Tracing.Information($"[UserAccountService.SetPassword] called: {tenant}, {username}");
 
             if (!_settings.MultiTenant)
             {
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) throw new ValidationException("Invalid tenant.");
-            if (String.IsNullOrWhiteSpace(username)) throw new ValidationException("Invalid username.");
-            if (String.IsNullOrWhiteSpace(newPassword)) throw new ValidationException("Invalid newPassword.");
+            if (IsNullOrWhiteSpace(tenant)) throw new ValidationException("Invalid tenant.");
+            if (IsNullOrWhiteSpace(username)) throw new ValidationException("Invalid username.");
+            if (IsNullOrWhiteSpace(newPassword)) throw new ValidationException("Invalid newPassword.");
 
             ValidatePassword(tenant, username, newPassword);
 
-            var account = this.GetByUsername(tenant, username);
+            var account = GetByUsername(tenant, username);
             if (account == null) throw new ValidationException("Invalid tenant and/or username.");
 
-            Tracing.Information(String.Format("[UserAccountService.SetPassword] setting new password for: {0}, {1}", tenant, username));
+            Tracing.Information($"[UserAccountService.SetPassword] setting new password for: {tenant}, {username}");
 
             account.SetPassword(newPassword);
-            this._userRepository.SaveOrUpdate(account);
+            _userRepository.SaveOrUpdate(account);
 
-            if (this._notificationService != null)
+            if (_notificationService != null)
             {
-                this._notificationService.SendPasswordChangeNotice(account);
+                _notificationService.SendPasswordChangeNotice(account);
             }
 
             _unitOfWork.Commit();
@@ -511,37 +517,38 @@ namespace Ideal.Core.Services
             string oldPassword, string newPassword,
             int failedLoginCount, TimeSpan lockoutDuration)
         {
-            Tracing.Information(String.Format("[UserAccountService.ChangePassword] called: {0}, {1}", tenant, username));
+            Tracing.Information($"[UserAccountService.ChangePassword] called: {tenant}, {username}");
 
             if (!_settings.MultiTenant)
             {
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return false;
-            if (String.IsNullOrWhiteSpace(username)) return false;
-            if (String.IsNullOrWhiteSpace(oldPassword)) return false;
-            if (String.IsNullOrWhiteSpace(newPassword)) return false;
+            if (IsNullOrWhiteSpace(tenant)) return false;
+            if (IsNullOrWhiteSpace(username)) return false;
+            if (IsNullOrWhiteSpace(oldPassword)) return false;
+            if (IsNullOrWhiteSpace(newPassword)) return false;
 
             ValidatePassword(tenant, username, newPassword);
 
-            var account = this.GetByUsername(tenant, username);
+            var account = GetByUsername(tenant, username);
             if (account == null) return false;
 
             bool result = false;
             try
             {
                 result = account.ChangePassword(oldPassword, newPassword, failedLoginCount, lockoutDuration);
-                Tracing.Verbose(String.Format("[UserAccountService.ChangePassword] change password outcome: {0}, {1}, {2}", account.Tenant, account.Username, result ? "Successful" : "Failed"));
+                Tracing.Verbose(
+                    $"[UserAccountService.ChangePassword] change password outcome: {account.Tenant}, {account.Username}, {(result ? "Successful" : "Failed")}");
             }
             finally
             {
 
-                this._userRepository.SaveOrUpdate(account);
+                _userRepository.SaveOrUpdate(account);
 
-                if (result && this._notificationService != null)
+                if (result && _notificationService != null)
                 {
-                    this._notificationService.SendPasswordChangeNotice(account);
+                    _notificationService.SendPasswordChangeNotice(account);
                 }
 
                 _unitOfWork.Commit();
@@ -556,17 +563,17 @@ namespace Ideal.Core.Services
 
         public virtual IValidationContainer<User> ResetPassword(string tenant, string email)
         {
-            Tracing.Information(String.Format("[UserAccountService.ResetPassword] called: {0}, {1}", tenant, email));
+            Tracing.Information($"[UserAccountService.ResetPassword] called: {tenant}, {email}");
 
             if (!_settings.MultiTenant)
             {
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) throw new ArgumentNullException("tenant");
-            if (String.IsNullOrWhiteSpace(email)) throw new ArgumentNullException("email");
+            if (IsNullOrWhiteSpace(tenant)) throw new ArgumentNullException("tenant");
+            if (IsNullOrWhiteSpace(email)) throw new ArgumentNullException("email");
 
-            var account = this.GetByEmail(tenant, email);
+            var account = GetByEmail(tenant, email);
             if (account == null) throw new UserNotFoundException();
 
             var container = account.GetValidationContainer();
@@ -577,16 +584,18 @@ namespace Ideal.Core.Services
             {
                 // if they're not verified, resend the new account email
                 if (_settings.RequireAccountVerification &&
-                    this._notificationService != null)
+                    _notificationService != null)
                 {
-                    Tracing.Verbose(String.Format("[UserAccountService.ResetPassword] account not verified, re-sending account create notification: {0}, {1}", account.Tenant, account.Username));
+                    Tracing.Verbose(
+                        $"[UserAccountService.ResetPassword] account not verified, re-sending account create notification: {account.Tenant}, {account.Username}");
 
-                    this._notificationService.SendAccountCreate(account);
+                    _notificationService.SendAccountCreate(account);
                     return container;
                 }
 
                 // if we don't have a notification system then not much we can do
-                Tracing.Warning(String.Format("[UserAccountService.ResetPassword] account not verified, no notification to re-send invite: {0}, {1}", account.Tenant, account.Username));
+                Tracing.Warning(
+                    $"[UserAccountService.ResetPassword] account not verified, no notification to re-send invite: {account.Tenant}, {account.Username}");
 
                 container.ValidationErrors.Add("", new List<string>() { "Account not yet verified" });
 
@@ -595,16 +604,17 @@ namespace Ideal.Core.Services
 
             var result = account.ResetPassword();
 
-            Tracing.Verbose(String.Format("[UserAccountService.ResetPassword] reset password outcome: {0}, {1}, {2}", account.Tenant, account.Username, result ? "Successful" : "Failed"));
+            Tracing.Verbose(
+                $"[UserAccountService.ResetPassword] reset password outcome: {account.Tenant}, {account.Username}, {(result ? "Successful" : "Failed")}");
 
             if (result)
             {
 
-                this._userRepository.SaveOrUpdate(account);
+                _userRepository.SaveOrUpdate(account);
 
-                if (this._notificationService != null)
+                if (_notificationService != null)
                 {
-                    this._notificationService.SendResetPassword(account);
+                    _notificationService.SendResetPassword(account);
                 }
 
                 _unitOfWork.Commit();
@@ -614,29 +624,31 @@ namespace Ideal.Core.Services
 
         public virtual bool ChangePasswordFromResetKey(string key, string newPassword)
         {
-            Tracing.Information(String.Format("[UserAccountService.ChangePasswordFromResetKey] called: {0}", key));
+            Tracing.Information($"[UserAccountService.ChangePasswordFromResetKey] called: {key}");
 
-            if (String.IsNullOrWhiteSpace(key))
+            if (IsNullOrWhiteSpace(key))
                 return false;
 
-            var account = this.GetByVerificationKey(key);
+            var account = GetByVerificationKey(key);
             if (account == null) return false;
 
-            Tracing.Verbose(String.Format("[UserAccountService.ChangePasswordFromResetKey] account located: {0}, {1}", account.Tenant, account.Username));
+            Tracing.Verbose(
+                $"[UserAccountService.ChangePasswordFromResetKey] account located: {account.Tenant}, {account.Username}");
 
             ValidatePassword(account.Tenant, account.Username, newPassword);
 
             var result = account.ChangePasswordFromResetKey(key, newPassword);
 
-            Tracing.Verbose(String.Format("[UserAccountService.ChangePasswordFromResetKey] change password outcome: {0}, {1}, {2}", account.Tenant, account.Username, result ? "Successful" : "Failed"));
+            Tracing.Verbose(
+                $"[UserAccountService.ChangePasswordFromResetKey] change password outcome: {account.Tenant}, {account.Username}, {(result ? "Successful" : "Failed")}");
 
             if (result)
             {
-                this._userRepository.SaveOrUpdate(account);
+                _userRepository.SaveOrUpdate(account);
 
-                if (this._notificationService != null)
+                if (_notificationService != null)
                 {
-                    this._notificationService.SendPasswordChangeNotice(account);
+                    _notificationService.SendPasswordChangeNotice(account);
                 }
                 _unitOfWork.Commit();
             }
@@ -650,27 +662,28 @@ namespace Ideal.Core.Services
 
         public virtual void SendUsernameReminder(string tenant, string email)
         {
-            if (this._notificationService == null)
+            if (_notificationService == null)
             {
                 throw new InvalidOperationException("NotificationService not configured.");
             }
 
-            Tracing.Information(String.Format("[UserAccountService.SendUsernameReminder] called: {0}, {1}", tenant, email));
+            Tracing.Information($"[UserAccountService.SendUsernameReminder] called: {tenant}, {email}");
 
             if (!_settings.MultiTenant)
             {
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return;
-            if (String.IsNullOrWhiteSpace(email)) return;
+            if (IsNullOrWhiteSpace(tenant)) return;
+            if (IsNullOrWhiteSpace(email)) return;
 
-            var account = this.GetByEmail(tenant, email);
+            var account = GetByEmail(tenant, email);
             if (account != null)
             {
-                Tracing.Verbose(String.Format("[UserAccountService.SendUsernameReminder] account located: {0}, {1}", account.Tenant, account.Username));
+                Tracing.Verbose(
+                    $"[UserAccountService.SendUsernameReminder] account located: {account.Tenant}, {account.Username}");
 
-                this._notificationService.SendAccountNameReminder(account);
+                _notificationService.SendAccountNameReminder(account);
             }
         }
 
@@ -681,12 +694,13 @@ namespace Ideal.Core.Services
 
         public virtual bool ChangeEmailRequest(string tenant, string username, string newEmail)
         {
-            Tracing.Information(String.Format("[UserAccountService.ChangeEmailRequest] called: {0}, {1}, {2}", tenant, username, newEmail));
+            Tracing.Information($"[UserAccountService.ChangeEmailRequest] called: {tenant}, {username}, {newEmail}");
 
             if (_settings.EmailIsUsername &&
                 !_settings.AllowEmailChangeWhenEmailIsUsername)
             {
-                Tracing.Warning(String.Format("[UserAccountService.ChangeEmailRequest] security setting EmailIsUsername is true and AllowEmailChangeWhenEmailIsUsername is false, so change request failed: {0}, {1}, {2}", tenant, username, newEmail));
+                Tracing.Warning(
+                    $"[UserAccountService.ChangeEmailRequest] security setting EmailIsUsername is true and AllowEmailChangeWhenEmailIsUsername is false, so change request failed: {tenant}, {username}, {newEmail}");
 
                 return false;
             }
@@ -696,9 +710,9 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return false;
-            if (String.IsNullOrWhiteSpace(username)) return false;
-            if (String.IsNullOrWhiteSpace(newEmail)) return false;
+            if (IsNullOrWhiteSpace(tenant)) return false;
+            if (IsNullOrWhiteSpace(username)) return false;
+            if (IsNullOrWhiteSpace(newEmail)) return false;
 
             EmailAddressAttribute validator = new EmailAddressAttribute();
             if (!validator.IsValid(newEmail))
@@ -709,7 +723,7 @@ namespace Ideal.Core.Services
                 throw new ValidationException("Email is invalid.");
             }
 
-            var account = this.GetByUsername(tenant, username);
+            var account = GetByUsername(tenant, username);
             if (account == null) return false;
 
             Tracing.Verbose(
@@ -724,12 +738,9 @@ namespace Ideal.Core.Services
             {
                 using (var tx = new TransactionScope())
                 {
-                    this._userRepository.SaveOrUpdate(account);
+                    _userRepository.SaveOrUpdate(account);
 
-                    if (this._notificationService != null)
-                    {
-                        this._notificationService.SendChangeEmailRequestNotice(account, newEmail);
-                    }
+                    _notificationService?.SendChangeEmailRequestNotice(account, newEmail);
 
                     tx.Complete();
                 }
@@ -750,24 +761,26 @@ namespace Ideal.Core.Services
             string password, string key, string newEmail,
             int failedLoginCount, TimeSpan lockoutDuration)
         {
-            Tracing.Information(String.Format("[UserAccountService.ChangeEmailFromKey] called: {0}, {1}", key, newEmail));
+            Tracing.Information($"[UserAccountService.ChangeEmailFromKey] called: {key}, {newEmail}");
 
             if (_settings.EmailIsUsername &&
                 !_settings.AllowEmailChangeWhenEmailIsUsername)
             {
-                Tracing.Warning(String.Format("[UserAccountService.ChangeEmailFromKey] security setting EmailIsUsername is true and AllowEmailChangeWhenEmailIsUsername is false, so change request failed: key: {0}, new email: {1}", key, newEmail));
+                Tracing.Warning(
+                    $"[UserAccountService.ChangeEmailFromKey] security setting EmailIsUsername is true and AllowEmailChangeWhenEmailIsUsername is false, so change request failed: key: {key}, new email: {newEmail}");
 
                 return false;
             }
 
-            if (String.IsNullOrWhiteSpace(password)) return false;
-            if (String.IsNullOrWhiteSpace(key)) return false;
-            if (String.IsNullOrWhiteSpace(newEmail)) return false;
+            if (IsNullOrWhiteSpace(password)) return false;
+            if (IsNullOrWhiteSpace(key)) return false;
+            if (IsNullOrWhiteSpace(newEmail)) return false;
 
-            var account = this.GetByVerificationKey(key);
+            var account = GetByVerificationKey(key);
             if (account == null) return false;
 
-            Tracing.Verbose(String.Format("[UserAccountService.ChangeEmailFromKey] account located: {0}, {1}", account.Tenant, account.Username));
+            Tracing.Verbose(
+                $"[UserAccountService.ChangeEmailFromKey] account located: {account.Tenant}, {account.Username}");
 
             if (!Authenticate(account, password, failedLoginCount, lockoutDuration).IsValid)
             {
@@ -781,22 +794,21 @@ namespace Ideal.Core.Services
                 _settings.EmailIsUsername &&
                 _settings.AllowEmailChangeWhenEmailIsUsername)
             {
-                Tracing.Warning(String.Format("[UserAccountService.ChangeEmailFromKey] security setting EmailIsUsername is true and AllowEmailChangeWhenEmailIsUsername is true, so changing username: {0}, to: {1}", account.Username, newEmail));
+                Tracing.Warning(
+                    $"[UserAccountService.ChangeEmailFromKey] security setting EmailIsUsername is true and AllowEmailChangeWhenEmailIsUsername is true, so changing username: {account.Username}, to: {newEmail}");
                 account.Username = newEmail;
             }
 
-            Tracing.Verbose(String.Format("[UserAccountService.ChangeEmailFromKey] change email outcome: {0}, {1}, {2}", account.Tenant, account.Username, result ? "Successful" : "Failed"));
+            Tracing.Verbose(
+                $"[UserAccountService.ChangeEmailFromKey] change email outcome: {account.Tenant}, {account.Username}, {(result ? "Successful" : "Failed")}");
 
             if (result)
             {
                 using (var tx = new TransactionScope())
                 {
-                    this._userRepository.SaveOrUpdate(account);
+                    _userRepository.SaveOrUpdate(account);
 
-                    if (this._notificationService != null)
-                    {
-                        this._notificationService.SendEmailChangedNotice(account, oldEmail);
-                    }
+                    _notificationService?.SendEmailChangedNotice(account, oldEmail);
 
                     tx.Complete();
                 }
@@ -816,10 +828,10 @@ namespace Ideal.Core.Services
                 tenant = _settings.DefaultTenant;
             }
 
-            if (String.IsNullOrWhiteSpace(tenant)) return false;
-            if (String.IsNullOrWhiteSpace(username)) return false;
+            if (IsNullOrWhiteSpace(tenant)) return false;
+            if (IsNullOrWhiteSpace(username)) return false;
 
-            var account = this.GetByUsername(tenant, username);
+            var account = GetByUsername(tenant, username);
             if (account == null) return false;
 
             return account.IsPasswordExpired;

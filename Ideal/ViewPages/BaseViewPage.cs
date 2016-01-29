@@ -2,7 +2,7 @@
 using Ideal.Core.Interfaces.Membership;
 using Ideal.Core.Interfaces.Site;
 
-namespace Ideal.Infrastructure.ViewPages
+namespace Ideal.ViewPages
 {
     public abstract class BaseViewPage<T> : WebViewPage<T>
     {

@@ -2,9 +2,9 @@
 using System.Configuration;
 using Ideal.Core.Interfaces.Site;
 
-namespace Ideal.Infrastructure.Configuration
+namespace Ideal.Configuration
 {
-    public class ConfigSiteSettings : ConfigurationElement, ISiteSettings
+    public class ConfigSiteSettings : ConfigurationSection, ISiteSettings
     {
         [ConfigurationProperty("instanceId")]
         public Guid InstanceId

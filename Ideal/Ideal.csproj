@@ -133,7 +133,8 @@
     <Compile Include="Controllers\AccountController\AccountController.Login.cs" />
     <Compile Include="Controllers\HomeController\HomeController.cs" />
     <Compile Include="Controllers\HomeController\HomeController.Index.cs" />
-    <Compile Include="DependencyResolution\DependencyBuilder.cs" />
+    <Compile Include="Controllers\ToolsController\ToolsController.cs" />
+    <Compile Include="Autofac\DependencyBuilder.cs" />
     <Compile Include="Extensions\Html\AngularHelper.cs" />
     <Compile Include="Extensions\Html\AngularHelpers.cs" />
     <Compile Include="Extensions\Html\BootstrapHelpers.cs" />
@@ -141,7 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\ViewPages\BaseViewPage.cs" />
+    <Compile Include="ViewPages\BaseViewPage.cs" />
     <Compile Include="Metadata\Resources\ClientValidationResources.Designer.cs" />
     <Compile Include="Metadata\Resources\ValidatorResources.Designer.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -1088,10 +1089,10 @@
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Week.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Year.cshtml" />
+    <Content Include="Views\Tools\Tincture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Infrastructure\Metadata\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1099,6 +1100,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ideal.Configuration\Ideal.Configuration.csproj">
+      <Project>{53f25e0f-512b-4d0c-b20a-629918e82254}</Project>
+      <Name>Ideal.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
       <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
       <Name>Ideal.Core</Name>
@@ -1106,6 +1111,10 @@
     <ProjectReference Include="..\Ideal.Infrastructure\Ideal.Infrastructure.csproj">
       <Project>{f22e2e5e-c5b0-4ec9-a201-4d9d6f7a7b1e}</Project>
       <Name>Ideal.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Membership\Ideal.Membership.csproj">
+      <Project>{3d04941e-82e5-47f4-9e17-e8c53559cc6a}</Project>
+      <Name>Ideal.Membership</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{a0f160b2-5795-4609-a64c-3155c9741150}</Project>

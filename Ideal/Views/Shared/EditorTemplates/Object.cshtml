@@ -1,3 +1,4 @@
+@using Ideal.ViewPages
 @foreach (var prop in ViewData.ModelMetadata.Properties.Where(pm => !pm.HideSurroundingHtml && pm.ShowForEdit && !ViewData.TemplateInfo.Visited(pm)))
 {
     if (prop.HideSurroundingHtml)

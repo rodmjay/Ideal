@@ -1,7 +1,7 @@
 using Ideal.Core.Common.Membership.PasswordPolicies;
 using NUnit.Framework;
 
-namespace Ideal.Core.Tests.Membership
+namespace Ideal.Membership.Tests
 {
     [TestFixture]
     public class BasicPasswordPolicyTest

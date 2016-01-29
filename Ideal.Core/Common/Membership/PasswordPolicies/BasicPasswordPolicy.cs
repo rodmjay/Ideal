@@ -65,7 +65,7 @@ namespace Ideal.Core.Common.Membership.PasswordPolicies
                 var min = Math.Max(MinLength, UpperAlphas + LowerAlphas + Numerics + NonAlphaNumerics);
                 if (min > 0)
                 {
-                    sb.Insert(0, String.Format("Password must be at least {0} characters long. ", min));
+                    sb.Insert(0, $"Password must be at least {min} characters long. ");
                 }
 
                 return sb.ToString();

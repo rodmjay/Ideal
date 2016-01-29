@@ -6,6 +6,7 @@ using Ideal.Core.Interfaces.Membership;
 using Ideal.Core.Interfaces.Notifications;
 using Ideal.Core.Model;
 using Ideal.Core.Services;
+using Ideal.Membership;
 using Moq;
 using NUnit.Framework;
 
