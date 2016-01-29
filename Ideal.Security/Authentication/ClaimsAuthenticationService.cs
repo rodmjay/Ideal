@@ -15,10 +15,7 @@ using System.IdentityModel.Services;
 using System.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Web.Security;
-using Ideal.Core;
-using Ideal.Core.Interfaces.Services;
-using Ideal.Core.Model;
-using Ideal.Core.Model.Membership;
+using Ideal.Identity.Model;
 using Ideal.Security.Extensions;
 
 namespace Ideal.Security.Authentication

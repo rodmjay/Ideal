@@ -1,4 +1,4 @@
-﻿using Ideal.Membership.Configuration;
+﻿using Ideal.Identity.Configuration;
 using NUnit.Framework;
 
 namespace Ideal.Membership.Tests.Configuration

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
-using Ideal.Core.Interfaces.Settings;
+using Ideal.Identity.Configuration;
+using Ideal.Identity.Settings;
 using Ideal.Membership.Configuration;
+using Ideal.Membership.Settings;
 
 namespace IdentityService.Autofac
 {

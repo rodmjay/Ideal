@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
-using Ideal.Core.Interfaces.Settings;
+using Ideal.Core.Settings;
+using Ideal.Identity.Settings;
+using Ideal.Membership.Settings;
 
 namespace Ideal.ViewPages
 {
@@ -8,8 +10,8 @@ namespace Ideal.ViewPages
         public ISiteSettings SiteSettings =>
             DependencyResolver.Current.GetService<ISiteSettings>();
 
-        public IMembershipSettings MembershipSettings =>
-            DependencyResolver.Current.GetService<IMembershipSettings>();
+        public IAccountSettings MembershipSettings =>
+            DependencyResolver.Current.GetService<IAccountSettings>();
     }
 
     public abstract class BaseViewPage : WebViewPage
@@ -17,7 +19,7 @@ namespace Ideal.ViewPages
         public ISiteSettings SiteSettings =>
             DependencyResolver.Current.GetService<ISiteSettings>();
 
-        public IMembershipSettings MembershipSettings =>
-            DependencyResolver.Current.GetService<IMembershipSettings>();
+        public IAccountSettings MembershipSettings =>
+            DependencyResolver.Current.GetService<IAccountSettings>();
     }
 }

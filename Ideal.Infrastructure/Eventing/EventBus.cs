@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Ideal.Core.Interfaces.Eventing;
+using Ideal.Core.Eventing;
 
 namespace Ideal.Infrastructure.Eventing
 {

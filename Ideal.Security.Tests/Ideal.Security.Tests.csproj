@@ -56,6 +56,7 @@
     <Compile Include="Authorization\AuthorizationManagerTest.cs" />
     <Compile Include="Authorization\ClaimsAuthorizationTest.cs" />
     <Compile Include="Authorization\ClaimsAuthorizeAttributeTest.cs" />
+    <Compile Include="BasicPasswordPolicyTest.cs" />
     <Compile Include="Encryption\MachineKeyCookieTransformTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

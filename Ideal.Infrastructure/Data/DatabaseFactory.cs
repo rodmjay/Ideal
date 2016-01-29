@@ -9,7 +9,7 @@
 // ***********************************************************************
 #endregion
 
-using Ideal.Core.Interfaces.Data;
+using Ideal.Core.Data;
 
 namespace Ideal.Infrastructure.Data
 {

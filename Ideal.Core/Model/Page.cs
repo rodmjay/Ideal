@@ -10,7 +10,7 @@
 #endregion
 
 using System.Collections.Generic;
-using Ideal.Core.Interfaces.Data;
+using Ideal.Core.Data;
 
 namespace Ideal.Core.Model
 {

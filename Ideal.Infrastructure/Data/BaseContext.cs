@@ -2,7 +2,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using Ideal.Core.Interfaces.Data;
+using Ideal.Core.Data;
 using Ideal.Core.Model;
 
 namespace Ideal.Infrastructure.Data

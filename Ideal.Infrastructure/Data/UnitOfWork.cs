@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
-using Ideal.Core.Interfaces.Data;
+using Ideal.Core.Data;
 using Ideal.Core.Model;
 
 namespace Ideal.Infrastructure.Data

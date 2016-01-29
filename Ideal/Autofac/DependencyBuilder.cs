@@ -5,19 +5,23 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Ideal.Configuration;
-using Ideal.Core.Interfaces.Data;
-using Ideal.Core.Interfaces.Eventing;
-using Ideal.Core.Interfaces.Services;
-using Ideal.Core.Interfaces.Settings;
-using Ideal.Core.Services;
+using Ideal.Core.Data;
+using Ideal.Core.Eventing;
+using Ideal.Core.Settings;
+using Ideal.Identity.Configuration;
+using Ideal.Identity.Data;
+using Ideal.Identity.Settings;
 using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Eventing;
 using Ideal.Infrastructure.Repositories;
 using Ideal.Membership;
 using Ideal.Membership.Configuration;
-using Ideal.Membership.PasswordPolicies;
 using Ideal.Membership.Services;
+using Ideal.Membership.Settings;
+using Ideal.Notifications.Services;
+using Ideal.Security;
 using Ideal.Security.Authentication;
+using Ideal.Security.Passwords;
 
 #endregion
 
@@ -53,7 +57,7 @@ namespace Ideal.Autofac
 
             builder
                 .Register(c => (MembershipConfiguration)ConfigurationManager.GetSection("Ideal"))
-                .As<IMembershipSettings>()
+                .As<IAccountSettings>()
                 .SingleInstance();
 
             builder
@@ -77,8 +81,8 @@ namespace Ideal.Autofac
                 .InstancePerRequest();
 
             builder
-                .RegisterType<UserAccountService>()
-                .As<IUserAccountService>()
+                .RegisterType<MembershipService>()
+                .As<IMembershipService>()
                 .InstancePerRequest();
 
             builder
@@ -87,8 +91,8 @@ namespace Ideal.Autofac
                 .InstancePerRequest();
 
             builder
-                .RegisterType<NoopPasswordPolicy>()
-                .As<IPasswordPolicy>()
+                .RegisterType<NoopPasswordService>()
+                .As<IPasswordService>()
                 .InstancePerRequest();
 
             builder

@@ -86,6 +86,10 @@
     <Compile Include="Extensions\ActionDescriptorExtensions.cs" />
     <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Extensions\ClaimsPrincipalExtensions.cs" />
+    <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Passwords\IPasswordService.cs" />
+    <Compile Include="Passwords\BasicPasswordService.cs" />
+    <Compile Include="Passwords\NoopPasswordService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +100,10 @@
     <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
       <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
       <Name>Ideal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Identity\Ideal.Identity.csproj">
+      <Project>{899733fd-163e-4eec-ad46-b6e92a2c5617}</Project>
+      <Name>Ideal.Identity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

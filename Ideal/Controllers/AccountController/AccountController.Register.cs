@@ -11,7 +11,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Ideal.Core.Model.Membership;
+using Ideal.Membership.Model;
 using Ideal.Models;
 using Ideal.Security.Authorization;
 

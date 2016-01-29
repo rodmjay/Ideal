@@ -10,18 +10,20 @@
 #endregion
 
 using System.Web.Mvc;
-using Ideal.Core.Interfaces.Eventing;
-using Ideal.Core.Interfaces.Services;
-using Ideal.Core.Interfaces.Settings;
+using Ideal.Core.Eventing;
+using Ideal.Identity.Settings;
+using Ideal.Membership.Services;
+using Ideal.Membership.Settings;
+using Ideal.Security.Authentication;
 
 namespace Ideal.Controllers
 {
     public partial class AccountController : Controller
     {
-        private readonly IUserAccountService _userService;
+        private readonly IMembershipService _userService;
         private readonly IAuthenticationService _authenticationService;
         private readonly IMessageBus _messageBus;
-        private readonly IMembershipSettings _membershipSettings;
+        private readonly IAccountSettings _membershipSettings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -30,7 +32,7 @@ namespace Ideal.Controllers
         /// <param name="authenticationService">The authentication service.</param>
         /// <param name="messageBus">The message bus.</param>
         /// <param name="membershipSettings"></param>
-        public AccountController(IUserAccountService userService, IAuthenticationService authenticationService, IMessageBus messageBus, IMembershipSettings membershipSettings)
+        public AccountController(IMembershipService userService, IAuthenticationService authenticationService, IMessageBus messageBus, IAccountSettings membershipSettings)
         {
             _membershipSettings = membershipSettings;
             _messageBus = messageBus;

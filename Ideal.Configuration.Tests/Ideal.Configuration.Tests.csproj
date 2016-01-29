@@ -48,10 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ideal.Configuration\Ideal.Configuration.csproj">
-      <Project>{53f25e0f-512b-4d0c-b20a-629918e82254}</Project>
-      <Name>Ideal.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
       <Project>{FBF079DA-4D55-460C-AC31-5C676D2BD597}</Project>
       <Name>Ideal.Core</Name>

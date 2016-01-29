@@ -10,10 +10,9 @@
 #endregion
 
 using System.Data.Entity;
-using Ideal.Core.Model;
 using Ideal.Core.Model.Forms;
 using Ideal.Core.Model.Logging;
-using Ideal.Core.Model.Membership;
+using Ideal.Identity.Model;
 
 namespace Ideal.Infrastructure.Data
 {

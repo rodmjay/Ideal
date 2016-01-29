@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using Ideal.Identity.Configuration;
 using Ideal.Membership.Configuration;
 using NUnit.Framework;
 

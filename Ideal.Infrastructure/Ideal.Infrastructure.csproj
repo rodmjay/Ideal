@@ -70,6 +70,10 @@
       <Project>{FBF079DA-4D55-460C-AC31-5C676D2BD597}</Project>
       <Name>Ideal.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ideal.Identity\Ideal.Identity.csproj">
+      <Project>{899733FD-163E-4EEC-AD46-B6E92A2C5617}</Project>
+      <Name>Ideal.Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{A0F160B2-5795-4609-A64C-3155C9741150}</Project>
       <Name>Ideal.Security</Name>

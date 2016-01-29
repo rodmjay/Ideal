@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using Ideal.Core.Interfaces.Settings;
-using Ideal.Membership.Configuration;
+using Ideal.Core.Settings;
+using Ideal.Identity.Settings;
 using IdentityServer3.Core.Configuration;
 using IdentityService.Config;
 using Owin;

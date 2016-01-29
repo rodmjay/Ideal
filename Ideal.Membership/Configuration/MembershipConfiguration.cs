@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using Ideal.Core.Interfaces.Settings;
+using Ideal.Membership.Settings;
 
 namespace Ideal.Membership.Configuration
 {
@@ -56,7 +56,8 @@ namespace Ideal.Membership.Configuration
         }
 
         [ConfigurationProperty("accountLockoutDuration")]
-        public TimeSpan AccountLockoutDuration {
+        public TimeSpan AccountLockoutDuration
+        {
             get { return (TimeSpan)base["accountLockoutDuration"]; } 
             set { base["accountLockoutDuration"] = value; }
         }

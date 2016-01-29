@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using Ideal.Core.Interfaces.Settings;
+using Ideal.Core.Settings;
 
 namespace Ideal.Configuration
 {

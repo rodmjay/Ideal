@@ -12,8 +12,7 @@
 using System;
 using System.Data.Entity.Migrations;
 using System.Security.Claims;
-using Ideal.Core.Model;
-using Ideal.Core.Model.Membership;
+using Ideal.Identity.Model;
 using Ideal.Infrastructure.Data;
 
 namespace Ideal.Infrastructure.Membership

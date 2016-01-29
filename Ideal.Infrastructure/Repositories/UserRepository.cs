@@ -1,6 +1,6 @@
-﻿using Ideal.Core.Interfaces.Data;
-using Ideal.Core.Model;
-using Ideal.Core.Model.Membership;
+﻿using Ideal.Core.Data;
+using Ideal.Identity.Data;
+using Ideal.Identity.Model;
 using Ideal.Infrastructure.Data;
 
 namespace Ideal.Infrastructure.Repositories

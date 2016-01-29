@@ -141,13 +141,13 @@
       <Project>{2f88f0ae-3278-4d1c-adf3-01ec8ef881ba}</Project>
       <Name>Ideal.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ideal.Configuration\Ideal.Configuration.csproj">
-      <Project>{53f25e0f-512b-4d0c-b20a-629918e82254}</Project>
-      <Name>Ideal.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
       <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
       <Name>Ideal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Identity\Ideal.Identity.csproj">
+      <Project>{899733FD-163E-4EEC-AD46-B6E92A2C5617}</Project>
+      <Name>Ideal.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ideal.Infrastructure\Ideal.Infrastructure.csproj">
       <Project>{f22e2e5e-c5b0-4ec9-a201-4d9d6f7a7b1e}</Project>

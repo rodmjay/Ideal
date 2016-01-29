@@ -1101,13 +1101,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ideal.Configuration\Ideal.Configuration.csproj">
-      <Project>{53f25e0f-512b-4d0c-b20a-629918e82254}</Project>
-      <Name>Ideal.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
       <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
       <Name>Ideal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Identity\Ideal.Identity.csproj">
+      <Project>{899733FD-163E-4EEC-AD46-B6E92A2C5617}</Project>
+      <Name>Ideal.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ideal.Infrastructure\Ideal.Infrastructure.csproj">
       <Project>{f22e2e5e-c5b0-4ec9-a201-4d9d6f7a7b1e}</Project>
@@ -1116,6 +1116,10 @@
     <ProjectReference Include="..\Ideal.Membership\Ideal.Membership.csproj">
       <Project>{3d04941e-82e5-47f4-9e17-e8c53559cc6a}</Project>
       <Name>Ideal.Membership</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Notifications\Ideal.Notifications.csproj">
+      <Project>{FA580ED6-B0C3-4DC6-AA9D-B5D70FEF2F11}</Project>
+      <Name>Ideal.Notifications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{a0f160b2-5795-4609-a64c-3155c9741150}</Project>
