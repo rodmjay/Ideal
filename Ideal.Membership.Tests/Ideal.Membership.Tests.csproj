@@ -52,7 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicPasswordPolicyTest.cs" />
-    <Compile Include="ConfigMembershipSettingsTest.cs" />
+    <Compile Include="Configuration\MembershipConfigurationTest.cs" />
+    <Compile Include="Configuration\SecureTokenServiceConfigurationTest.cs" />
     <Compile Include="MembershipEventsTest.cs" />
     <Compile Include="UserAccountServiceTest.cs" />
     <Compile Include="UserAccountTest.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

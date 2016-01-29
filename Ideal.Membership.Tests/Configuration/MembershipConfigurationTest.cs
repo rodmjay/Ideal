@@ -3,10 +3,10 @@ using System.Configuration;
 using Ideal.Membership.Configuration;
 using NUnit.Framework;
 
-namespace Ideal.Membership.Tests
+namespace Ideal.Membership.Tests.Configuration
 {
     [TestFixture]
-    public class ConfigMembershipSettingsTest
+    public class MembershipConfigurationTest
     {
         [Test]
         public void ShouldLoadFromConfig()

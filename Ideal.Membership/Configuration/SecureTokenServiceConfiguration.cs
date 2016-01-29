@@ -78,7 +78,7 @@ namespace Ideal.Membership.Configuration
         {
             get
             {
-                return RootUri + "/" + (string)base["endSessionUri"];
+                return RootUri + (string)base["endSessionUri"];
             }
             set
             {
@@ -91,7 +91,7 @@ namespace Ideal.Membership.Configuration
         {
             get
             {
-                return RootUri + "/" + (string)base["revokeUri"];
+                return RootUri + (string)base["revokeUri"];
             }
             set
             {
