@@ -153,10 +153,6 @@
       <Project>{f22e2e5e-c5b0-4ec9-a201-4d9d6f7a7b1e}</Project>
       <Name>Ideal.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ideal.Membership\Ideal.Membership.csproj">
-      <Project>{3D04941E-82E5-47F4-9E17-E8C53559CC6A}</Project>
-      <Name>Ideal.Membership</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{a0f160b2-5795-4609-a64c-3155c9741150}</Project>
       <Name>Ideal.Security</Name>

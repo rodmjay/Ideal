@@ -62,9 +62,7 @@ namespace Ideal.Infrastructure.Eventing
                 if (weakSubscriber.IsAlive)
                 {
                     var subscriber = (IHandles<TEvent>)weakSubscriber.Target;
-                    var syncContext = SynchronizationContext.Current;
-                    if (syncContext == null)
-                        syncContext = new SynchronizationContext();
+                    var syncContext = SynchronizationContext.Current ?? new SynchronizationContext();
 
                     syncContext.Post(s => subscriber.OnEvent(eventToPublish), null);
                 }
@@ -74,13 +72,11 @@ namespace Ideal.Infrastructure.Eventing
                 }
             }
 
-            if (subscribersToRemove.Any())
+            if (!subscribersToRemove.Any()) return;
+            lock (_lock)
             {
-                lock (_lock)
-                {
-                    foreach (var remove in subscribersToRemove)
-                        subscribers.Remove(remove);
-                }
+                foreach (var remove in subscribersToRemove)
+                    subscribers.Remove(remove);
             }
         }
 

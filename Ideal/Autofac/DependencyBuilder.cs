@@ -10,18 +10,12 @@ using Ideal.Core.Eventing;
 using Ideal.Core.Settings;
 using Ideal.Identity.Configuration;
 using Ideal.Identity.Data;
-using Ideal.Identity.Settings;
+using Ideal.Identity.Passwords;
+using Ideal.Identity.Services;
 using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Eventing;
 using Ideal.Infrastructure.Repositories;
-using Ideal.Membership;
-using Ideal.Membership.Configuration;
-using Ideal.Membership.Services;
-using Ideal.Membership.Settings;
-using Ideal.Notifications.Services;
-using Ideal.Security;
 using Ideal.Security.Authentication;
-using Ideal.Security.Passwords;
 
 #endregion
 
@@ -67,7 +61,7 @@ namespace Ideal.Autofac
 
             builder
                 .RegisterType<ClaimsAuthenticationService>()
-                .As<IAuthenticationService>()
+                .As<IUserAuthenticationService>()
                 .InstancePerRequest();
 
             builder
@@ -93,11 +87,6 @@ namespace Ideal.Autofac
             builder
                 .RegisterType<NoopPasswordService>()
                 .As<IPasswordService>()
-                .InstancePerRequest();
-
-            builder
-                .RegisterType<NoopNotificationService>()
-                .As<INotificationService>()
                 .InstancePerRequest();
 
             var container = builder.Build();

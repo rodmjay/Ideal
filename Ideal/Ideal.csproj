@@ -1113,14 +1113,6 @@
       <Project>{f22e2e5e-c5b0-4ec9-a201-4d9d6f7a7b1e}</Project>
       <Name>Ideal.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ideal.Membership\Ideal.Membership.csproj">
-      <Project>{3d04941e-82e5-47f4-9e17-e8c53559cc6a}</Project>
-      <Name>Ideal.Membership</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ideal.Notifications\Ideal.Notifications.csproj">
-      <Project>{FA580ED6-B0C3-4DC6-AA9D-B5D70FEF2F11}</Project>
-      <Name>Ideal.Notifications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{a0f160b2-5795-4609-a64c-3155c9741150}</Project>
       <Name>Ideal.Security</Name>

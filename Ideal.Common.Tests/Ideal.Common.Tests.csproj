@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CryptoHelperTest.cs" />
     <Compile Include="GeographyHelperFacts.cs" />
     <Compile Include="NameValueCollectionExTest.cs" />
     <Compile Include="StringExtensionsTest.cs" />

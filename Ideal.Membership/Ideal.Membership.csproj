@@ -44,18 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\MembershipConfiguration.cs" />
-    <Compile Include="Execptions\UserNotFoundException.cs" />
-    <Compile Include="Services\MembershipService.cs" />
-    <Compile Include="Services\IMembershipService.cs" />
-    <Compile Include="Model\AuthenticationStatus.cs" />
-    <Compile Include="Model\ChangePasswordStatus.cs" />
-    <Compile Include="Model\CreateUserStatus.cs" />
-    <Compile Include="Model\MembershipEvent.cs" />
-    <Compile Include="Model\MembershipEventCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IOAuthProviderSettings.cs" />
-    <Compile Include="Settings\IMembershipSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">
@@ -70,16 +59,16 @@
       <Project>{899733fd-163e-4eec-ad46-b6e92a2c5617}</Project>
       <Name>Ideal.Identity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ideal.Notifications\Ideal.Notifications.csproj">
-      <Project>{FA580ED6-B0C3-4DC6-AA9D-B5D70FEF2F11}</Project>
-      <Name>Ideal.Notifications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{a0f160b2-5795-4609-a64c-3155c9741150}</Project>
       <Name>Ideal.Security</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="Model\" />
+    <Folder Include="Settings\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

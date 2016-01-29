@@ -103,7 +103,6 @@
     <Compile Include="Model\Logging\Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DataService.cs" />
-    <Compile Include="Services\Logging\LoggingService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

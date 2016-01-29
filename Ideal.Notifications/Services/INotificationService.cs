@@ -24,4 +24,4 @@ namespace Ideal.Notifications.Services
         void SendChangeEmailRequestNotice(User user, string newEmail);
         void SendEmailChangedNotice(User user, string oldEmail);
     }
-}
+} 

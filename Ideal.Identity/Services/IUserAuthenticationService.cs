@@ -2,23 +2,20 @@
 // ***********************************************************************
 // Assembly	: Ideal.Core
 // Author	: Rod Johnson
-// Created	: 03-16-2013
+// Created	: 02-24-2013
 // 
 // Last Modified By : Rod Johnson
 // Last Modified On : 03-28-2013
 // ***********************************************************************
 #endregion
 
-using System;
+using Ideal.Identity.Model;
 
-namespace Ideal.Core.Settings
+namespace Ideal.Identity.Services
 {
-    public interface ISiteSettings
+    public interface IUserAuthenticationService
     {
-        Guid InstanceId { get; set; }
-        string Version { get; set; }
-        string EmailAddress { get; set; }
-        string CompanyName { get; set; }
-        string WebsiteName { get; set; }
+        void SignIn(User user, bool isPersistant);
+        void SignOut();
     }
 }

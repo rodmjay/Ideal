@@ -51,9 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigExtensions.cs" />
-    <Compile Include="CryptoHelper.cs" />
-    <Compile Include="Crypto.cs" />
+    <Compile Include="ConfigurationExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="GeographyHelpers.cs" />
     <Compile Include="Lists\Lists.Countries.cs" />

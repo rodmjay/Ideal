@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,12 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicPasswordPolicyTest.cs" />
+    <Compile Include="MembershipConfigurationTest.cs" />
+    <Compile Include="MembershipServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecureTokenServiceConfigurationTest.cs" />
     <Compile Include="UserAccountTest.cs" />
-    <Compile Include="UserActivityTest.cs" />
     <Compile Include="UserTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">
+      <Project>{2f88f0ae-3278-4d1c-adf3-01ec8ef881ba}</Project>
+      <Name>Ideal.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
       <Project>{FBF079DA-4D55-460C-AC31-5C676D2BD597}</Project>
       <Name>Ideal.Core</Name>
@@ -62,10 +70,6 @@
     <ProjectReference Include="..\Ideal.Identity\Ideal.Identity.csproj">
       <Project>{899733FD-163E-4EEC-AD46-B6E92A2C5617}</Project>
       <Name>Ideal.Identity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ideal.Notifications\Ideal.Notifications.csproj">
-      <Project>{FA580ED6-B0C3-4DC6-AA9D-B5D70FEF2F11}</Project>
-      <Name>Ideal.Notifications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
       <Project>{A0F160B2-5795-4609-A64C-3155C9741150}</Project>

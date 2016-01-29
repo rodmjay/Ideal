@@ -4,8 +4,6 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Ideal.Identity.Configuration;
 using Ideal.Identity.Settings;
-using Ideal.Membership.Configuration;
-using Ideal.Membership.Settings;
 
 namespace IdentityService.Autofac
 {

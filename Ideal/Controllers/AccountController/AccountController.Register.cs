@@ -11,7 +11,6 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Ideal.Membership.Model;
 using Ideal.Models;
 using Ideal.Security.Authorization;
 
@@ -48,7 +47,7 @@ namespace Ideal.Controllers
                     var user = _userService.CreateAccount(model.Username, model.Password, model.Email, model.FirstName, model.LastName, model.PhoneNumber, model.Address);
                     if (ModelState.Process(user))
                     {
-                        new MembershipEvent(MembershipEventCode.UserCreated, user.Entity).Raise();
+                        //new MembershipEvent(MembershipEventCode.UserCreated, user.Entity).Raise();
 
                         if (_membershipSettings.RequireAccountVerification)
                         {

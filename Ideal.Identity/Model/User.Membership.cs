@@ -15,7 +15,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using Ideal.Core.Model;
+using Ideal.Identity.Services;
 using Ideal.Identity.Settings;
+using Ideal.Security.Encryption;
 
 namespace Ideal.Identity.Model
 {

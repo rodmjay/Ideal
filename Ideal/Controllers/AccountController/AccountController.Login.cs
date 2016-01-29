@@ -10,7 +10,7 @@
 #endregion
 
 using System.Web.Mvc;
-using Ideal.Membership.Model;
+using Ideal.Identity.Model;
 using Ideal.Models;
 using Ideal.Security.Authorization;
 
@@ -55,7 +55,7 @@ namespace Ideal.Controllers
                         return RedirectToAction("ChangePassword", "Account");
                     }
 
-                    new MembershipEvent(MembershipEventCode.UserLogin, user).Raise();
+                    //new MembershipEvent(MembershipEventCode.UserLogin, user).Raise();
 
                     if (Url.IsLocalUrl(model.ReturnUrl))
                     {

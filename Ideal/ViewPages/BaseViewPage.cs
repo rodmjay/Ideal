@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Ideal.Core.Settings;
+using Ideal.Identity.Services;
 using Ideal.Identity.Settings;
-using Ideal.Membership.Settings;
 
 namespace Ideal.ViewPages
 {
