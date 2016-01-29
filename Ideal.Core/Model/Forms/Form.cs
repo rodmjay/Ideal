@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Ideal.Core.Model
+namespace Ideal.Core.Model.Forms
 {
     public class Form : DomainObject
     {

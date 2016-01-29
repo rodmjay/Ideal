@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfigMembershipSettings.cs" />
+    <Compile Include="Configuration\STSConfigurationElement.cs" />
+    <Compile Include="PasswordPolicies\BasicPasswordPolicy.cs" />
+    <Compile Include="PasswordPolicies\NoopPasswordPolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAccountService.cs" />
   </ItemGroup>

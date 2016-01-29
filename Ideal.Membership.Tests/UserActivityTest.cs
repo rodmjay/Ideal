@@ -1,8 +1,8 @@
-using Ideal.Core.Common.Membership.Events;
-using Ideal.Core.Model;
+using Ideal.Core.Model.Membership;
+using Ideal.Core.Model.Membership.Events;
 using NUnit.Framework;
 
-namespace Ideal.Core.Tests.Membership
+namespace Ideal.Membership.Tests
 {
     [TestFixture]
     public class UserActivityTest

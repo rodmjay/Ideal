@@ -25,12 +25,12 @@ namespace Ideal.Core.Common.Validation
         public IDictionary<string, IList<string>> ValidationErrors { get; }
         public T Entity { get; }
 
-        public bool IsValid => this.ValidationErrors.Count == 0;
+        public bool IsValid => ValidationErrors.Count == 0;
 
         public ValidationContainer(IDictionary<string, IList<string>> validationErrors, T entity)
         {
-            this.ValidationErrors = validationErrors;
-            this.Entity = entity;
+            ValidationErrors = validationErrors;
+            Entity = entity;
         }
     }
 }

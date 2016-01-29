@@ -1,5 +1,6 @@
 ﻿using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Model;
+using Ideal.Core.Model.Logging;
 
 namespace Ideal.Core.Services
 {
@@ -9,7 +10,7 @@ namespace Ideal.Core.Services
 
         public LoggingService(IUnitOfWork unitOfWork, IRepository<Log> repository) : base(unitOfWork)
         {
-            this.Repository = _repository = repository;
+            Repository = _repository = repository;
         }
     }
 }

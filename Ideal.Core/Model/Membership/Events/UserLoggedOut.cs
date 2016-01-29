@@ -9,9 +9,7 @@
 // ***********************************************************************
 #endregion
 
-using Ideal.Core.Model;
-
-namespace Ideal.Core.Common.Membership.Events
+namespace Ideal.Core.Model.Membership.Events
 {
     #region
 

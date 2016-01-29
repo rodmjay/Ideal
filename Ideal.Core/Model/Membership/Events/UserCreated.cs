@@ -9,9 +9,7 @@
 // ***********************************************************************
 #endregion
 
-using Ideal.Core.Model;
-
-namespace Ideal.Core.Common.Membership.Events
+namespace Ideal.Core.Model.Membership.Events
 {
     #region
 
@@ -19,11 +17,13 @@ namespace Ideal.Core.Common.Membership.Events
 
     #endregion
 
-    public class UserLoggedIn : UserActivity
+    public class UserCreated : UserActivity
     {
-        public UserLoggedIn(User user) : base(user, "User Logged In")
-        {           
+        public readonly string LoginUrl;
+
+        public UserCreated(User user, string loginUrl) : base(user, "User Created")
+        {
+            LoginUrl = loginUrl;
         }
     }
 }
-

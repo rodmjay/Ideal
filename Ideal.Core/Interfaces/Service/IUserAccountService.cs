@@ -13,6 +13,7 @@ using System;
 using System.Linq;
 using Ideal.Core.Interfaces.Validation;
 using Ideal.Core.Model;
+using Ideal.Core.Model.Membership;
 
 namespace Ideal.Core.Interfaces.Service
 {

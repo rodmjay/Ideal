@@ -12,7 +12,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Ideal.Core.Model
+namespace Ideal.Core.Model.Membership
 {
     #region
 

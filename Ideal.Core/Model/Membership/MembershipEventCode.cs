@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Ideal.Core.Common.Membership
+namespace Ideal.Core.Model.Membership
 {
     public enum MembershipEventCode : int
     {

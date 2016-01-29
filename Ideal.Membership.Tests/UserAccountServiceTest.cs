@@ -4,13 +4,12 @@ using System.Linq;
 using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Interfaces.Membership;
 using Ideal.Core.Interfaces.Notifications;
-using Ideal.Core.Model;
+using Ideal.Core.Model.Membership;
 using Ideal.Core.Services;
-using Ideal.Membership;
 using Moq;
 using NUnit.Framework;
 
-namespace Ideal.Core.Tests.Membership
+namespace Ideal.Membership.Tests
 {
     [TestFixture]
     public class UserAccountServiceTest

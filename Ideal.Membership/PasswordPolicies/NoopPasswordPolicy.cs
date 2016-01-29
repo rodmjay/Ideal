@@ -11,7 +11,7 @@
 
 using Ideal.Core.Interfaces.Membership;
 
-namespace Ideal.Core.Common.Membership.PasswordPolicies
+namespace Ideal.Membership.PasswordPolicies
 {
     #region
 

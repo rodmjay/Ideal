@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Ideal.Configuration
+namespace Ideal.Membership.Configuration
 {
     public class STSConfigurationElement : ConfigurationElement
     {

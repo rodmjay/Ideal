@@ -1,6 +1,5 @@
 using System.Web.Management;
-using Ideal.Core.Common.Membership;
-using Ideal.Core.Model;
+using Ideal.Core.Model.Membership;
 using NUnit.Framework;
 
 namespace Ideal.Membership.Tests

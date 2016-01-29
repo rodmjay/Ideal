@@ -31,11 +31,11 @@ namespace Ideal.Core.Common.Paging
 
         public Page(IEnumerable<T> entities, int count, int pageSize, int currentPage)
         {
-            this.Entities = entities;
-            this.Count = count;
-            this.CurrentPage = currentPage;
-            this.PageSize = pageSize;
-            this.PagesCount = count <= pageSize ? 1 : (count / pageSize) + 1;
+            Entities = entities;
+            Count = count;
+            CurrentPage = currentPage;
+            PageSize = pageSize;
+            PagesCount = count <= pageSize ? 1 : (count / pageSize) + 1;
         }
 
         public Page()

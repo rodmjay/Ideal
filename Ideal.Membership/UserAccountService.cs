@@ -21,6 +21,7 @@ using Ideal.Core.Interfaces.Notifications;
 using Ideal.Core.Interfaces.Service;
 using Ideal.Core.Interfaces.Validation;
 using Ideal.Core.Model;
+using Ideal.Core.Model.Membership;
 using Ideal.Core.Services;
 using static System.String;
 

@@ -8,7 +8,7 @@
 // Last Modified On : 03-28-2013
 // ***********************************************************************
 #endregion
-namespace Ideal.Core.Model
+namespace Ideal.Core.Model.Membership
 {
     #region
 

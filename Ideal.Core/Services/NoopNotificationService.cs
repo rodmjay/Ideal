@@ -10,6 +10,7 @@
 #endregion
 
 using Ideal.Core.Interfaces.Notifications;
+using Ideal.Core.Model.Membership;
 
 namespace Ideal.Core.Services
 {
@@ -21,42 +22,42 @@ namespace Ideal.Core.Services
 
     public class NoopNotificationService : INotificationService
     {
-        public void SendAccountCreate(Model.User user)
+        public void SendAccountCreate(User user)
         {
             
         }
 
-        public void SendAccountVerified(Model.User user)
+        public void SendAccountVerified(User user)
         {
             
         }
 
-        public void SendResetPassword(Model.User user)
+        public void SendResetPassword(User user)
         {
             
         }
 
-        public void SendPasswordChangeNotice(Model.User user)
+        public void SendPasswordChangeNotice(User user)
         {
             
         }
 
-        public void SendAccountNameReminder(Model.User user)
+        public void SendAccountNameReminder(User user)
         {
             
         }
 
-        public void SendAccountDelete(Model.User user)
+        public void SendAccountDelete(User user)
         {
             
         }
 
-        public void SendChangeEmailRequestNotice(Model.User user, string newEmail)
+        public void SendChangeEmailRequestNotice(User user, string newEmail)
         {
             
         }
 
-        public void SendEmailChangedNotice(Model.User user, string oldEmail)
+        public void SendEmailChangedNotice(User user, string oldEmail)
         {
             
         }

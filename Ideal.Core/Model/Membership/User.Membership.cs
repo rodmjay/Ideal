@@ -16,7 +16,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Ideal.Core.Interfaces.Membership;
 
-namespace Ideal.Core.Model
+namespace Ideal.Core.Model.Membership
 {
     [DisplayColumn("Username")]
     public sealed partial class User : DomainObject
@@ -43,19 +43,19 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(password)) throw new ArgumentException("password");
             if (String.IsNullOrWhiteSpace(email)) throw new ArgumentException("email");
 
-            this.Tenant = tenant;
-            this.Username = username;
-            this.Email = email;
-            this.Created = this.UtcNow;
-            this.SetPassword(password);
-            this.IsAccountVerified = !Settings.RequireAccountVerification;
-            this.IsLoginAllowed = Settings.AllowLoginAfterAccountCreation;
-            this.Claims = new List<UserClaim>();
+            Tenant = tenant;
+            Username = username;
+            Email = email;
+            Created = UtcNow;
+            SetPassword(password);
+            IsAccountVerified = !Settings.RequireAccountVerification;
+            IsLoginAllowed = Settings.AllowLoginAfterAccountCreation;
+            Claims = new List<UserClaim>();
 
             if (Settings.RequireAccountVerification)
             {
-                this.VerificationKey = StripUglyBase64(this.GenerateSalt());
-                this.VerificationKeySent = this.UtcNow;
+                VerificationKey = StripUglyBase64(GenerateSalt());
+                VerificationKeySent = UtcNow;
             }
         }
 
@@ -105,15 +105,15 @@ namespace Ideal.Core.Model
                 Tracing.Verbose("[UserAccount.VerifyAccount] failed -- account already verified");
                 return false;
             }
-            if (!this.VerificationKey.Equals(key, StringComparison.InvariantCultureIgnoreCase))
+            if (!VerificationKey.Equals(key, StringComparison.InvariantCultureIgnoreCase))
             {
                 Tracing.Verbose("[UserAccount.VerifyAccount] failed -- verification key doesn't match");
                 return false;
             }
 
-            this.IsAccountVerified = true;
-            this.VerificationKey = null;
-            this.VerificationKeySent = null;
+            IsAccountVerified = true;
+            VerificationKey = null;
+            VerificationKeySent = null;
 
             return true;
         }
@@ -125,7 +125,7 @@ namespace Ideal.Core.Model
                 if (oldPassword == newPassword)
                 {
                     Tracing.Verbose(
-                        $"[UserAccount.ChangePassword] failed for tenant:user {this.Tenant}:{this.Username} -- new password same as old password");
+                        $"[UserAccount.ChangePassword] failed for tenant:user {Tenant}:{Username} -- new password same as old password");
 
                     throw new ValidationException("The new password must be different than the old password.");
                 }
@@ -135,7 +135,7 @@ namespace Ideal.Core.Model
             }
 
             Tracing.Verbose(
-                $"[UserAccount.ChangePassword] failed for tentant:username {this.Tenant}:{this.Username} -- auth failed");
+                $"[UserAccount.ChangePassword] failed for tentant:username {Tenant}:{Username} -- auth failed");
 
             return false;
         }
@@ -164,7 +164,7 @@ namespace Ideal.Core.Model
                     return true;
                 }
 
-                if (this.VerificationKeySent < UtcNow.AddDays(-VerificationKeyStaleDurationDays))
+                if (VerificationKeySent < UtcNow.AddDays(-VerificationKeyStaleDurationDays))
                 {
                     return true;
                 }
@@ -176,7 +176,7 @@ namespace Ideal.Core.Model
         internal bool ResetPassword()
         {
             // if they've not yet verified then don't allow changes
-            if (!this.IsAccountVerified)
+            if (!IsAccountVerified)
             {
                 Tracing.Verbose("[UserAccount.ResetPassword] failed -- account not verified");
 
@@ -189,8 +189,8 @@ namespace Ideal.Core.Model
             {
                 Tracing.Verbose("[UserAccount.ResetPassword] creating new verification keys");
 
-                this.VerificationKey = StripUglyBase64(GenerateSalt());
-                this.VerificationKeySent = UtcNow;
+                VerificationKey = StripUglyBase64(GenerateSalt());
+                VerificationKeySent = UtcNow;
             }
             else
             {
@@ -208,7 +208,7 @@ namespace Ideal.Core.Model
                 return false;
             }
 
-            if (!this.IsAccountVerified)
+            if (!IsAccountVerified)
             {
                 Tracing.Verbose("[UserAccount.ChangePasswordFromResetKey] failed -- account not verified");
                 return false;
@@ -222,15 +222,15 @@ namespace Ideal.Core.Model
             }
 
             // check if key matches
-            if (!this.VerificationKey.Equals(key, StringComparison.InvariantCultureIgnoreCase))
+            if (!VerificationKey.Equals(key, StringComparison.InvariantCultureIgnoreCase))
             {
                 Tracing.Verbose("[UserAccount.ChangePasswordFromResetKey] failed -- verification keys don't match");
                 return false;
             }
 
-            this.VerificationKey = null;
-            this.VerificationKeySent = null;
-            this.SetPassword(newPassword);
+            VerificationKey = null;
+            VerificationKeySent = null;
+            SetPassword(newPassword);
 
             return true;
         }
@@ -301,7 +301,7 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(newEmail)) throw new ValidationException("Invalid email.");
 
             // if they've not yet verified then fail
-            if (!this.IsAccountVerified)
+            if (!IsAccountVerified)
             {
                 Tracing.Verbose("[UserAccount.ChangeEmailRequest] failed -- account not verified");
                 return false;
@@ -314,14 +314,14 @@ namespace Ideal.Core.Model
             // or if there is a key but it's older than one day, then create 
             // a new reset key
             if (IsVerificationKeyStale ||
-                this.VerificationKey == null ||
-                !this.VerificationKey.StartsWith(emailHash))
+                VerificationKey == null ||
+                !VerificationKey.StartsWith(emailHash))
             {
                 Tracing.Verbose("[UserAccount.ChangeEmailRequest] creating a new reset key");
 
                 var random = StripUglyBase64(GenerateSalt());
-                this.VerificationKey = emailHash + random;
-                this.VerificationKeySent = UtcNow;
+                VerificationKey = emailHash + random;
+                VerificationKeySent = UtcNow;
             }
             else
             {
@@ -343,15 +343,15 @@ namespace Ideal.Core.Model
             // only honor resets within the past day
             if (!IsVerificationKeyStale)
             {
-                if (key == this.VerificationKey)
+                if (key == VerificationKey)
                 {
                     var lowerEmail = newEmail.ToLower(new System.Globalization.CultureInfo("tr-TR", false));
                     var emailHash = StripUglyBase64(Hash(ChangeEmailVerificationPrefix + lowerEmail));
-                    if (this.VerificationKey.StartsWith(emailHash))
+                    if (VerificationKey.StartsWith(emailHash))
                     {
-                        this.Email = newEmail;
-                        this.VerificationKey = null;
-                        this.VerificationKeySent = null;
+                        Email = newEmail;
+                        VerificationKey = null;
+                        VerificationKeySent = null;
 
                         return true;
                     }
@@ -389,8 +389,8 @@ namespace Ideal.Core.Model
                 var frequency = Settings.PasswordResetFrequency;
                 if (frequency <= 0) return false;
 
-                var now = this.UtcNow;
-                var last = this.PasswordChanged;
+                var now = UtcNow;
+                var last = PasswordChanged;
                 return last.AddDays(frequency) <= now;
             }
         }
@@ -399,7 +399,7 @@ namespace Ideal.Core.Model
         {
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
-            return this.Claims.Any(x => x.Type == type);
+            return Claims.Any(x => x.Type == type);
         }
 
         public bool HasClaim(string type, string value)
@@ -407,7 +407,7 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
             if (String.IsNullOrWhiteSpace(value)) throw new ArgumentException("value");
 
-            return this.Claims.Any(x => x.Type == type && x.Value == value);
+            return Claims.Any(x => x.Type == type && x.Value == value);
         }
 
         public IEnumerable<string> GetClaimValues(string type)
@@ -415,7 +415,7 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
             var query =
-                from claim in this.Claims
+                from claim in Claims
                 where claim.Type == type
                 select claim.Value;
             return query.ToArray();
@@ -426,7 +426,7 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
             var query =
-                from claim in this.Claims
+                from claim in Claims
                 where claim.Type == type
                 select claim.Value;
             return query.SingleOrDefault();
@@ -437,11 +437,11 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
             if (String.IsNullOrWhiteSpace(value)) throw new ArgumentException("value");
 
-            if (!this.HasClaim(type, value))
+            if (!HasClaim(type, value))
             {
                 Tracing.Verbose($"[UserAccount.AddClaim] {Tenant}, {Username}, {type}, {value}");
 
-                this.Claims.Add(
+                Claims.Add(
                     new UserClaim
                     {
                         Type = type,
@@ -455,13 +455,13 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(type)) throw new ArgumentException("type");
 
             var claimsToRemove =
-                from claim in this.Claims
+                from claim in Claims
                 where claim.Type == type
                 select claim;
             foreach (var claim in claimsToRemove.ToArray())
             {
                 Tracing.Verbose($"[UserAccount.RemoveClaim] {Tenant}, {Username}, {type}, {claim.Value}");
-                this.Claims.Remove(claim);
+                Claims.Remove(claim);
             }
         }
 
@@ -471,13 +471,13 @@ namespace Ideal.Core.Model
             if (String.IsNullOrWhiteSpace(value)) throw new ArgumentException("value");
 
             var claimsToRemove =
-                from claim in this.Claims
+                from claim in Claims
                 where claim.Type == type && claim.Value == value
                 select claim;
             foreach (var claim in claimsToRemove.ToArray())
             {
                 Tracing.Verbose($"[UserAccount.RemoveClaim] {Tenant}, {Username}, {type}, {value}");
-                this.Claims.Remove(claim);
+                Claims.Remove(claim);
             }
         }
 

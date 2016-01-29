@@ -10,7 +10,7 @@
 #endregion
 
 using System.Web.Mvc;
-using Ideal.Core.Common.Membership;
+using Ideal.Core.Model.Membership;
 using Ideal.Models;
 using Ideal.Security.Authorization;
 

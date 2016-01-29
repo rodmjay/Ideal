@@ -11,7 +11,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Ideal.Core.Model
+namespace Ideal.Core.Model.Membership
 {
     #region
 

@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Ideal.Configuration;
-using Ideal.Core.Common.Membership.PasswordPolicies;
 using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Interfaces.Eventing;
 using Ideal.Core.Interfaces.Membership;
@@ -18,6 +17,7 @@ using Ideal.Infrastructure.Eventing;
 using Ideal.Infrastructure.Repositories;
 using Ideal.Membership;
 using Ideal.Membership.Configuration;
+using Ideal.Membership.PasswordPolicies;
 using Ideal.Security.Authentication;
 
 #endregion

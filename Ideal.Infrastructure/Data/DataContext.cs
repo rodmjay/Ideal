@@ -11,6 +11,9 @@
 
 using System.Data.Entity;
 using Ideal.Core.Model;
+using Ideal.Core.Model.Forms;
+using Ideal.Core.Model.Logging;
+using Ideal.Core.Model.Membership;
 
 namespace Ideal.Infrastructure.Data
 {

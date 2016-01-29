@@ -10,6 +10,7 @@
 #endregion
 
 using Ideal.Core.Model;
+using Ideal.Core.Model.Membership;
 
 namespace Ideal.Core.Interfaces.Data
 {

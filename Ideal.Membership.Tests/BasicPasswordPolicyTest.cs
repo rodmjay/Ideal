@@ -1,4 +1,4 @@
-using Ideal.Core.Common.Membership.PasswordPolicies;
+using Ideal.Membership.PasswordPolicies;
 using NUnit.Framework;
 
 namespace Ideal.Membership.Tests

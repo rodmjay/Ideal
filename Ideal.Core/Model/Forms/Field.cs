@@ -1,4 +1,4 @@
-﻿namespace Ideal.Core.Model
+﻿namespace Ideal.Core.Model.Forms
 {
     public class Field : DomainObject
     {

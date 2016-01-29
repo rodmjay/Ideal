@@ -1,10 +1,9 @@
 ﻿using System.Globalization;
 using System.Web.Management;
-using Ideal.Core.Model;
 
-namespace Ideal.Core.Common.Membership
+namespace Ideal.Core.Model.Membership
 {
-    public class MembershipEvent : WebRequestEvent, IUserInfoEvent
+    public class MembershipEvent : WebRequestEvent
     {
         private readonly User _user;
         private readonly string _culture;
