@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using Ideal.Core.Interfaces.Membership;
+using Ideal.Core.Interfaces.Settings;
 
 namespace Ideal.Core.Model.Membership
 {

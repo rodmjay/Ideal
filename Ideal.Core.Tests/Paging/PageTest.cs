@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Ideal.Core.Common.Paging;
 using Ideal.Core.Model;
 using Ideal.Core.Model.Logging;
 using NUnit.Framework;

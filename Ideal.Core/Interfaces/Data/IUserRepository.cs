@@ -9,17 +9,10 @@
 // ***********************************************************************
 #endregion
 
-using Ideal.Core.Model;
 using Ideal.Core.Model.Membership;
 
 namespace Ideal.Core.Interfaces.Data
 {
-    #region
-
-    
-
-    #endregion
-
     public partial interface IUserRepository : IRepository<User>
     {		
 		// Add extra datainterface methods in a partial interface

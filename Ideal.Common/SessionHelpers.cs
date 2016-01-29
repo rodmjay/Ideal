@@ -9,6 +9,7 @@
 // ***********************************************************************
 #endregion
 
+using System.Configuration;
 using System.Web.Configuration;
 
 namespace Ideal
@@ -28,8 +29,7 @@ namespace Ideal
             {
                 if (_sessionTimeout == 0)
                 {
-                    var conf = WebConfigurationManager.OpenWebConfiguration(System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath);
-                    var section = (SessionStateSection)conf.GetSection("system.web/sessionState");
+                    var section = (SessionStateSection)ConfigurationManager.GetSection("system.web/sessionState");
                     _sessionTimeout = (int)section.Timeout.TotalMinutes;
                 }
                 return _sessionTimeout;

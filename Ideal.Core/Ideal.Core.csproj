@@ -81,14 +81,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\EventCodes.cs" />
-    <Compile Include="Common\Geography\GeographyHelpers.cs" />
-    <Compile Include="Common\Lists\Lists.Countries.cs" />
-    <Compile Include="Common\Lists\Lists.CreditCards.cs" />
-    <Compile Include="Common\Lists\Lists.EventStatus.cs" />
-    <Compile Include="Common\Lists\Lists.Months.cs" />
-    <Compile Include="Common\Lists\Lists.Salutations.cs" />
-    <Compile Include="Common\Lists\Lists.UnitedStates.cs" />
+    <Compile Include="Interfaces\Settings\IOAuthProviderSettings.cs" />
+    <Compile Include="Interfaces\Settings\ISecureTokenServiceSettings.cs" />
     <Compile Include="Model\Membership\AuthenticationStatus.cs" />
     <Compile Include="Model\Membership\ChangePasswordStatus.cs" />
     <Compile Include="Model\Membership\CreateUserStatus.cs" />
@@ -99,13 +93,8 @@
     <Compile Include="Model\Membership\Events\UserLoggedOut.cs" />
     <Compile Include="Model\Membership\MembershipEvent.cs" />
     <Compile Include="Model\Membership\MembershipEventCode.cs" />
-    <Compile Include="Common\Paging\Page.cs" />
-    <Compile Include="Common\Photos\Photo.cs" />
-    <Compile Include="Common\Photos\PhotoList.cs" />
-    <Compile Include="Common\Photos\PhotoProvider.cs" />
-    <Compile Include="Common\Photos\PhotoResize.cs" />
-    <Compile Include="Common\Photos\PhotoThumbnail.cs" />
-    <Compile Include="Common\Validation\ValidationContainer.cs" />
+    <Compile Include="Model\Page.cs" />
+    <Compile Include="Validation\ValidationContainer.cs" />
     <Compile Include="Extensions\DisposableExtensions.cs" />
     <Compile Include="Extensions\DomainObjectExtensions.Validation.cs" />
     <Compile Include="Interfaces\Data\IDatabaseFactory.cs" />
@@ -115,22 +104,16 @@
     <Compile Include="Interfaces\Data\IUserRepository.cs" />
     <Compile Include="Interfaces\Eventing\IHandles.cs" />
     <Compile Include="Interfaces\Eventing\IMessageBus.cs" />
-    <Compile Include="Interfaces\Membership\IMembershipSettings.cs" />
-    <Compile Include="Interfaces\Membership\IPasswordPolicy.cs" />
-    <Compile Include="Interfaces\Notifications\INotificationService.cs" />
-    <Compile Include="Interfaces\Paging\IPage.cs" />
-    <Compile Include="Interfaces\Photos\IPhotoRequest.cs" />
-    <Compile Include="Interfaces\Photos\IPhotoResize.cs" />
-    <Compile Include="Interfaces\Photos\IPhotoResizeCollection.cs" />
-    <Compile Include="Interfaces\Photos\IPhotoSettings.cs" />
-    <Compile Include="Interfaces\Pipeline\ICoreProcessor.cs" />
-    <Compile Include="Interfaces\Pipeline\IPipelineSettings.cs" />
-    <Compile Include="Interfaces\Service\IAuthenticationService.cs" />
-    <Compile Include="Interfaces\Service\IService.cs" />
-    <Compile Include="Interfaces\Service\IUserAccountService.cs" />
-    <Compile Include="Interfaces\Site\ISiteSettings.cs" />
+    <Compile Include="Interfaces\Settings\IMembershipSettings.cs" />
+    <Compile Include="Interfaces\Services\IPasswordPolicy.cs" />
+    <Compile Include="Interfaces\Services\INotificationService.cs" />
+    <Compile Include="Interfaces\Data\IPage.cs" />
+    <Compile Include="Interfaces\Services\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\Services\IService.cs" />
+    <Compile Include="Interfaces\Services\IUserAccountService.cs" />
+    <Compile Include="Interfaces\Settings\ISiteSettings.cs" />
     <Compile Include="Interfaces\Storage\IStorageProvider.cs" />
-    <Compile Include="Interfaces\Validation\IValidationContainer.cs" />
+    <Compile Include="Validation\IValidationContainer.cs" />
     <Compile Include="Model\DomainObject.cs" />
     <Compile Include="Model\Forms\Field.cs" />
     <Compile Include="Model\Forms\Form.cs" />
@@ -145,12 +128,9 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\LoggingService.cs" />
     <Compile Include="Services\NoopNotificationService.cs" />
-    <Compile Include="Services\UserNotFoundException.cs" />
-    <Compile Include="Tracing\Tracing.cs" />
+    <Compile Include="Excceptions\UserNotFoundException.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Logging\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -12,18 +12,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using Ideal.Core.Common.Validation;
-using Ideal.Core.Interfaces.Validation;
 using Ideal.Core.Model;
+using Ideal.Core.Validation;
 
 namespace Ideal.Core
 {
-    #region
-
-    
-
-    #endregion
-
     public static class ValidationEngine
     {
         /// <summary>

@@ -12,7 +12,7 @@
 using System;
 using System.Linq;
 using System.Text;
-using Ideal.Core.Interfaces.Membership;
+using Ideal.Core.Interfaces.Services;
 
 namespace Ideal.Membership.PasswordPolicies
 {

@@ -14,9 +14,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using Ideal.Core.Common.Paging;
 using Ideal.Core.Interfaces.Data;
-using Ideal.Core.Interfaces.Paging;
 using Ideal.Core.Model;
 
 namespace Ideal.Infrastructure.Data

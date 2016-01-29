@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Ideal.Core.Interfaces.Paging;
 
 namespace Ideal.Core.Interfaces.Data
 {

@@ -7,10 +7,8 @@ using Autofac.Integration.Mvc;
 using Ideal.Configuration;
 using Ideal.Core.Interfaces.Data;
 using Ideal.Core.Interfaces.Eventing;
-using Ideal.Core.Interfaces.Membership;
-using Ideal.Core.Interfaces.Notifications;
-using Ideal.Core.Interfaces.Service;
-using Ideal.Core.Interfaces.Site;
+using Ideal.Core.Interfaces.Services;
+using Ideal.Core.Interfaces.Settings;
 using Ideal.Core.Services;
 using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Eventing;
@@ -18,6 +16,7 @@ using Ideal.Infrastructure.Repositories;
 using Ideal.Membership;
 using Ideal.Membership.Configuration;
 using Ideal.Membership.PasswordPolicies;
+using Ideal.Membership.Services;
 using Ideal.Security.Authentication;
 
 #endregion
@@ -48,12 +47,12 @@ namespace Ideal.Autofac
 
             // config-based settings
             builder
-                .Register(c => (ConfigSiteSettings)ConfigurationManager.GetSection("Ideal/Site"))
+                .Register(c => (SiteConfiguration)ConfigurationManager.GetSection("Ideal/Site"))
                 .As<ISiteSettings>()
                 .SingleInstance();
 
             builder
-                .Register(c => (ConfigMembershipSettings)ConfigurationManager.GetSection("Ideal"))
+                .Register(c => (MembershipConfiguration)ConfigurationManager.GetSection("Ideal"))
                 .As<IMembershipSettings>()
                 .SingleInstance();
 

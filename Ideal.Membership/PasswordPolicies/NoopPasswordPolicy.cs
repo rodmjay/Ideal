@@ -9,7 +9,7 @@
 // ***********************************************************************
 #endregion
 
-using Ideal.Core.Interfaces.Membership;
+using Ideal.Core.Interfaces.Services;
 
 namespace Ideal.Membership.PasswordPolicies
 {
@@ -21,10 +21,7 @@ namespace Ideal.Membership.PasswordPolicies
 
     public class NoopPasswordPolicy : IPasswordPolicy
     {
-        public string PolicyMessage
-        {
-            get { return "There is no password policy."; }
-        }
+        public string PolicyMessage => "There is no password policy.";
 
         public bool ValidatePassword(string password)
         {

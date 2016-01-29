@@ -11,8 +11,8 @@
 
 using System.Web.Mvc;
 using Ideal.Core.Interfaces.Eventing;
-using Ideal.Core.Interfaces.Membership;
-using Ideal.Core.Interfaces.Service;
+using Ideal.Core.Interfaces.Services;
+using Ideal.Core.Interfaces.Settings;
 
 namespace Ideal.Controllers
 {

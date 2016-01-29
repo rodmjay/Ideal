@@ -1,5 +1,4 @@
 ﻿using Ideal.Core.Interfaces.Data;
-using Ideal.Core.Model;
 using Ideal.Core.Model.Logging;
 
 namespace Ideal.Core.Services

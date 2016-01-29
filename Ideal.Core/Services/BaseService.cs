@@ -13,11 +13,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Ideal.Core.Interfaces;
 using Ideal.Core.Interfaces.Data;
-using Ideal.Core.Interfaces.Paging;
-using Ideal.Core.Interfaces.Service;
-using Ideal.Core.Interfaces.Validation;
+using Ideal.Core.Interfaces.Services;
 using Ideal.Core.Model;
+using Ideal.Core.Validation;
 
 namespace Ideal.Core.Services
 {

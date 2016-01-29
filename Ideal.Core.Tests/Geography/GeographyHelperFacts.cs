@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity.Spatial;
-using Ideal.Core.Common.Geography;
 using NUnit.Framework;
 
 namespace Ideal.Core.Tests.Geography

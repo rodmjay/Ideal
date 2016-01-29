@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ideal.Core.Excceptions;
 using Ideal.Core.Interfaces.Data;
-using Ideal.Core.Interfaces.Membership;
-using Ideal.Core.Interfaces.Notifications;
+using Ideal.Core.Interfaces.Services;
+using Ideal.Core.Interfaces.Settings;
 using Ideal.Core.Model.Membership;
 using Ideal.Core.Services;
+using Ideal.Membership.Services;
 using Moq;
 using NUnit.Framework;
 

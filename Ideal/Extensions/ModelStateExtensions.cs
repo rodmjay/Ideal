@@ -10,7 +10,7 @@
 #endregion
 
 using System.Web.Mvc;
-using Ideal.Core.Interfaces.Validation;
+using Ideal.Core.Validation;
 
 namespace Ideal
 {

@@ -1,4 +1,7 @@
-﻿using IdentityServer3.Core.Configuration;
+﻿using System.Web.Mvc;
+using Ideal.Core.Interfaces.Settings;
+using Ideal.Membership.Configuration;
+using IdentityServer3.Core.Configuration;
 using IdentityService.Config;
 using Owin;
 
@@ -6,6 +9,12 @@ namespace IdentityService
 {
     public class Startup
     {
+        private ISecureTokenServiceSettings ServiceSettings
+            => DependencyResolver.Current.GetService<ISecureTokenServiceSettings>();
+
+        private ISiteSettings SiteSettings 
+            => DependencyResolver.Current.GetService<ISiteSettings>();
+
         public void Configuration(IAppBuilder app)
         {
             app.Map("/identity", idsrvApp =>
@@ -18,9 +27,9 @@ namespace IdentityService
 
                 var options = new IdentityServerOptions{
                     Factory = idServerServiceFactory,
-                    SiteName = "Ideal Identity",
-                    IssuerUri = "https://wcpro/identity",
-                    PublicOrigin = "https://localhost:44300/"
+                    SiteName = SiteSettings.WebsiteName,
+                    IssuerUri = ServiceSettings.IssuerUri,
+                    PublicOrigin = ServiceSettings.RootUri
                 };
 
                 idsrvApp.UseIdentityServer(options);

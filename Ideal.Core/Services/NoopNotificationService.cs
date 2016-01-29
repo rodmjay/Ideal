@@ -9,7 +9,7 @@
 // ***********************************************************************
 #endregion
 
-using Ideal.Core.Interfaces.Notifications;
+using Ideal.Core.Interfaces.Services;
 using Ideal.Core.Model.Membership;
 
 namespace Ideal.Core.Services

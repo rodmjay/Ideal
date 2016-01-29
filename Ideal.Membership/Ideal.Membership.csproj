@@ -43,14 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigMembershipSettings.cs" />
-    <Compile Include="Configuration\STSConfigurationElement.cs" />
+    <Compile Include="Configuration\MembershipConfiguration.cs" />
+    <Compile Include="Configuration\SecureTokenServiceConfiguration.cs" />
     <Compile Include="PasswordPolicies\BasicPasswordPolicy.cs" />
     <Compile Include="PasswordPolicies\NoopPasswordPolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserAccountService.cs" />
+    <Compile Include="Services\UserAccountService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">
+      <Project>{2F88F0AE-3278-4D1C-ADF3-01EC8EF881BA}</Project>
+      <Name>Ideal.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
       <Project>{FBF079DA-4D55-460C-AC31-5C676D2BD597}</Project>
       <Name>Ideal.Core</Name>

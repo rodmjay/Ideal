@@ -11,8 +11,8 @@ namespace Ideal.Membership.Tests
         [Test]
         public void ShouldLoadFromConfig()
         {
-            ConfigMembershipSettings actual =
-                (ConfigMembershipSettings) ConfigurationManager.GetSection("Ideal/Membership");
+            MembershipConfiguration actual =
+                (MembershipConfiguration) ConfigurationManager.GetSection("Ideal/Membership");
             Assert.IsNotNull(actual);
         }
 
@@ -31,7 +31,7 @@ namespace Ideal.Membership.Tests
             public void ShouldStoreTimespanValue()
             {
                 TimeSpan span = new TimeSpan(2,2,2,2);
-                var target = new ConfigMembershipSettings();
+                var target = new MembershipConfiguration();
                 Assert.AreEqual(target.AccountLockoutDuration, default(TimeSpan));
                 target.AccountLockoutDuration = span;
                 Assert.AreEqual(span,target.AccountLockoutDuration);

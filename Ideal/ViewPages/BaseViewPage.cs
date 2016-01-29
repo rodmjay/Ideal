@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
-using Ideal.Core.Interfaces.Membership;
-using Ideal.Core.Interfaces.Site;
+using Ideal.Core.Interfaces.Settings;
 
 namespace Ideal.ViewPages
 {

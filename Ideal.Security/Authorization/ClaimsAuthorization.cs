@@ -53,8 +53,8 @@ namespace Ideal.Security.Authorization
         /// <summary>
         /// Checks the authorization policy.
         /// </summary>
-        /// <param name="resource">The resource.</param>
         /// <param name="action">The action.</param>
+        /// <param name="resources"></param>
         /// <returns>true when authorized, otherwise false</returns>
         public static bool CheckAccess(string action, params string[] resources)
         {

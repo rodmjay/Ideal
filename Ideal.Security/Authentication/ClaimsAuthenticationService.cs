@@ -16,7 +16,7 @@ using System.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Web.Security;
 using Ideal.Core;
-using Ideal.Core.Interfaces.Service;
+using Ideal.Core.Interfaces.Services;
 using Ideal.Core.Model;
 using Ideal.Core.Model.Membership;
 using Ideal.Security.Extensions;
