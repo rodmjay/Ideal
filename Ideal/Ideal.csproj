@@ -135,7 +135,7 @@
     <Compile Include="Controllers\HomeController\HomeController.cs" />
     <Compile Include="Controllers\HomeController\HomeController.Index.cs" />
     <Compile Include="Controllers\ToolsController\ToolsController.cs" />
-    <Compile Include="Autofac\DependencyBuilder.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="Extensions\Html\AngularHelper.cs" />
     <Compile Include="Extensions\Html\AngularHelpers.cs" />
     <Compile Include="Extensions\Html\BootstrapHelpers.cs" />
@@ -154,6 +154,7 @@
     <Content Include="app\accounts.js" />
     <Content Include="app\app.js" />
     <Content Include="app\common.js" />
+    <Content Include="app\tincture.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -1094,6 +1095,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Autofac\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

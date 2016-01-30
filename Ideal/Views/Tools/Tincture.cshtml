@@ -1,1 +1,52 @@
-﻿<div class="container">Container</div>
+﻿<div class="container body-content" ng-controller="TinctureCtrl as tinctureCtrl">
+    <div class="row">
+
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tr>
+                    <th style="width:100px"></th>
+                    <th style="width:200px"></th>
+                    <th style="width:50px">MG</th>
+                    <th style="width:75px">%</th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="btn-group">
+                            <button class="btn" ng-click="tinctureCtrl.addCBD()"><i class="fa fa-plus-square"></i></button>
+                            <button class="btn" ng-click="tinctureCtrl.removeCBD()"><i class="fa fa-minus-square"></i></button>
+                        </div>
+                    </th>
+                    <th>CBD</th>
+                    <td>{{tinctureCtrl.cbdAmount}}</td>
+                    <td>{{tinctureCtrl.cbdAmount/tinctureCtrl.totalAmount()*100}}%</td>
+                </tr>
+
+                <tr>
+                    <th>
+                        <div class="btn-group">
+                            <button class="btn" ng-click="tinctureCtrl.addIndica()"><i class="fa fa-plus-square"></i></button>
+                            <button class="btn" ng-click="tinctureCtrl.removeIndica()"><i class="fa fa-minus-square"></i></button>
+                        </div>
+                    </th>
+                    <th>Indica</th>
+                    <td>{{tinctureCtrl.indicaAmount}}</td>
+                    <td>{{tinctureCtrl.indicaAmount/tinctureCtrl.totalAmount()*100}}%</td>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="btn-group">
+                            <button class="btn" ng-click="tinctureCtrl.addSativa()"><i class="fa fa-plus-square"></i></button>
+                            <button class="btn" ng-click="tinctureCtrl.removeSativa()"><i class="fa fa-minus-square"></i></button>
+                        </div>
+                    </th>
+                    <th>Sativa</th>
+                    <td>{{tinctureCtrl.sativaAmount}}</td>
+                    <td>{{tinctureCtrl.sativaAmount/tinctureCtrl.totalAmount()*100}}%</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            
+        </div>
+    </div>
+</div>

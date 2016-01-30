@@ -1,6 +1,6 @@
 ﻿/// <reference path="~/Scripts/angular.js" />
 
-angular.module('ideal', ['ideal.accounts'])
+angular.module('ideal', ['ideal.accounts','ideal.tincture'])
     .controller('iMainLayout', ['$element',function ($element) {
         //$element.css('background-color', 'red');
     }]);

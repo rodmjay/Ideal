@@ -15,13 +15,12 @@ using Ideal.Identity.Services;
 using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Eventing;
 using Ideal.Infrastructure.Repositories;
-using Ideal.Security.Authentication;
 
 #endregion
 
-namespace Ideal.Autofac
+namespace Ideal
 {
-    public static class DependencyBuilder
+    public static class DependencyConfig
     {
         public static void BuildDependencies()
         {

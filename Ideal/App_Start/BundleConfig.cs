@@ -22,9 +22,11 @@ namespace Ideal
                 "~/Scripts/angular-resource.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular-app").IncludeDirectory("~/app","*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angular-app")
+                .IncludeDirectory("~/app","*.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/less-js").Include("~/Scripts/less-1.5.1.js"));
+            bundles.Add(new ScriptBundle("~/bundles/less-js")
+                .Include("~/Scripts/less-1.5.1.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -35,10 +37,10 @@ namespace Ideal
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
-            var lessBundle = new StyleBundle("~/Content/css");
-            lessBundle.Include("~/less/bootstrap/bootstrap.less");
-            lessBundle.Include("~/less/font-awesome/font-awesome.less");
-            lessBundle.Include("~/content/site.less");
+            var lessBundle = new StyleBundle("~/Content/css")
+                .Include("~/less/bootstrap/bootstrap.less")
+                .Include("~/less/font-awesome/font-awesome.less")
+                .Include("~/content/site.less");
 
             bundles.Add(lessBundle);
         }
