@@ -5,7 +5,7 @@
             <table class="table table-striped">
                 <tr>
                     <th style="width:100px"></th>
-                    <th style="width:200px"></th>
+                    <th style="width:200px">Influencer</th>
                     <th style="width:50px">MG</th>
                     <th style="width:75px">%</th>
                 </tr>
@@ -18,7 +18,7 @@
                     </th>
                     <th>CBD</th>
                     <td>{{tinctureCtrl.cbdAmount}}</td>
-                    <td>{{tinctureCtrl.cbdAmount/tinctureCtrl.totalAmount()*100}}%</td>
+                    <td>{{tinctureCtrl.cbdAmount/(tinctureCtrl.totalAmount()||1)*100}}%</td>
                 </tr>
 
                 <tr>
@@ -30,7 +30,7 @@
                     </th>
                     <th>Indica</th>
                     <td>{{tinctureCtrl.indicaAmount}}</td>
-                    <td>{{tinctureCtrl.indicaAmount/tinctureCtrl.totalAmount()*100}}%</td>
+                    <td>{{tinctureCtrl.indicaAmount/(tinctureCtrl.totalAmount()||1)*100}}%</td>
                 </tr>
                 <tr>
                     <th>
@@ -41,8 +41,16 @@
                     </th>
                     <th>Sativa</th>
                     <td>{{tinctureCtrl.sativaAmount}}</td>
-                    <td>{{tinctureCtrl.sativaAmount/tinctureCtrl.totalAmount()*100}}%</td>
+                    <td>{{tinctureCtrl.sativaAmount/(tinctureCtrl.totalAmount()||1)*100}}%</td>
                 </tr>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>{{tinctureCtrl.totalAmount()}}</td>
+                    <td>100%</td>
+                </tr>
+                </tfoot>
             </table>
         </div>
         <div class="col-md-6">

@@ -29,7 +29,7 @@
             this.totalAmount = function() {
                 return (self.cbdAmount
                     + self.indicaAmount
-                    + self.sativaAmount) || 1;
+                    + self.sativaAmount);
             }
             this.formattedPercentage = function(amount) {
                 
