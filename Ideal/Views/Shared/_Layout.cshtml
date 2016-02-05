@@ -7,7 +7,7 @@
 
     <link rel="stylesheet/less" type="text/css" href="~/less/bootstrap/bootstrap.less" />
     <link rel="stylesheet/less" type="text/css" href="~/less/font-awesome/font-awesome.less" />
-    <link rel="stylesheet/less" type="text/css" href="~/Content/site.less" />
+    <link rel="stylesheet/less" type="text/css" href="~/less/site/site.less" />
 
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/less-js")
@@ -26,15 +26,14 @@
                 @Html.ActionLink(SiteSettings.WebsiteName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Tincture Calculator", "Tincture", "Tools")</li>
+                    <li>@Html.ActionLink("Explore Recipes", "Index", "Explore")</li>
+                </ul>
                 <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" placeholder="Username" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-success">Sign in</button>
-                    <a class="btn btn-success" href="@Url.Action("Register","Account",new {area=""})">Register</a>
+
+                    <a class="btn btn-success" href="@Url.Action("Login", "Account", new{area = ""})">Login</a>
+                    <a class="btn btn-success" href="@Url.Action("Register", "Account", new{area = ""})">Register</a>
                 </form>
             </div>
         </div>

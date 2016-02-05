@@ -10,6 +10,7 @@
 #endregion
 
 using System.Data.Entity.Migrations;
+using Ideal.Infrastructure.Cannabis;
 using Ideal.Infrastructure.Data;
 using Ideal.Infrastructure.Membership;
 
@@ -26,6 +27,7 @@ namespace Ideal.Infrastructure.Migrations
         protected override void Seed(DataContext context)
         {
             new MembershipDataSeeder().Seed(context);
+            new CannabisSeeder().Seed(context);
         }
     }
 }

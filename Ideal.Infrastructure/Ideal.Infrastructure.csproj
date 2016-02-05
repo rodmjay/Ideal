@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cannabis\CannabisSeeder.cs" />
     <Compile Include="Data\BaseContext.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\DatabaseFactory.cs" />
@@ -60,6 +61,18 @@
     <Compile Include="Migrations\201601270626513_InitialMigration.cs" />
     <Compile Include="Migrations\201601270626513_InitialMigration.Designer.cs">
       <DependentUpon>201601270626513_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602032107295_CannabisModel.cs" />
+    <Compile Include="Migrations\201602032107295_CannabisModel.Designer.cs">
+      <DependentUpon>201602032107295_CannabisModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602032141107_CannabsModel2.cs" />
+    <Compile Include="Migrations\201602032141107_CannabsModel2.Designer.cs">
+      <DependentUpon>201602032141107_CannabsModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602032258501_CannabisModel3.cs" />
+    <Compile Include="Migrations\201602032258501_CannabisModel3.Designer.cs">
+      <DependentUpon>201602032258501_CannabisModel3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +99,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201601270626513_InitialMigration.resx">
       <DependentUpon>201601270626513_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602032107295_CannabisModel.resx">
+      <DependentUpon>201602032107295_CannabisModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602032141107_CannabsModel2.resx">
+      <DependentUpon>201602032141107_CannabsModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602032258501_CannabisModel3.resx">
+      <DependentUpon>201602032258501_CannabisModel3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

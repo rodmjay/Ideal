@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Cannabis\Symptom.cs" />
     <Compile Include="Model\Page.cs" />
     <Compile Include="Validation\ValidationContainer.cs" />
     <Compile Include="Extensions\DisposableExtensions.cs" />

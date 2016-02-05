@@ -1,0 +1,52 @@
+﻿{
+  "ratios": [
+    {
+      "cbd": 1,
+      "thc": 1,
+      "symptoms": [
+        "Alzheimers",
+        "Awesomeness"
+      ],
+      "effects": [
+        "Appetite",
+        "Muncies"
+      ],
+      "negatives": [
+        "Dry Mouth",
+        "Something Awesome"
+      ]
+    },
+    {
+      "cbd": 1,
+      "thc": 2,
+      "symptoms": [
+        "Alzheimers",
+        "Awesomeness"
+      ],
+      "effects": [
+        "Appetite",
+        "Muncies"
+      ],
+      "negatives": [
+        "Dry Mouth",
+        "Something Awesome"
+      ]
+    },
+    {
+      "cbd": 1,
+      "thc": 1,
+      "symptoms": [
+        "Alzheimers",
+        "Awesomeness"
+      ],
+      "effects": [
+        "Appetite",
+        "Muncies"
+      ],
+      "negatives": [
+        "Dry Mouth",
+        "Something Awesome"
+      ]
+    }
+  ]
+}

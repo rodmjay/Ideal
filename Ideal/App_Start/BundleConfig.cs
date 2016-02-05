@@ -40,7 +40,7 @@ namespace Ideal
             var lessBundle = new StyleBundle("~/Content/css")
                 .Include("~/less/bootstrap/bootstrap.less")
                 .Include("~/less/font-awesome/font-awesome.less")
-                .Include("~/content/site.less");
+                .Include("~/less/site/site.less");
 
             bundles.Add(lessBundle);
         }

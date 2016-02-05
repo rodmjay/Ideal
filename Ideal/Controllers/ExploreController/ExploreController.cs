@@ -2,14 +2,12 @@
 
 namespace Ideal.Controllers
 {
-    public class ToolsController : Controller
+    public class ExploreController : Controller
     {
-        // GET: Tools
-        public ActionResult Tincture()
+        // GET: Explore
+        public ActionResult Index()
         {
             return View();
         }
-
-
     }
 }

@@ -1,60 +1,162 @@
-﻿<div class="container body-content" ng-controller="TinctureCtrl as tinctureCtrl">
-    <div class="row">
+﻿@{
+    ViewBag.Title = "Tincture Calculator";
+}
 
-        <div class="col-md-6">
-            <table class="table table-striped">
-                <tr>
-                    <th style="width:100px"></th>
-                    <th style="width:200px">Influencer</th>
-                    <th style="width:50px">MG</th>
-                    <th style="width:75px">%</th>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="btn-group">
-                            <button class="btn" ng-click="tinctureCtrl.addCBD()"><i class="fa fa-plus-square"></i></button>
-                            <button class="btn" ng-click="tinctureCtrl.removeCBD()"><i class="fa fa-minus-square"></i></button>
-                        </div>
-                    </th>
-                    <th>CBD</th>
-                    <td>{{tinctureCtrl.cbdAmount}}</td>
-                    <td>{{tinctureCtrl.cbdAmount/(tinctureCtrl.totalAmount()||1)*100}}%</td>
-                </tr>
-
-                <tr>
-                    <th>
-                        <div class="btn-group">
-                            <button class="btn" ng-click="tinctureCtrl.addIndica()"><i class="fa fa-plus-square"></i></button>
-                            <button class="btn" ng-click="tinctureCtrl.removeIndica()"><i class="fa fa-minus-square"></i></button>
-                        </div>
-                    </th>
-                    <th>Indica</th>
-                    <td>{{tinctureCtrl.indicaAmount}}</td>
-                    <td>{{tinctureCtrl.indicaAmount/(tinctureCtrl.totalAmount()||1)*100}}%</td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="btn-group">
-                            <button class="btn" ng-click="tinctureCtrl.addSativa()"><i class="fa fa-plus-square"></i></button>
-                            <button class="btn" ng-click="tinctureCtrl.removeSativa()"><i class="fa fa-minus-square"></i></button>
-                        </div>
-                    </th>
-                    <th>Sativa</th>
-                    <td>{{tinctureCtrl.sativaAmount}}</td>
-                    <td>{{tinctureCtrl.sativaAmount/(tinctureCtrl.totalAmount()||1)*100}}%</td>
-                </tr>
-                <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>{{tinctureCtrl.totalAmount()}}</td>
-                    <td>100%</td>
-                </tr>
-                </tfoot>
-            </table>
+@helper Influencer(string name)
+{
+    <div>
+        <div style="text-align: center">
+            <h4>@name</h4>
+            <button class="btn" ng-click="@($"tinctureCtrl.{name.ToLower()}.increment()")"><i class="fa fa-plus-square"></i></button>
+            <button ng-disabled="@($"!tinctureCtrl.{name.ToLower()}.value()")" class="btn" ng-click="@($"tinctureCtrl.{name.ToLower()}.decriment()")"><i class="fa fa-minus-square"></i></button>
         </div>
-        <div class="col-md-6">
-            
+    </div>
+}
+<div ng-controller="TinctureCtrl as tinctureCtrl">
+    <div class="jumbotron" style="padding-bottom:20px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="well">
+                        <p>
+                            THC Provides the psychoactive effects
+                        </p>
+
+                    </div>
+
+                </div>
+                <div class="col-md-2">@Influencer("THC")</div>
+                <div class="col-md-2" style="text-align: center">
+                    <h1>{{tinctureCtrl.thc.value()}}:{{tinctureCtrl.cbd.value()}}</h1>
+                </div>
+                <div class="col-md-2">@Influencer("CBD")</div>
+
+                <div class="col-md-3">
+                    <div class="well">
+                        <p>
+                            CBD Provides the non psycho-active effects
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="well">
+                    <h4>My Dosage</h4>
+                    <form>
+                        <div class="form-group">
+                            <label class="col-md-5 control-label">MG</label>
+                            <div class="col-md-7">
+                                <select class="form-control" ng-model="tinctureCtrl.tincture.dosage" ng-options="tincture.value as tincture.name for tincture in tinctureCtrl.dosages"></select>
+                            </div>
+                        </div>
+                    </form>
+                    <h4>Recipe</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Influencer</th>
+                                <th>MG</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+
+                                <th>CBD</th>
+                                <td>{{ tinctureCtrl.mgAmount(tinctureCtrl.cbd.value())}}</td>
+                            </tr>
+
+                            <tr>
+
+                                <th>THC</th>
+                                <td>{{ tinctureCtrl.mgAmount(tinctureCtrl.thc.value())}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <button type="button" class="btn btn-primary btn-lg btn-block">
+                    <i class="fa fa-plus-square"></i> Save As Favorite
+                </button>
+
+                <button type="button" class="btn btn-primary btn-lg btn-block">
+                    <i class="fa fa-pencil-square-o"></i> Write Review
+                </button>
+
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#effects" aria-controls="effects" role="tab" data-toggle="tab">Effects</a></li>
+                        <li role="presentation"><a href="#ailments" aria-controls="ailments" role="tab" data-toggle="tab">Ailments</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="effects">
+                            <div class="container">
+                                <div class="row">
+                                    asdf
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ailments">
+                            <div class="container ">
+                                <div class="row">
+                                    asdf
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
+
+                <div class="row hidden">
+
+                    <div class="form-group">
+                        <label class="col-md-5 control-label">Bottle size</label>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" ng-init="tinctureCtrl.bottle.size=150" ng-model="tinctureCtrl.bottle.size">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row hidden">
+                    <div class="form-group">
+                        <label class="col-md-5 control-label">Dropper size</label>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" ng-init="tinctureCtrl.dropper.size=5" ng-model="tinctureCtrl.dropper.size">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row hidden">
+                    <div class="form-group">
+                        <label class="col-md-5 control-label">Segments</label>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" ng-init="tinctureCtrl.dropper.segments=10" ng-model="tinctureCtrl.dropper.segments" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

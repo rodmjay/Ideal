@@ -1,0 +1,16 @@
+﻿
+.well-indica{
+    .well-custom(@indica);
+}
+.well-sativa{
+    .well-custom(@sativa);
+}
+.well-cbd{
+    .well-custom(@cbd);
+}
+.well-thc{
+    .well-custom(@thc);
+}
+.well-custom(@color:transparent,@lightenAmount:25%){
+    background-color:lighten(@color,@lightenAmount);
+}
