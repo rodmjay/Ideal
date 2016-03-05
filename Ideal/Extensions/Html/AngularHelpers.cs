@@ -1,6 +1,4 @@
-﻿using System.Web.Mvc;
-
-namespace Ideal.Html
+﻿namespace Ideal.Extensions.Html
 {
   
 }

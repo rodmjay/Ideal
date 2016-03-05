@@ -12,7 +12,7 @@
 using System.Web.Mvc;
 using Ideal.Core.Interfaces.Validation;
 
-namespace Ideal
+namespace Ideal.Extensions
 {
     public static class ModelStateExtensions
     {

@@ -11,6 +11,7 @@
 
 using System.Web.Mvc;
 using Ideal.Core.Common.Membership;
+using Ideal.Extensions;
 using Ideal.Models;
 using Ideal.Security.Authorization;
 
