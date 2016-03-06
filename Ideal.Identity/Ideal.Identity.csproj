@@ -64,6 +64,9 @@
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OpenIdConnect.3.0.1\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
       <Private>True</Private>
@@ -110,11 +113,31 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scopes.cs" />
     <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ideal.Common\Ideal.Common.csproj">
+      <Project>{2f88f0ae-3278-4d1c-adf3-01ec8ef881ba}</Project>
+      <Name>Ideal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Core\Ideal.Core.csproj">
+      <Project>{fbf079da-4d55-460c-ac31-5c676d2bd597}</Project>
+      <Name>Ideal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.IdentityManager\Ideal.IdentityManager.csproj">
+      <Project>{3ee0ae56-40d5-4c7c-9d00-06d3e870a153}</Project>
+      <Name>Ideal.IdentityManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Infrastructure\Ideal.Infrastructure.csproj">
+      <Project>{f22e2e5e-c5b0-4ec9-a201-4d9d6f7a7b1e}</Project>
+      <Name>Ideal.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ideal.Security\Ideal.Security.csproj">
+      <Project>{A0F160B2-5795-4609-A64C-3155C9741150}</Project>
+      <Name>Ideal.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

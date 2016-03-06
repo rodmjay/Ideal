@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IdentityModel;
+﻿
+using System.Collections.Generic;
+using IdentityServer3.Core.Models;
 
 namespace Ideal.Security.Scopes
 {

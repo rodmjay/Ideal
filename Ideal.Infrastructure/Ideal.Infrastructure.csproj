@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BrockAllen.MembershipReboot">
+      <HintPath>..\packages\BrockAllen.MembershipReboot.8.4.0\lib\net45\BrockAllen.MembershipReboot.dll</HintPath>
+    </Reference>
+    <Reference Include="BrockAllen.MembershipReboot.Ef">
+      <HintPath>..\packages\BrockAllen.MembershipReboot.Ef.8.0.0\lib\net45\BrockAllen.MembershipReboot.Ef.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -53,6 +59,13 @@
     <Compile Include="Configuration\ConfigApplicationSettings.cs" />
     <Compile Include="Configuration\ConfigMembershipSettings.cs" />
     <Compile Include="Configuration\ConfigSiteSettings.cs" />
+    <Compile Include="Membership\CustomConfig.cs" />
+    <Compile Include="Membership\CustomDatabase.cs" />
+    <Compile Include="Membership\CustomGroup.cs" />
+    <Compile Include="Membership\CustomGroupService.cs" />
+    <Compile Include="Membership\CustomUser.cs" />
+    <Compile Include="Membership\CustomUserAccountService.cs" />
+    <Compile Include="Membership\CustomUserRepository.cs" />
     <Compile Include="Data\BaseContext.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\DatabaseFactory.cs" />

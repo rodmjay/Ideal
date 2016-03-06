@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using IdentityServer3.Core.Models;
 
-namespace Ideal.Identity
+namespace Ideal.Security.Clients
 {
-	public static class Clients
+	public class ClientService : IClientService
 	{
-
-
-		public static IEnumerable<Client> Get()
+		public IEnumerable<Client> Get()
 		{
 			return new[]
 			{
