@@ -9,6 +9,7 @@
 // ***********************************************************************
 #endregion
 
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ideal.Core.Common.Membership;
 using Ideal.Extensions;
@@ -27,52 +28,20 @@ namespace Ideal.Controllers
         /// </summary>
         /// <returns>ActionResult.</returns>
         [AllowAnonymous, OnlyAnonymous]
-        public ActionResult Login()
+        public async Task<ActionResult> Identity()
         {
-            return View(new LoginModel());
+	        var client = GPNHttpClient.GetClient();
+
+	        var identity = await client.GetAsync("identity").ConfigureAwait(false);
+
+	        if (identity.IsSuccessStatusCode)
+	        {
+		        var identityString = await identity.Content.ReadAsStringAsync().ConfigureAwait(false);
+		        return View(identityString);
+	        }
+	        else return View("Error");
+
         }
 
-        /// <summary>
-        /// Authenticate user.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="returnUrl">The return URL.</param>
-        /// <returns>ActionResult.</returns>
-        [HttpPost]
-        [AllowAnonymous, OnlyAnonymous]
-        public ActionResult Login(LoginModel model, string returnUrl)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = this._userService.Authenticate(model.UserName, model.Password);
-                if (ModelState.Process(result))
-                {
-                    var user = result.Entity;
-
-                    _authenticationService.SignIn(user, model.RememberMe);
-
-                    if (_userService.IsPasswordExpired(model.UserName))
-                    {
-                        return RedirectToAction("ChangePassword", "Account");
-                    }
-
-                    new MembershipEvent(MembershipEventCode.UserLogin, user).Raise();
-
-                    if (Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    return RedirectToAction("Index", "Home");
-                }
-
-                ModelState.AddModelError("", "Invalid Username or Password");
-            }
-            return View(model);
-        }
-
-        public ActionResult ChangePassword()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
