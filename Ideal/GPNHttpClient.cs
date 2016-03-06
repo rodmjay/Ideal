@@ -27,7 +27,7 @@ namespace Ideal
 		private static string RequestTokenAuthorizationCode()
 		{
 			var cookie = HttpContext.Current.Request.Cookies.Get("GPNCookie");
-			if (cookie != null && cookie["access_token"] == null)
+			if (cookie?["access_token"] != null)
 			{
 				return cookie["access_token"];
 			}

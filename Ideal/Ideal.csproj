@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AuthorizationManager.cs" />
     <Compile Include="Controllers\HomeController\HomeController.cs" />
     <Compile Include="Controllers\HomeController\HomeController.Index.cs" />
+    <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
     <Compile Include="Controllers\STSCallbackController.cs" />
     <Compile Include="DependencyResolution\DependencyBuilder.cs" />
@@ -199,6 +200,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GPNHttpClient.cs" />
+    <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Infrastructure\ViewPages\BaseViewPage.cs" />
     <Compile Include="Metadata\Resources\ClientValidationResources.Designer.cs" />
     <Compile Include="Metadata\Resources\ValidatorResources.Designer.cs" />
@@ -1153,6 +1155,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\Metadata\" />
+    <Folder Include="Views\Identity\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

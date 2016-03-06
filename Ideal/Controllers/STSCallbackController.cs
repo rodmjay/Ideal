@@ -7,12 +7,11 @@ namespace Ideal.Controllers
 {
     public class STSCallbackController : Controller
     {
-        // GET: STSCallback
         public async Task<ActionResult> Index()
         {
 	        var authCode = Request.QueryString["code"];
 
-	        var client = new TokenClient(IdealConstants.GPNSTSRevokeTokenEndpoint,
+	        var client = new TokenClient(IdealConstants.GPNSTSTokenEndpoint,
 				IdealConstants.EdgeClientId,
 				IdealConstants.EdgeClientSecret);
 
