@@ -1,8 +1,13 @@
-﻿using Ideal.IdentityManager;
+﻿using Ideal.Identity;
+using Ideal.IdentityManager;
 using Ideal.Security.Certificates;
 using IdentityServer3.Core.Configuration;
+using Microsoft.Owin;
 using Microsoft.Owin.Security.Google;
 using Owin;
+
+[assembly: OwinStartup(typeof(Startup))]
+
 
 namespace Ideal.Identity
 {
@@ -11,7 +16,7 @@ namespace Ideal.Identity
 		public void Config(IAppBuilder app)
 		{
 			string connectionString = "MembershipReboot";
-			app.Map("/", idsrvApp =>
+			app.Map("/identity", idsrvApp =>
 			{
 				var idSvrFactory = Factory.Configure();
 				idSvrFactory.ConfigureCustomUserService(connectionString);
