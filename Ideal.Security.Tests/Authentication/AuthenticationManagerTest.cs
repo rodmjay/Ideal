@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
 using Ideal.Security.Authentication;
-using Moq;
 using NUnit.Framework;
 
 namespace Ideal.Security.Tests.Authentication
