@@ -71,12 +71,8 @@ IF NOT DEFINED PROJECT_PATH (
 
 echo Handling .NET Web Application deployment.
 
-echo %MSBUILD_PATH%
-
-echo %Deployment_Source%
-
 :: 1. Build to the temporary path
-%MSBUILD_PATH% "%DEPLOYMENT_SOURCE%\%PROJECT_PATH%" /nologo /verbosity:m /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release
+"%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\%PROJECT_PATH%" /nologo /verbosity:m /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 2. KuduSync
