@@ -58,7 +58,6 @@
     <Compile Include="CustomIdentityManagerService.cs" />
     <Compile Include="CustomUserService.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Factory.cs" />
     <Compile Include="MembershipRebootIdentityManagerServiceExtensions.cs" />
     <Compile Include="MembershipRebootUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

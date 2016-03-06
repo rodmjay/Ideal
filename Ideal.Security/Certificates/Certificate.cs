@@ -9,7 +9,7 @@ namespace Ideal.Security.Certificates
 		public static X509Certificate2 Get()
 		{
 			return new X509Certificate2(
-				string.Format(@"{0}\bin\test-ideal.pfx", AppDomain.CurrentDomain.BaseDirectory), "test-ideal");
+				string.Format(@"{0}\bin\test-ideal.pfx", AppDomain.CurrentDomain.BaseDirectory), "idsrv3test");
 
 		}
 
