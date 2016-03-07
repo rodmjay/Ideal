@@ -6,8 +6,6 @@ using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
-
-
 namespace Ideal.Identity
 {
 	public class Startup
@@ -16,7 +14,7 @@ namespace Ideal.Identity
 		{
 
 			string connectionString = "MembershipReboot";
-			app.Map("/connect", idsrvApp =>
+			app.Map("/identity", idsrvApp =>
 			{
 				var idSvrFactory = Factory.Configure();
 				idSvrFactory.ConfigureCustomUserService(connectionString);
