@@ -5,8 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using Ideal.API;
 using IdentityServer3.AccessTokenValidation;
+using Microsoft.Owin;
 using Owin;
+
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace Ideal.API
 {

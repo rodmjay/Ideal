@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace Ideal.API.Controllers
 {
+	
 	public class ValuesController : ApiController
 	{
 		// GET api/values

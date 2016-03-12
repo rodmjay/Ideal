@@ -147,7 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IdealHttpClient.cs" />
+    <Compile Include="HttpClients\IdealHttpClient.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Infrastructure\ViewPages\BaseViewPage.cs" />
     <Compile Include="Metadata\Resources\ClientValidationResources.Designer.cs" />
@@ -1100,11 +1100,11 @@
     <Content Include="Views\Shared\EditorTemplates\Year.cshtml" />
     <Content Include="Views\Protected\Index.cshtml" />
     <Content Include="Views\STSCallback\Index.cshtml" />
+    <Content Include="Views\Identity\ShowApiResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\Metadata\" />
-    <Folder Include="Views\Identity\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

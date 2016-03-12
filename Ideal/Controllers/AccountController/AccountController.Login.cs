@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ideal.Core.Common.Membership;
 using Ideal.Extensions;
+using Ideal.HttpClients;
 using Ideal.Models;
 using Ideal.Security.Authorization;
 
