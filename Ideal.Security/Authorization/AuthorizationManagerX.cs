@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Thinktecture.IdentityModel.Owin.ResourceAuthorization;
 
-namespace Ideal.Controllers
+namespace Ideal.Security.Authorization
 {
-	public class AuthorizationManager : ResourceAuthorizationManager
+	public class AuthorizationManagerX : ResourceAuthorizationManager
 	{
 		public override Task<bool> CheckAccessAsync(ResourceAuthorizationContext context)
 		{

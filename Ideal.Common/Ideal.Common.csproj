@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigExtensions.cs" />
+    <Compile Include="DisposableExtensions.cs" />
     <Compile Include="IdealConstants.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="Crypto.cs" />

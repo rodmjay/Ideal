@@ -8,13 +8,13 @@ namespace Ideal.Controllers
         // GET: Identity
         public async Task<ActionResult> Index()
         {
-	        var client = GPNHttpClient.GetClient();
+	        var client = IdealHttpClient.GetClient();
 
 	        var x = await client.GetAsync("identity").ConfigureAwait(false);
 	        if (x.IsSuccessStatusCode)
 	        {
 		        var identity = await x.Content.ReadAsStringAsync().ConfigureAwait(false);
-		        return Content(identity);
+		        return Content("Worked");
 	        }
 			else return View("Error");
 		}

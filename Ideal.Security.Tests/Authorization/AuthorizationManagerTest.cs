@@ -16,7 +16,7 @@ namespace Ideal.Security.Tests.Authorization
             {
                 var context = new AuthorizationContext(new ClaimsPrincipal(), "asdf", "asdf");
 
-                AuthorizationManager manager=  new AuthorizationManager();
+                AuthorizationManagerX manager=  new AuthorizationManagerX();
                 var actual = manager.CheckAccess(context);
 
                 Assert.IsTrue(actual);

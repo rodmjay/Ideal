@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Ideal.Core
+namespace Ideal
 {
     #region
 

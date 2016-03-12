@@ -15,17 +15,17 @@ namespace Ideal.Security.Clients
 			{
 				new Client
 				{
-					ClientId = "authcocde",
+					ClientId = IdealConstants.ClientId,
 					ClientName = "Ideal Identity - Auth Code",
 					Flow = Flows.AuthorizationCode,
 					AllowAccessToAllScopes = true,
 					RedirectUris = new List<string>()
 					{
-						"http://localhost:49839/stscallback"
+						IdealConstants.ClientCallbackUrl
 					},
 					ClientSecrets = new List<Secret>()
 					{
-						new Secret("secret")
+						new Secret(IdealConstants.ClientSecret)
 					}
 				}
 			};

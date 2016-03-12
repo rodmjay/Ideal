@@ -30,7 +30,7 @@ namespace Ideal.Controllers
         [AllowAnonymous, OnlyAnonymous]
         public async Task<ActionResult> Identity()
         {
-	        var client = GPNHttpClient.GetClient();
+	        var client = IdealHttpClient.GetClient();
 
 	        var identity = await client.GetAsync("identity").ConfigureAwait(false);
 

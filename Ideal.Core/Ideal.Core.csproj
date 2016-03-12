@@ -75,7 +75,6 @@
     <Compile Include="Common\Photos\PhotoResize.cs" />
     <Compile Include="Common\Photos\PhotoThumbnail.cs" />
     <Compile Include="Common\Validation\ValidationContainer.cs" />
-    <Compile Include="Extensions\DisposableExtensions.cs" />
     <Compile Include="Extensions\DomainObjectExtensions.Validation.cs" />
     <Compile Include="Interfaces\Data\IDatabaseFactory.cs" />
     <Compile Include="Interfaces\Data\IDataContext.cs" />

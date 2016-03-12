@@ -1,27 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 
 namespace Ideal
 {
 	public static class IdealConstants
 	{
-		public const string EdgeMVC = "http://localhost:49839";
-		public const string EdgeMVCSTSCallback = EdgeMVC + "/stscallback";
+		public static string ClientOrigin
+		{
+			get { return ConfigurationManager.AppSettings["client:originUrl"]; }
+		}
+		public static string ClientCallbackUrl
+		{
+			get { return IdealConstants.ClientOrigin + "/stscallback"; }
+		}
 
-		public const string EdgeClientSecret = "secret";
-		public const string EdgeClientId = "edgeauthcode";
+		public static string ClientId
+		{
+			get { return ConfigurationManager.AppSettings["sts:clientId"]; }
+		}
 
-		public const string GPNSTSOrigin = "https://gpn-identity.azurewebsites.net";
-		public const string GPNSTS = GPNSTSOrigin + "/identity";
-		public const string GPNSTSTokenEndpoint = GPNSTS + "/connect/token";
-		public const string GPNSTSAuthorizationEndpoint = GPNSTS + "/connect/authorize";
-		public const string GPNSTSUserInfoEndpoint = GPNSTS + "/connect/userinfo";
-		public const string GPNSTSEndSessionEndpoint = GPNSTS + "/connect/endsession";
-		public const string GPNSTSRevokeTokenEndpoint = GPNSTS + "/connect/revokation";
+		public static string ClientSecret
+		{
+			get { return ConfigurationManager.AppSettings["sts:clientSecret"]; }
+		}
 
-		public const string GPNAPIOrigin = "https://gpn-api.azurewebsites.net";
+		public static string STSOrigin
+		{
+			get { return ConfigurationManager.AppSettings["sts:originUrl"]; }
+		}
+
+		public static string STSEndpoint
+		{
+			get { return STSOrigin + "/identity"; }
+		}
+
+		public static string STSTokenEndpoint
+		{
+			get { return STSEndpoint + "/connect/token"; }
+		}
+
+		public static string STSAuthorizationEndpoint
+		{
+			get { return STSEndpoint + "/connect/authorize"; }
+		}
+
+		public static string STSUserInfoEndpoint
+		{
+			get { return STSEndpoint + "/connect/userinfo"; }
+		}
+
+		public static string STSEndSessionEndpoint
+		{
+			get { return STSEndpoint + "/connect/endsession"; }
+		}
+
+		public static string STSRevokeTokenEndpoint
+		{
+			get { return STSEndpoint + "/connect/revokation"; }
+		}
+
+		public static string ApiOriginUrl
+		{
+			get { return ConfigurationManager.AppSettings["api:originUrl"]; }
+		}
 	}
 }

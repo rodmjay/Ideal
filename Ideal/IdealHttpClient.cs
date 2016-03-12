@@ -8,7 +8,7 @@ using IdentityModel.Client;
 
 namespace Ideal
 {
-	public static class GPNHttpClient
+	public static class IdealHttpClient
 	{
 		public static HttpClient GetClient()
 		{
@@ -16,7 +16,7 @@ namespace Ideal
 			var accessToken = RequestTokenAuthorizationCode();
 			if(accessToken!=null)
 				client.SetBearerToken(accessToken);
-			client.BaseAddress = new Uri(IdealConstants.GPNAPIOrigin);
+			client.BaseAddress = new Uri(IdealConstants.ApiOriginUrl);
 
 			client.DefaultRequestHeaders.Accept.Clear();
 			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -26,18 +26,18 @@ namespace Ideal
 
 		private static string RequestTokenAuthorizationCode()
 		{
-			var cookie = HttpContext.Current.Request.Cookies.Get("GPNCookie");
+			var cookie = HttpContext.Current.Request.Cookies.Get("ideal.auth");
 			if (cookie?["access_token"] != null)
 			{
 				return cookie["access_token"];
 			}
 
-			var authorizeRequest = new AuthorizeRequest(IdealConstants.GPNSTSAuthorizationEndpoint);
+			var authorizeRequest = new AuthorizeRequest(IdealConstants.STSAuthorizationEndpoint);
 
 			var state = HttpContext.Current.Request.Url.OriginalString;
 
-			var url = authorizeRequest.CreateAuthorizeUrl(IdealConstants.EdgeClientId, "code", "sampleApi",
-				IdealConstants.EdgeMVCSTSCallback, state);
+			var url = authorizeRequest.CreateAuthorizeUrl(IdealConstants.ClientId, "code", "sampleApi",
+				IdealConstants.ClientCallbackUrl, state);
 
 			HttpContext.Current.Response.Redirect(url);
 			return null;

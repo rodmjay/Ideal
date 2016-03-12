@@ -11,15 +11,15 @@ namespace Ideal.Controllers
         {
 	        var authCode = Request.QueryString["code"];
 
-	        var client = new TokenClient(IdealConstants.GPNSTSTokenEndpoint,
-				IdealConstants.EdgeClientId,
-				IdealConstants.EdgeClientSecret);
+	        var client = new TokenClient(IdealConstants.STSTokenEndpoint,
+				IdealConstants.ClientId,
+				IdealConstants.ClientSecret);
 
 	        var tokenResponse = await client.RequestAuthorizationCodeAsync(
 		        authCode,
-				IdealConstants.EdgeMVCSTSCallback);
+				IdealConstants.ClientCallbackUrl);
 
-	        Response.Cookies["GPNCookie"]["access_token"] = tokenResponse.AccessToken;
+	        Response.Cookies["ideal.auth"]["access_token"] = tokenResponse.AccessToken;
 
             return Redirect(Request.QueryString["state"]);
         }

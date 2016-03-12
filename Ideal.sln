@@ -33,8 +33,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{4D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{458265E9-86AF-44D8-B13B-16B60D16D665}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{3B2F8D71-30CC-4660-BF88-9F4F4529F8B9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ideal.Identity.Tests", "Ideal.Identity.Tests\Ideal.Identity.Tests.csproj", "{83B453AD-5849-4C3B-B014-E46EDBCA0490}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ideal.IdentityManager", "Ideal.IdentityManager\Ideal.IdentityManager.csproj", "{3EE0AE56-40D5-4C7C-9D00-06D3E870A153}"

@@ -12,7 +12,6 @@ namespace Ideal.Identity
 	{
 		public void Configuration(IAppBuilder app)
 		{
-
 			string connectionString = "MembershipReboot";
 			app.Map("/identity", idsrvApp =>
 			{
