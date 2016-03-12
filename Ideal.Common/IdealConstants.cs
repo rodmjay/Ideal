@@ -7,6 +7,7 @@ namespace Ideal
 		public static string ClientOrigin
 		{
 			get { return ConfigurationManager.AppSettings["client:originUrl"]; }
+			//get { return "https://localhost:44302"; }
 		}
 		public static string ClientCallbackUrl
 		{

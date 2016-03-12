@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using IdentityServer3.Core.Models;
 
 namespace Ideal.Security.Clients
@@ -17,6 +13,7 @@ namespace Ideal.Security.Clients
 				{
 					ClientId = IdealConstants.ClientId,
 					ClientName = "Ideal Identity - Auth Code",
+					Enabled = true,
 					Flow = Flows.AuthorizationCode,
 					AllowAccessToAllScopes = true,
 					RedirectUris = new List<string>()

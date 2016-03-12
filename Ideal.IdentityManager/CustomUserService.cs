@@ -1,6 +1,7 @@
 ﻿using Ideal.Infrastructure.Membership;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Services;
+using Microsoft.Owin;
 
 namespace Ideal.IdentityManager
 {
@@ -18,8 +19,8 @@ namespace Ideal.IdentityManager
     
     public class CustomUserService : MembershipRebootUserService<CustomUser>
     {
-        public CustomUserService(CustomUserAccountService userSvc)
-            : base(userSvc)
+		public CustomUserService(CustomUserAccountService userSvc, OwinEnvironmentService owinService)
+            : base(userSvc, owinService)
         {
         }
     }

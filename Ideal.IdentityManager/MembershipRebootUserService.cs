@@ -6,10 +6,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BrockAllen.MembershipReboot;
-using IdentityServer3.Core;
+using IdentityManager;
 using IdentityServer3.Core.Extensions;
 using IdentityServer3.Core.Models;
 using IdentityServer3.Core.Services.Default;
+using Microsoft.Owin;
+using Constants = IdentityServer3.Core.Constants;
 
 namespace Ideal.IdentityManager
 {
@@ -19,12 +21,21 @@ namespace Ideal.IdentityManager
 		public string DisplayNameClaimType { get; set; }
 
 		protected readonly UserAccountService<TAccount> userAccountService;
+		private readonly OwinContext _owinContext;
 
-		public MembershipRebootUserService(UserAccountService<TAccount> userAccountService)
+		public MembershipRebootUserService(UserAccountService<TAccount> userAccountService, IdentityServer3.Core.Services.OwinEnvironmentService owinEnv )
 		{
+			_owinContext = new OwinContext(owinEnv.Environment);
 			if (userAccountService == null) throw new ArgumentNullException("userAccountService");
 
 			this.userAccountService = userAccountService;
+		}
+
+		public override Task PreAuthenticateAsync(PreAuthenticationContext context)
+		{
+			var id = _owinContext.Request.Query.Get("signin");
+			context.AuthenticateResult = new AuthenticateResult("~/custom/login?id=" + id, (IEnumerable<Claim>)null);
+			return Task.FromResult(0);
 		}
 
 		public override Task GetProfileDataAsync(ProfileDataRequestContext ctx)

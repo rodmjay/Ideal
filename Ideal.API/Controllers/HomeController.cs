@@ -10,7 +10,7 @@ namespace Ideal.API.Controllers
 	{
 		public ActionResult Index()
 		{
-			ViewBag.Title = "Home Page";
+			ViewBag.Title = "API";
 
 			return View();
 		}
