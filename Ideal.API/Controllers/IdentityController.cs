@@ -5,7 +5,6 @@ using System.Web.Http;
 namespace Ideal.API.Controllers
 {
 	[Route("identity")]
-	[Authorize]
 	public class IdentityController : ApiController
 	{
 		public IHttpActionResult Get()
