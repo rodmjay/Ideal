@@ -56,6 +56,10 @@
       <HintPath>..\packages\IdentityModel.1.8.0\lib\net45\IdentityModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="IdentityServer3, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdentityServer3.2.4.0\lib\net45\IdentityServer3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IdentityServer3.AccessTokenValidation.2.8.0\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
       <Private>True</Private>
@@ -142,7 +146,7 @@
     <Compile Include="Controllers\AccountController\AccountController.Login.cs" />
     <Compile Include="Controllers\HomeController\HomeController.cs" />
     <Compile Include="Controllers\HomeController\HomeController.Index.cs" />
-    <Compile Include="Controllers\IdentityController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\ProtectedController.cs" />
     <Compile Include="Controllers\STSCallbackController.cs" />
     <Compile Include="DependencyResolution\DependencyBuilder.cs" />

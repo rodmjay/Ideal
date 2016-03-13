@@ -7,9 +7,10 @@ namespace Ideal.API
 {
 	public static class WebApiConfig
 	{
-		public static void Register(HttpConfiguration config)
+		public static HttpConfiguration Register()
 		{
 			// Web API configuration and services
+			HttpConfiguration config = new HttpConfiguration();
 
 			// Web API routes
 			config.MapHttpAttributeRoutes();
@@ -19,6 +20,8 @@ namespace Ideal.API
 				routeTemplate: "api/{controller}/{id}",
 				defaults: new { id = RouteParameter.Optional }
 			);
+
+			return config;
 		}
 	}
 }

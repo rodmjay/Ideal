@@ -11,6 +11,7 @@ using IdentityServer3.Core.Services;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using AuthenticationOptions = IdentityServer3.Core.Configuration.AuthenticationOptions;
@@ -39,6 +40,8 @@ namespace Ideal.Identity
 					}
 				});
 			});
+
+			//app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
 			//app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
 			//{

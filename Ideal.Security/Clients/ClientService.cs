@@ -12,7 +12,7 @@ namespace Ideal.Security.Clients
 				new Client
 				{
 					ClientId = IdealConstants.ClientId,
-					ClientName = "Ideal Identity - Auth Code",
+					ClientName = "Ideal Identity",
 					Enabled = true,
 					Flow = Flows.AuthorizationCode,
 					AllowAccessToAllScopes = true,

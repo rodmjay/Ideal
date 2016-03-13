@@ -19,25 +19,15 @@ namespace Ideal.API
 		public void Configuration(IAppBuilder app)
 		{
 			// token validation
-			app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
-			{
-				Authority = IdealConstants.STSEndpoint,
-				RequiredScopes = new[] { "sampleApi" }
-			});
-
-			// add app local claims per request
-			app.UseClaimsTransformation(incoming =>
-			{
-				// either add claims to incoming, or create new principal
-				var appPrincipal = new ClaimsPrincipal(incoming);
-				incoming.Identities.First().AddClaim(new Claim("appSpecific", "some_value"));
-
-				return Task.FromResult(appPrincipal);
-			});
+			app.UseIdentityServerBearerTokenAuthentication(
+				new IdentityServerBearerTokenAuthenticationOptions
+				{
+					Authority = IdealConstants.STSEndpoint,
+					RequiredScopes = new[] { "sampleApi" }
+				});
 
 			// web api configuration
-			var config = new HttpConfiguration();
-			config.MapHttpAttributeRoutes();
+			var config = WebApiConfig.Register();
 
 			app.UseWebApi(config);
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Web;
 using IdentityModel.Client;
 
@@ -11,9 +12,9 @@ namespace Ideal.HttpClients
 		public static HttpClient GetClient()
 		{
 			HttpClient client = new HttpClient();
-			var accessToken = RequestTokenAuthorizationCode();
-			if(accessToken!=null)
-				client.SetBearerToken(accessToken);
+			var token = RequestTokenAuthorizationCode();
+			if(!string.IsNullOrEmpty(token))
+				client.SetBearerToken(token);
 			client.BaseAddress = new Uri(IdealConstants.ApiOriginUrl);
 
 			client.DefaultRequestHeaders.Accept.Clear();

@@ -31,12 +31,12 @@ namespace Ideal.IdentityManager
 			this.userAccountService = userAccountService;
 		}
 
-		public override Task PreAuthenticateAsync(PreAuthenticationContext context)
-		{
-			var id = _owinContext.Request.Query.Get("signin");
-			context.AuthenticateResult = new AuthenticateResult("~/custom/login?id=" + id, (IEnumerable<Claim>)null);
-			return Task.FromResult(0);
-		}
+		//public override Task PreAuthenticateAsync(PreAuthenticationContext context)
+		//{
+		//	var id = _owinContext.Request.Query.Get("signin");
+		//	context.AuthenticateResult = new AuthenticateResult("~/custom/login?id=" + id, (IEnumerable<Claim>)null);
+		//	return Task.FromResult(0);
+		//}
 
 		public override Task GetProfileDataAsync(ProfileDataRequestContext ctx)
 		{
